@@ -8,7 +8,8 @@
    <children>
       <TextField layoutX="207.0" layoutY="88.0" promptText="Username" />
       <TextField layoutX="207.0" layoutY="155.0" promptText="Password" />
-      <Button layoutX="268.0" layoutY="230.0" mnemonicParsing="false" onAction="#handleButtonClick" text="Login" />
+      <Button layoutX="207.0" layoutY="230.0" mnemonicParsing="false" onAction="#handleButtonClick" text="Login" />
       <AnchorPane layoutX="-325.0" layoutY="-64.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button layoutX="301.0" layoutY="230.0" mnemonicParsing="false" text="New User?" onAction="#handleNewUser" />
    </children>
 </AnchorPane>
