@@ -8,4 +8,6 @@ public class Room {
     private Map<Calendar, Boolean> roomAvailable;
     private String roomNumber;
 
+    public String getRoomNumber() {return roomNumber;}
+
 }

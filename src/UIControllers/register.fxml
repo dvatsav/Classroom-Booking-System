@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -9,8 +12,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIControllers.RegisterController">
    <children>
       <BorderPane layoutX="200.0" layoutY="111.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -19,7 +20,7 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
+                    <MenuItem mnemonicParsing="false" text="Logout" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
@@ -44,17 +45,18 @@
                   <ChoiceBox layoutX="225.0" layoutY="222.0" prefWidth="150.0" value="semester">
                    <items>
                        <FXCollections fx:factory="observableArrayList">
-                           <String fx:value="1st"/>
-                           <String fx:value="2nd"/>
-                           <String fx:value="3rd"/>
-                           <String fx:value="4th"/>
-                           <String fx:value="5th"/>
-                           <String fx:value="6th"/>
-                           <String fx:value="7th"/>
-                           <String fx:value="8th"/>
+                           <String fx:value="1st" />
+                           <String fx:value="2nd" />
+                           <String fx:value="3rd" />
+                           <String fx:value="4th" />
+                           <String fx:value="5th" />
+                           <String fx:value="6th" />
+                           <String fx:value="7th" />
+                           <String fx:value="8th" />
                        </FXCollections>
                    </items>
                   </ChoiceBox>
+                  <Button layoutX="268.0" layoutY="291.0" mnemonicParsing="false" text="Register" />
                </children>
             </AnchorPane>
          </center>

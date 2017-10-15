@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -8,9 +10,8 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIControllers.RegisterController">
    <children>
       <BorderPane layoutX="200.0" layoutY="111.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -38,20 +39,32 @@
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextField layoutX="207.0" layoutY="30.0" promptText="Username" />
-                  <PasswordField layoutX="207.0" layoutY="91.0" promptText="Enter a Password" />
-                  <PasswordField layoutX="207.0" layoutY="153.0" promptText="Re-enter Password" />
+                  <VBox layoutX="207.0" layoutY="30.0">
+                     <children>
+                        <TextField promptText="Username" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="207.0" layoutY="91.0">
+                     <children>
+                        <PasswordField promptText="Enter a Password" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="207.0" layoutY="153.0">
+                     <children>
+                        <PasswordField promptText="Re-enter Password" />
+                     </children>
+                  </VBox>
                   <ChoiceBox layoutX="225.0" layoutY="222.0" prefWidth="150.0" value="semester">
                    <items>
                        <FXCollections fx:factory="observableArrayList">
-                           <String fx:value="1st"/>
-                           <String fx:value="2nd"/>
-                           <String fx:value="3rd"/>
-                           <String fx:value="4th"/>
-                           <String fx:value="5th"/>
-                           <String fx:value="6th"/>
-                           <String fx:value="7th"/>
-                           <String fx:value="8th"/>
+                           <String fx:value="1st" />
+                           <String fx:value="2nd" />
+                           <String fx:value="3rd" />
+                           <String fx:value="4th" />
+                           <String fx:value="5th" />
+                           <String fx:value="6th" />
+                           <String fx:value="7th" />
+                           <String fx:value="8th" />
                        </FXCollections>
                    </items>
                   </ChoiceBox>
