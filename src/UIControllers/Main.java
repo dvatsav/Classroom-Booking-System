@@ -18,6 +18,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception{
         primaryStage = stage;
+        primaryStage.resizableProperty().setValue(Boolean.FALSE);
         Parent root = FXMLLoader.load(getClass().getResource("entryPage.fxml"));
         primaryStage.setTitle("ClassRoom Booking System");
         primaryStage.setScene(new Scene(root, 600, 400));

@@ -6,10 +6,10 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIControllers.entryPageController">
    <children>
-      <TextField layoutX="207.0" layoutY="88.0" promptText="Username" />
-      <TextField layoutX="207.0" layoutY="155.0" promptText="Password" />
+      <TextField layoutX="170.0" layoutY="88.0" prefHeight="31.0" prefWidth="255.0" promptText="Username" />
+      <TextField layoutX="170.0" layoutY="155.0" prefHeight="31.0" prefWidth="255.0" promptText="Password" />
       <Button layoutX="207.0" layoutY="230.0" mnemonicParsing="false" onAction="#handleButtonClick" text="Login" />
-      <AnchorPane layoutX="-325.0" layoutY="-64.0" prefHeight="200.0" prefWidth="200.0" />
-      <Button layoutX="301.0" layoutY="230.0" mnemonicParsing="false" text="New User?" onAction="#handleNewUser" />
+      <Button layoutX="320.0" layoutY="230.0" mnemonicParsing="false" onAction="#handleNewUser" text="Register" />
+      <Button layoutX="225.0" layoutY="301.0" mnemonicParsing="false" text="Upload a Timetable" onAction="#handleFileSelect" />
    </children>
 </AnchorPane>
