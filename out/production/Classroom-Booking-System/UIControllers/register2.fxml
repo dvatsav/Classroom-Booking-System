@@ -25,7 +25,7 @@
                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="111.0" prefWidth="156.0" text="Account Type" />
             </children></VBox>
         <Button layoutX="493.0" layoutY="336.0" mnemonicParsing="false" text="Next" />
-      <Button layoutX="428.0" layoutY="336.0" mnemonicParsing="false" text="Back" />
+      <Button layoutX="428.0" layoutY="336.0" mnemonicParsing="false" text="Back" onAction="#handleGoBack"/>
     </children>
 
 </AnchorPane>
