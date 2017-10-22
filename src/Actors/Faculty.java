@@ -1,5 +1,5 @@
 package Actors;
-import Utils.Course;
+import Supplementary.Course;
 import java.util.ArrayList;
 
 public class Faculty extends Users{

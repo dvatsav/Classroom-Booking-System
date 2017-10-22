@@ -2,7 +2,7 @@ package Actors;
 
 import java.util.Calendar;
 import java.util.Map;
-import Utils.Course;
+import Supplementary.Course;
 
 public class Student extends Users {
     private Map<Course, Calendar> courses;
