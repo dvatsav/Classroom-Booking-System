@@ -8,7 +8,8 @@ public class Course {
     private String courseName;
     private String courseCode;
     private String instructor;
-    private String postCondition;
+    private List<String> postConditions;
+    private String acronym;
     private Calendar timing;
     private Map<Calendar, String> roomAlloted;
     private List<String> intendedAudience;
