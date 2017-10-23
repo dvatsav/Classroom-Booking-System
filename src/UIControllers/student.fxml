@@ -5,13 +5,14 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIControllers.StudentController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIControllers.StudentController">
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -41,19 +42,26 @@
                <children>
                   <VBox layoutY="30.0" prefHeight="200.0" prefWidth="142.0">
                      <children>
-                        <TextField promptText="Search for course" />
-                        <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="141.0" text="View Faculty" />
-                        <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="145.0" text="Current timetable" />
-                        <DatePicker promptText="Book a Room" />
+                        <TextField prefWidth="142.0" promptText="Search for course" />
+                        <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="View Faculty" />
+                        <Button mnemonicParsing="false" prefWidth="142.0" text="Current timetable" />
+                        <DatePicker prefHeight="31.0" prefWidth="142.0" promptText="Book a Room" />
                         <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Current Bookings" />
                      </children>
                   </VBox>
-                  <Separator layoutX="139.0" orientation="VERTICAL" prefHeight="370.0" prefWidth="6.0" />
                </children>
             </AnchorPane>
          </left>
          <center>
-            <AnchorPane prefHeight="370.0" prefWidth="466.0" BorderPane.alignment="CENTER" />
+            <AnchorPane prefHeight="370.0" prefWidth="466.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView layoutX="229.0" layoutY="184.0" prefHeight="568.0" prefWidth="658.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+               </children></AnchorPane>
          </center></BorderPane>
    </children>
 </AnchorPane>
