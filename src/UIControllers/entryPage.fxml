@@ -23,7 +23,6 @@
                      <children>
                         <Button mnemonicParsing="false" onAction="#handleReturnToLogin" prefHeight="40.0" prefWidth="141.0" text="Login" />
                         <Button mnemonicParsing="false" onAction="#handleNewUser" prefHeight="40.0" prefWidth="141.0" text="Register" />
-                        <Button mnemonicParsing="false" onAction="#handleFileSelect" prefHeight="40.0" prefWidth="141.0" text="Upload Files" />
                      </children>
                   </VBox>
                   <Separator layoutX="139.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="6.0" />
