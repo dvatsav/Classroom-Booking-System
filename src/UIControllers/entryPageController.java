@@ -23,7 +23,7 @@ public class entryPageController {
     @FXML
     private void handleButtonClick(ActionEvent event) throws IOException {
             Parent newscene = FXMLLoader.load(getClass().getResource("admin.fxml"));
-            Main.primaryStage.setScene(new Scene(newscene, 600, 400));
+            Main.primaryStage.setScene(new Scene(newscene, 800, 600));
             Main.primaryStage.show();
     }
 
