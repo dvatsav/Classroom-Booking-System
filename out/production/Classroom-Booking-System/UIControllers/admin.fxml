@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIControllers.AdminController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIControllers.AdminController">
     <children>
         <BorderPane prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
@@ -45,14 +45,14 @@
                                 <DatePicker promptText="Book a Room" />
                         <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Current Bookings" />
                                 <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Cancel Booking" />
-                                <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="145.0" text="Student Requests" />
-                                <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="143.0" text="Faculty Requests" />
-                        <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="143.0" text="Account Requests" />
-                        <Button mnemonicParsing="false" onAction="#handleFileSelect" prefHeight="31.0" prefWidth="140.0" text="Upload files" />
+                                <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Student Requests" />
+                                <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Faculty Requests" />
+                        <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Account Requests" />
+                        <Button mnemonicParsing="false" onAction="#handleFileSelect" prefHeight="31.0" prefWidth="142.0" text="Upload files" />
+                                <Button layoutY="247.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="View Users" />
                             </children>
                         </VBox>
-                        <Separator layoutX="138.0" orientation="VERTICAL" prefHeight="368.0" prefWidth="7.0" />
-                  <Button layoutY="247.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="140.0" text="View Users" />
+
                     </children>
                 </AnchorPane>
             </left>
