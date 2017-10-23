@@ -7,6 +7,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
@@ -39,27 +40,27 @@
             <left>
                 <AnchorPane prefHeight="370.0" prefWidth="139.0" BorderPane.alignment="CENTER">
                     <children>
-                        <VBox layoutY="30.0" prefHeight="200.0" prefWidth="142.0">
+                        <VBox layoutY="30.0" prefHeight="228.0" prefWidth="142.0">
                             <children>
                                 <DatePicker promptText="Book a Room" />
                                 <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="New Course" />
-                        <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Current Bookings" />
-                        <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Cancel Booking" />
+                                <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Current Bookings" />
+                                <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Cancel Booking" />
                             </children>
                         </VBox>
                     </children>
                 </AnchorPane>
             </left>
             <center>
-                <AnchorPane prefHeight="600.0" prefWidth="800.0" BorderPane.alignment="CENTER">
-               <children>
-                  <TableView layoutX="223.0" layoutY="184.0" prefHeight="568.0" prefWidth="658.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
-                    </columns>
-                  </TableView>
-               </children></AnchorPane>
+                <AnchorPane prefHeight="370.0" prefWidth="466.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <TableView layoutX="223.0" layoutY="184.0" prefHeight="568.0" prefWidth="658.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <columns>
+                                <TableColumn prefWidth="75.0" text="C1" />
+                                <TableColumn prefWidth="94.0" text="C2" />
+                            </columns>
+                        </TableView>
+                    </children></AnchorPane>
             </center></BorderPane>
     </children>
 </AnchorPane>
