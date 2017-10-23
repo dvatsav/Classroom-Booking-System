@@ -26,8 +26,8 @@
             <Label alignment="CENTER" prefHeight="29.0" prefWidth="156.0" text="Branch" />
             </children></VBox>
         <Button layoutX="493.0" layoutY="336.0" mnemonicParsing="false" text="Submit" />
-        <Button layoutX="428.0" layoutY="336.0" mnemonicParsing="false" text="Back" />
-        <Button layoutX="289.0" layoutY="336.0" mnemonicParsing="false" text="Return to Login" />
+        <Button layoutX="428.0" layoutY="336.0" mnemonicParsing="false" onAction="#showRegister2Page" text="Back" />
+        <Button layoutX="289.0" layoutY="336.0" mnemonicParsing="false" onAction="#showLoginPage" text="Return to Login" />
     </children>
 
 </AnchorPane>
