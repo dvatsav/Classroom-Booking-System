@@ -40,4 +40,10 @@ public class entryPageController {
         Main.primaryStage.setScene(new Scene(newscene, 600, 400));
         Main.primaryStage.show();
     }
+
+	public void showForgotPassword(ActionEvent actionEvent) throws IOException {
+        Parent newscene = FXMLLoader.load(getClass().getResource("forgotPassword.fxml"));
+        Main.primaryStage.setScene(new Scene(newscene, 600, 400));
+        Main.primaryStage.show();
+	}
 }
