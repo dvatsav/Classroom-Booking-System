@@ -45,7 +45,8 @@
                                 <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Cancel Booking" />
                                 <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="145.0" text="Student Requests" />
                                 <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="143.0" text="Faculty Requests" />
-                        <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="143.0" text="Approve Account" />
+                        <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="143.0" text="Account Requests" />
+                        <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="140.0" text="Upload files" onAction="#handleFileSelect"/>
                             </children>
                         </VBox>
                         <Separator layoutX="139.0" orientation="VERTICAL" prefHeight="370.0" prefWidth="6.0" />

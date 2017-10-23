@@ -17,7 +17,8 @@
             <Font size="29.0" />
          </font>
       </Label>
-      <Button layoutX="238.0" layoutY="228.0" mnemonicParsing="false" text="Return to Login" onAction="#handleReturn"/>
+      <Button layoutX="238.0" layoutY="228.0" mnemonicParsing="false" onAction="#handleReturn" text="Return to Login" />
+      <Label layoutX="147.0" layoutY="142.0" prefHeight="21.0" prefWidth="307.0" text="Your account is pending approval from Admin" />
     </children>
 
 </AnchorPane>

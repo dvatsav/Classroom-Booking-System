@@ -18,14 +18,7 @@ public class entryPageController {
     @FXML private TextField pass;
     @FXML private Button login;
 
-    @FXML
-    public void handleFileSelect(ActionEvent e) throws IOException {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Select File for Upload");
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("csv", "*.csv"));
-        fileChooser.showOpenDialog(Main.primaryStage);
-    }
+
 
     @FXML
     private void handleButtonClick(ActionEvent event) throws IOException {

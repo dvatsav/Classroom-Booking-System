@@ -14,7 +14,7 @@
         <Separator layoutX="14.0" layoutY="24.0" orientation="VERTICAL" prefHeight="361.0" prefWidth="2.0" />
         <Separator layoutX="14.0" layoutY="384.0" prefHeight="0.0" prefWidth="571.0" />
         <Separator layoutX="582.0" layoutY="24.0" orientation="VERTICAL" prefHeight="361.0" prefWidth="6.0" />
-        <VBox layoutX="186.0" layoutY="96.0" prefHeight="271.0" prefWidth="226.0" spacing="10">
+        <VBox layoutX="186.0" layoutY="96.0" prefHeight="95.0" prefWidth="226.0" spacing="10">
          <children>
             <TextField />
             <ChoiceBox prefHeight="31.0" prefWidth="230.0" />
@@ -27,6 +27,7 @@
             </children></VBox>
         <Button layoutX="493.0" layoutY="336.0" mnemonicParsing="false" text="Submit" />
         <Button layoutX="428.0" layoutY="336.0" mnemonicParsing="false" text="Back" />
+        <Button layoutX="289.0" layoutY="336.0" mnemonicParsing="false" text="Return to Login" />
     </children>
 
 </AnchorPane>

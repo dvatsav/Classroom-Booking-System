@@ -21,16 +21,11 @@ public class Main extends Application {
         primaryStage.resizableProperty().setValue(Boolean.FALSE);
         Parent root = FXMLLoader.load(getClass().getResource("entryPage.fxml"));
         primaryStage.setTitle("ClassRoom Booking System");
-        primaryStage.setScene(new Scene(root, 600, 400));
+        Scene scene = new Scene(root, 900, 700);
+
+        primaryStage.setScene(scene);
+
         primaryStage.show();
-        //entryPageController ent = new entryPageController();
-        //ent.setStage(primaryStage);
-        //TimeUnit.MINUTES.sleep(4);
-        /*
-        root = FXMLLoader.load(getClass().getResource("admin.fxml"));
-        primaryStage.setScene(new Scene(root, 600, 400));
-        primaryStage.show();
-        */
     }
 
 
