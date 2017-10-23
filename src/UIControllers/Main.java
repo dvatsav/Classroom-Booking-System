@@ -21,7 +21,7 @@ public class Main extends Application {
         primaryStage.resizableProperty().setValue(Boolean.FALSE);
         Parent root = FXMLLoader.load(getClass().getResource("entryPage.fxml"));
         primaryStage.setTitle("ClassRoom Booking System");
-        Scene scene = new Scene(root, 900, 700);
+        Scene scene = new Scene(root, 600, 400);
 
         primaryStage.setScene(scene);
 
