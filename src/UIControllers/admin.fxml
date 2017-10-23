@@ -5,16 +5,15 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIControllers.AdminController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIControllers.AdminController">
     <children>
-        <BorderPane prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
                 <MenuBar BorderPane.alignment="CENTER">
                     <menus>
@@ -40,35 +39,34 @@
             <left>
                 <AnchorPane prefHeight="370.0" prefWidth="139.0" BorderPane.alignment="CENTER">
                     <children>
-                        <VBox layoutY="30.0" prefHeight="200.0" prefWidth="142.0">
+                        <VBox layoutY="30.0" prefHeight="249.0" prefWidth="142.0">
                             <children>
                                 <DatePicker promptText="Book a Room" />
-                        <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Current Bookings" />
+                                <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Current Bookings" />
                                 <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Cancel Booking" />
                                 <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Student Requests" />
                                 <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Faculty Requests" />
-                        <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Account Requests" />
-                        <Button mnemonicParsing="false" onAction="#handleFileSelect" prefHeight="31.0" prefWidth="142.0" text="Upload files" />
-                                <Button layoutY="247.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="View Users" />
+                                <Button mnemonicParsing="false" onAction="#handleAccReq" prefHeight="31.0" prefWidth="142.0" text="Account Requests" />
+                                <Button mnemonicParsing="false" onAction="#handleFileSelect" prefHeight="31.0" prefWidth="142.0" text="Upload files" />
+                                <Button layoutY="247.0" mnemonicParsing="false" prefHeight="151.0" prefWidth="142.0" text="View Users" />
                             </children>
                         </VBox>
-
                     </children>
                 </AnchorPane>
             </left>
             <center>
                 <AnchorPane prefHeight="370.0" prefWidth="466.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Separator layoutX="-146.0" layoutY="-1.0" prefHeight="5.0" prefWidth="600.0" />
-                  <TableView fx:id="bookings_table" layoutX="128.0" layoutY="84.0" prefHeight="368.0" prefWidth="455.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <columns>
-                      <TableColumn fx:id="Room_table" prefWidth="105.0" text="First Name" />
-                      <TableColumn fx:id="Day_table" prefWidth="91.0" text="Last Name" />
-                        <TableColumn fx:id="Time_table" prefWidth="29.0" text="Time" />
-                        <TableColumn fx:id="BookedBy_table" prefWidth="111.0" text="Booked By" />
-                    </columns>
-                  </TableView>
-               </children></AnchorPane>
+                    <children>
+                        <TableView fx:id="bookings_table" layoutX="128.0" layoutY="84.0" prefHeight="368.0" prefWidth="455.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <columns>
+                                <TableColumn fx:id="First_name" prefWidth="95.0" text="First Name" />
+                                <TableColumn fx:id="Last_name" prefWidth="101.0" text="Last Name" />
+                                <TableColumn fx:id="Email_id" prefWidth="133.0" text="email ID" />
+                                <TableColumn fx:id="Acc_type" prefWidth="110.0" text="Account Type" />
+                                <TableColumn fx:id="Roll_number" prefWidth="100.0" text="Roll Number" />
+                            </columns>
+                        </TableView>
+                    </children></AnchorPane>
             </center></BorderPane>
     </children>
 </AnchorPane>
