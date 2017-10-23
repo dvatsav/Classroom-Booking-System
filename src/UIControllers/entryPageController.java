@@ -25,7 +25,6 @@ public class entryPageController {
             Parent newscene = FXMLLoader.load(getClass().getResource("admin.fxml"));
             Main.primaryStage.setScene(new Scene(newscene, 600, 400));
             Main.primaryStage.show();
-
     }
 
     @FXML
