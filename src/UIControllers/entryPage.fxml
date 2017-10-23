@@ -23,6 +23,7 @@
                      <children>
                         <Button mnemonicParsing="false" onAction="#handleReturnToLogin" prefHeight="40.0" prefWidth="141.0" text="Login" />
                         <Button mnemonicParsing="false" onAction="#handleNewUser" prefHeight="40.0" prefWidth="141.0" text="Register" />
+                        <!--<Button mnemonicParsing="false" onAction="#handleFileSelect" prefHeight="40.0" prefWidth="141.0" text="Upload Files" />-->
                      </children>
                   </VBox>
                   <Separator layoutX="139.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="6.0" />
@@ -46,7 +47,7 @@
                   </VBox>
                   <Label alignment="CENTER" layoutX="70.0" layoutY="13.0" prefHeight="57.0" prefWidth="293.0" text="CBOOK OFFICIAL" />
                   <Button layoutX="298.0" layoutY="198.0" mnemonicParsing="false" onAction="#handleButtonClick" text="Login" />
-                  <Hyperlink layoutX="49.0" layoutY="199.0" text="Forgot Password" />
+                  <Hyperlink layoutX="49.0" layoutY="199.0" onAction="#showForgotPassword" text="Forgot Password" />
                   <Separator layoutX="-1.0" layoutY="72.0" prefHeight="4.0" prefWidth="451.0" />
 
                </children></AnchorPane>

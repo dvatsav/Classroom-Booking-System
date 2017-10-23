@@ -4,10 +4,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIControllers.RegisterController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIControllers.RegisterController">
     <children>
         <Separator layoutX="14.0" layoutY="25.0" prefHeight="3.0" prefWidth="571.0" />
         <Separator layoutX="14.0" layoutY="24.0" orientation="VERTICAL" prefHeight="361.0" prefWidth="2.0" />
@@ -15,18 +16,21 @@
         <Separator layoutX="582.0" layoutY="24.0" orientation="VERTICAL" prefHeight="361.0" prefWidth="6.0" />
         <VBox layoutX="186.0" layoutY="96.0" prefHeight="127.0" prefWidth="226.0" spacing="10">
             <children>
-            <RadioButton mnemonicParsing="false" prefHeight="31.0" prefWidth="75.0" text="Admin" />
-            <RadioButton mnemonicParsing="false" prefHeight="31.0" prefWidth="75.0" text="Faculty" />
-            <RadioButton mnemonicParsing="false" prefHeight="31.0" prefWidth="99.0" text="Student" />
+            <RadioButton fx:id="register2AdminRadio" mnemonicParsing="false" prefHeight="31.0" prefWidth="75.0" text="Admin">
+               <toggleGroup>
+                  <ToggleGroup fx:id="accountType" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="register2FacultyRadio" mnemonicParsing="false" prefHeight="31.0" prefWidth="75.0" text="Faculty" toggleGroup="$accountType" />
+            <RadioButton fx:id="register2StudentRadio" mnemonicParsing="false" prefHeight="31.0" prefWidth="99.0" text="Student" toggleGroup="$accountType" />
             </children>
         </VBox>
         <VBox layoutX="20.0" layoutY="96.0" prefHeight="271.0" prefWidth="156.0" spacing="10">
             <children>
                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="111.0" prefWidth="156.0" text="Account Type" />
             </children></VBox>
-        <Button layoutX="493.0" layoutY="336.0" mnemonicParsing="false" text="Next" />
-      <Button layoutX="428.0" layoutY="336.0" mnemonicParsing="false" onAction="#handleGoBack" text="Back" />
-        <Button layoutX="289.0" layoutY="336.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="123.0" text="Return to Login" />
+        <Button layoutX="493.0" layoutY="336.0" mnemonicParsing="false" onAction="#showBasedOnAccountType" text="Next" />
+      <Button layoutX="428.0" layoutY="336.0" mnemonicParsing="false" onAction="#showRegister" text="Back" />
+        <Button layoutX="289.0" layoutY="336.0" mnemonicParsing="false" onAction="#showLoginPage" prefHeight="31.0" prefWidth="123.0" text="Return to Login" />
     </children>
 
 </AnchorPane>
