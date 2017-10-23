@@ -2,19 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Classroom-Booking-System/UIControllers/Main.class" afterPath="$PROJECT_DIR$/out/production/Classroom-Booking-System/UIControllers/Main.class" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Classroom-Booking-System/Actors/Admin.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Classroom-Booking-System/Actors/Faculty.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Classroom-Booking-System/Actors/Student.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Classroom-Booking-System/Actors/Users.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Classroom-Booking-System/UIControllers/AdminController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Classroom-Booking-System/UIControllers/FacultyController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Classroom-Booking-System/UIControllers/Main.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Classroom-Booking-System/UIControllers/RegisterController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Classroom-Booking-System/UIControllers/StudentController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Classroom-Booking-System/UIControllers/entryPageController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Classroom-Booking-System/Utils/Validations.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Classroom-Booking-System/Utils/XlsToCsv.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Classroom-Booking-System/UIControllers/StudentRegister.fxml" afterPath="$PROJECT_DIR$/out/production/Classroom-Booking-System/UIControllers/StudentRegister.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Classroom-Booking-System/UIControllers/admin.fxml" afterPath="$PROJECT_DIR$/out/production/Classroom-Booking-System/UIControllers/admin.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Classroom-Booking-System/UIControllers/entryPage.fxml" afterPath="$PROJECT_DIR$/out/production/Classroom-Booking-System/UIControllers/entryPage.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Classroom-Booking-System/UIControllers/finalRegister.fxml" afterPath="$PROJECT_DIR$/out/production/Classroom-Booking-System/UIControllers/finalRegister.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Classroom-Booking-System/UIControllers/register.fxml" afterPath="$PROJECT_DIR$/out/production/Classroom-Booking-System/UIControllers/register.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Classroom-Booking-System/UIControllers/register2.fxml" afterPath="$PROJECT_DIR$/out/production/Classroom-Booking-System/UIControllers/register2.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UIControllers/AdminController.java" afterPath="$PROJECT_DIR$/src/UIControllers/AdminController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UIControllers/Main.java" afterPath="$PROJECT_DIR$/src/UIControllers/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UIControllers/admin.fxml" afterPath="$PROJECT_DIR$/src/UIControllers/admin.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Classroom-Booking-System.iml" afterPath="$PROJECT_DIR$/Classroom-Booking-System.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UIControllers/entryPage.fxml" afterPath="$PROJECT_DIR$/src/UIControllers/entryPage.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UIControllers/entryPageController.java" afterPath="$PROJECT_DIR$/src/UIControllers/entryPageController.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -141,25 +145,30 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="entryPage.fxml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="entryPage.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/UIControllers/entryPage.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder">
+          <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
             <state />
           </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="30" column="16" lean-forward="true" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
-              <folding />
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+              <folding>
+                <marker date="1508776662834" expanded="true" signature="258:308" ph="..." />
+                <marker date="1508776662834" expanded="true" signature="272:294" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/UIControllers/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="23" column="39" lean-forward="false" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
-              <folding />
+            <state relative-caret-position="84">
+              <caret line="4" column="7" lean-forward="false" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -322,6 +331,7 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/poi-3.17/poi-scratchpad-3.17.jar!/" />
     <property name="findjar.last.used.dir" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -515,16 +525,15 @@
       <workItem from="1508738028156" duration="707000" />
       <workItem from="1508753513777" duration="483000" />
       <workItem from="1508764252216" duration="2293000" />
-      <workItem from="1508776007228" duration="558000" />
+      <workItem from="1508776007228" duration="958000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51130000" />
+    <option name="totallyTimeSpent" value="51530000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -535,7 +544,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13907285" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13907285" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -614,7 +623,10 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="588">
           <caret line="28" column="56" lean-forward="false" selection-start-line="28" selection-start-column="56" selection-end-line="28" selection-end-column="56" />
-          <folding />
+          <folding>
+            <marker date="1508776662834" expanded="true" signature="258:308" ph="..." />
+            <marker date="1508776662834" expanded="true" signature="272:294" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -842,14 +854,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UIControllers/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="23" column="39" lean-forward="false" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/CSS/entrypage.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
@@ -859,13 +863,26 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UIControllers/entryPage.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+          <folding>
+            <marker date="1508776662834" expanded="true" signature="258:308" ph="..." />
+            <marker date="1508776662834" expanded="true" signature="272:294" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UIControllers/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="30" column="16" lean-forward="true" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
-          <folding />
+        <state relative-caret-position="84">
+          <caret line="4" column="7" lean-forward="false" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
