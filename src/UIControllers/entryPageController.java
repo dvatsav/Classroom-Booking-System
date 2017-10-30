@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import java.io.File;
@@ -14,17 +15,22 @@ import Utils.XlsToCsv;
 
 public class entryPageController {
 
-    @FXML private TextField user;
-    @FXML private TextField pass;
-    @FXML private Button login;
+    @FXML private TextField login_email;
+    @FXML private PasswordField login_password;
+    @FXML private Button login_button;
 
 
 
     @FXML
     private void handleButtonClick(ActionEvent event) throws IOException {
-            Parent newscene = FXMLLoader.load(getClass().getResource("admin.fxml"));
-            Main.primaryStage.setScene(new Scene(newscene, 800, 600));
-            Main.primaryStage.show();
+            if (login_email.getText().equals("deepak16030@iiitd.ac.in") && login_password.getText().equals("n00b"))
+            {
+                Parent newscene = FXMLLoader.load(getClass().getResource("admin.fxml"));
+                Main.primaryStage.setScene(new Scene(newscene, 800, 600));
+                Main.primaryStage.show();
+            }
+
+
     }
 
     @FXML
