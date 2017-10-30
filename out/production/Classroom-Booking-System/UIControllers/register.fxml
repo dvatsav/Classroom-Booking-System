@@ -18,14 +18,14 @@
       <Separator layoutX="582.0" layoutY="24.0" orientation="VERTICAL" prefHeight="361.0" prefWidth="6.0" />
       <VBox layoutX="186.0" layoutY="96.0" prefHeight="220.0" prefWidth="226.0" spacing="10">
          <children>
-            <TextField prefHeight="31.0" />
-            <TextField prefHeight="31.0" />
-            <TextField prefHeight="31.0" />
-            <DatePicker prefHeight="31.0" prefWidth="226.0" />
+            <TextField fx:id="register_firstname" prefHeight="31.0" />
+            <TextField fx:id="register_lastname" prefHeight="31.0" />
+            <TextField fx:id="register_emailid" prefHeight="31.0" />
+            <DatePicker fx:id="register_dob" prefHeight="31.0" prefWidth="226.0" />
             <HBox prefHeight="31.0" prefWidth="226.0">
                <children>
                   <ComboBox prefHeight="31.0" prefWidth="45.0" />
-                  <TextField prefHeight="31.0" prefWidth="181.0" />
+                  <TextField fx:id="register_phnumber" prefHeight="31.0" prefWidth="181.0" />
                </children>
             </HBox>
          </children>
@@ -39,6 +39,6 @@
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="156.0" text="Phone Number" textAlignment="CENTER" />
          </children></VBox>
       <Button layoutX="468.0" layoutY="336.0" mnemonicParsing="false" onAction="#handlePageTwo" text="Next" />
-      <Button layoutX="333.0" layoutY="336.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="123.0" text="Return to Login" onAction="#showLoginPage" textOverrun="CENTER_ELLIPSIS" />
+      <Button layoutX="333.0" layoutY="336.0" mnemonicParsing="false" onAction="#showLoginPage" prefHeight="31.0" prefWidth="123.0" text="Return to Login" textOverrun="CENTER_ELLIPSIS" />
    </children>
 </AnchorPane>
