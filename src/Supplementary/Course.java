@@ -15,15 +15,15 @@ public class Course {
     private Map<Calendar, String> roomAlloted;
     private String intendedAudience;
     private String classStrength;
-    private int creditsOffered;
+    private String creditsOffered;
 
-    public Course(String courseCode, String courseName, String instructor, String acronym, String intendedAudience, String classStrength) {
+    public Course(String courseCode, String courseName, String instructor,String credits, String acronym, String intendedAudience) {
         this.courseCode = courseCode;
         this.courseName = courseName;
         this.instructor = instructor;
         this.acronym = acronym;
         this.intendedAudience = intendedAudience;
-        this.classStrength = classStrength;
+        this.creditsOffered = credits;
     }
 
     public String getCourseName() {return courseName;}
@@ -63,7 +63,7 @@ public class Course {
         this.classStrength = classStrength;
     }
 
-    public void setCreditsOffered(int creditsOffered) {
+    public void setCreditsOffered(String creditsOffered) {
         this.creditsOffered = creditsOffered;
     }
 
