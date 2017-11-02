@@ -9,6 +9,16 @@ import Supplementary.Course;
 public class Student extends Users implements Serializable{
     private Map<Course, Calendar> courses;
 
+	@Override
+	public String toString() {
+		return "Student{" +
+				"firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", phoneNumber='" + phoneNumber + '\'' +
+				", email='" + email + '\'' +
+				'}';
+	}
+
 	public String getRollNo() {
 		return rollNo;
 	}

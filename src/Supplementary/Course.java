@@ -1,5 +1,6 @@
 package Supplementary;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
@@ -8,15 +9,15 @@ public class Course {
     private String courseName;
     private String courseCode;
     private String instructor;
-    private List<String> postConditions;
+    private ArrayList<String> postConditions;
     private String acronym;
     private Calendar timing;
     private Map<Calendar, String> roomAlloted;
     private String intendedAudience;
-    private int classStrength;
+    private String classStrength;
     private int creditsOffered;
 
-    public Course(String courseCode, String courseName, String instructor, String acronym, String intendedAudience, int classStrength) {
+    public Course(String courseCode, String courseName, String instructor, String acronym, String intendedAudience, String classStrength) {
         this.courseCode = courseCode;
         this.courseName = courseName;
         this.instructor = instructor;
@@ -32,8 +33,8 @@ public class Course {
         this.courseCode = courseCode;
     }
 
-    public void setPostConditions(List<String> postConditions) {
-        this.postConditions = postConditions;
+    public void setPostConditions(String postCondition) {
+        postConditions.add(postCondition);
     }
 
     public void setAcronym(String acronym) {
@@ -48,11 +49,11 @@ public class Course {
         this.roomAlloted = roomAlloted;
     }
 
-    public void setIntendedAudience(List<String> intendedAudience) {
+    public void setIntendedAudience(String intendedAudience) {
         this.intendedAudience = intendedAudience;
     }
 
-    public void setClassStrength(int classStrength) {
+    public void setClassStrength(String classStrength) {
         this.classStrength = classStrength;
     }
 
@@ -60,5 +61,8 @@ public class Course {
         this.creditsOffered = creditsOffered;
     }
 
-
+    @Override
+    public String toString() {
+        return "Course code: " + courseCode + " Course name: " + courseName + " instructor: " + instructor;
+    }
 }
