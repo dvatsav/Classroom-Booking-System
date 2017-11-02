@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 BIO601,Foundations of Modern Biology,Sriram k,FOMB,M-CB Ist Year Core, UG/PG Elective,11
 BIOxx,Cell Biology and Biochemistry(New 2 Cr),Sriram k,CBB,M-CB Ist Year Core,275
 BIO303/BIO503,Introduction to Mathematical Biology,Subhadip Raychaudhuri ,IMB,M-CB Ist Year Core, UG/PG Elective,275
@@ -8,6 +9,18 @@ CSE230,System Administration (2 cr),Vinayak Naik,SA,UG-2nd Yr CSE,275
 CSE333/CSE533,Computer Graphics,Ojaswa Sharma,CG,UG/PG,29
 CSE340/CSE540/ECE350,Image Analysis/Digital Image Processing,AV Subramanyam,IA,UG/PG,72
 CSE343/CSE543,Machine Learning,Saket Anand,ML,UG/PG, M-CB 2nd Yr Elective,160
+=======
+BIO601,Foundations of Modern Biology,Sriram k,FOMB,"M-CB Ist Year Core, UG/PG Elective",11
+BIOxx,Cell Biology and Biochemistry(New 2 Cr),Sriram k,CBB,M-CB Ist Year Core,275
+BIO303/BIO503,Introduction to Mathematical Biology,Subhadip Raychaudhuri ,IMB,"M-CB Ist Year Core, UG/PG Elective",275
+BIOxx,Practical Bioinformatics(new),Will be announced later,PB,"M-CB Ist Year Core, M-CB 2nd Yr Elective",38
+BIO404/BIO604,Molecular Mechanics and Biological Physics  ,Arnab Bhattacherjee(V),MMBP,"M-CB 2nd Year Elective, UG/PG Elective",8
+BIO5xx,Digital Health 101( New 2 Cr),Prashant Jha(G),DH101,"M-CB 2nd Year Elective, UG/PG Elective",3
+CSE230,System Administration (2 cr),Vinayak Naik,SA,UG-2nd Yr CSE,275
+CSE333/CSE533,Computer Graphics,Ojaswa Sharma,CG,UG/PG,29
+CSE340/CSE540/ECE350,Image Analysis/Digital Image Processing,AV Subramanyam,IA,UG/PG,72
+CSE343/CSE543,Machine Learning,Saket Anand,ML,"UG/PG, M-CB 2nd Yr Elective",160
+>>>>>>> ea7b8553bb9cd5dc447ab29c2ac200bbecfb6a36
 CSE345/CSE545,Foundations of Computer Security,Ponnurangam Kumaraguru,FCS,UG/PG,88
 CSE319/CSE519,Modern Algorithm Design,Rajiv Raman,MAD,UG/PG,32
 CSE3xx/ECE3xx,Smart Sensing for Internet of Things ,Vinayak Naik,SSIoT,UG/PG,88

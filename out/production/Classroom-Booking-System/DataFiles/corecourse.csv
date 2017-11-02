@@ -4,9 +4,18 @@ CSE131,Systems Management,Dheeraj Snghi(V) ,SM,UG Ist Year,275
 ECE113,Basic Electronics,GS Visweswaran(V) ,BE,UG Ist Year,275
 MTH100,Maths I,Samaresh Chaterji(V),M-I,UG Ist Year,275
 CSE121,Discrete Mathematics,Donghoon Chang,DM,UG-CSE-2nd Year,128
+<<<<<<< HEAD
 CSE201,Advanced Programming,Chetan Arora,AP,UG-CSE-2nd Yr, UG-ECE-2nd Yr Elective,135
 CSE112/ECE112,Computer Organization,Puneet Goyal,CO ,UG-CSE-2nd Yr,116
 ECE2xx,Circuit Theory and Devices,MS Hashmi,CTD,UG-ECE-2nd Yr, UG-CSE-2nd Yr Elective,60
 ECE250,Signals & Systems,Anubha Gupta,S&S,UG-ECE-2nd Yr, UG-CSE-2nd Yr Elective,80
 ECE270,Embedded Logic Design,Alexander Fell,ELD,UG-ECE-2nd Yr, UG-CSE-2nd Yr Elective,81
 MTH203,Maths III ,Sarthok,M-III,UG-ECE-2nd Yr, UG-CSE-2nd Yr Elective,136
+=======
+CSE201,Advanced Programming,Chetan Arora,AP,"UG-CSE-2nd Yr, UG-ECE-2nd Yr Elective",135
+CSE112/ECE112,Computer Organization,Puneet Goyal,CO ,UG-CSE-2nd Yr,116
+ECE2xx,Circuit Theory and Devices,MS Hashmi,CTD,"UG-ECE-2nd Yr, UG-CSE-2nd Yr Elective",60
+ECE250,Signals & Systems,Anubha Gupta,S&S,"UG-ECE-2nd Yr, UG-CSE-2nd Yr Elective",80
+ECE270,Embedded Logic Design,Alexander Fell,ELD,"UG-ECE-2nd Yr, UG-CSE-2nd Yr Elective",81
+MTH203,Maths III ,Sarthok,M-III,"UG-ECE-2nd Yr, UG-CSE-2nd Yr Elective",136
+>>>>>>> ea7b8553bb9cd5dc447ab29c2ac200bbecfb6a36
