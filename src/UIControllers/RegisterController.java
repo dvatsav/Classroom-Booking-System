@@ -1,5 +1,6 @@
 package UIControllers;
 
+import Actors.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import java.io.*;
+import java.time.LocalDate;
+import java.util.Map;
 
 public class RegisterController implements Serializable {
 	@FXML private RadioButton register2AdminRadio;
@@ -20,9 +23,10 @@ public class RegisterController implements Serializable {
 	@FXML private TextField register_phnumber;
 	@FXML private PasswordField register_password;
 	@FXML private PasswordField register_repassword;
+	@FXML private TextField register_rollnumber;
 
-	private String tempFirstName = "", tempLastName = "", tempEmailID = "", tempPhNumber = "", tempPassword = "", tempRollNumber = "", tempBranch = "";
-
+	private String tempFirstName = "", tempLastName = "", tempEmailID = "", tempPhNumber = "", tempPassword = "", tempRollNo = "";
+	private LocalDate tempDob;
 
 	@FXML
 	public void handlePageTwo(ActionEvent event) throws IOException {
@@ -30,6 +34,7 @@ public class RegisterController implements Serializable {
 		tempLastName = register_lastname.getText();
 		tempEmailID = register_emailid.getText();
 		tempPhNumber = register_phnumber.getText();
+		tempDob = register_dob.getValue();
 		Parent newscene = FXMLLoader.load(getClass().getResource("register2.fxml"));
 		Main.primaryStage.setScene(new Scene(newscene, 600, 400));
 		Main.primaryStage.show();
@@ -37,6 +42,9 @@ public class RegisterController implements Serializable {
 
 	@FXML
 	public void handleFinalPage(ActionEvent even) throws IOException {
+		tempRollNo = register_rollnumber.getText();
+		Student student = new Student(tempFirstName, tempLastName, tempPhNumber, tempEmailID, tempPassword, "Student", tempDob);
+		student.setRollNo(tempRollNo);
 		Parent newscene = FXMLLoader.load(getClass().getResource("finalRegister.fxml"));
 		Main.primaryStage.setScene(new Scene(newscene, 600, 400));
 		Main.primaryStage.show();
@@ -82,8 +90,10 @@ public class RegisterController implements Serializable {
 			Main.primaryStage.setScene(new Scene(newscene, 600, 400));
 			Main.primaryStage.show();
 		} else if (register2FacultyRadio.isSelected()) {
+			Faculty faculty = new Faculty(tempFirstName, tempLastName, tempPhNumber, tempEmailID, tempPassword, "Faculty", tempDob);
 			showLoginPage(actionEvent);
 		} else if (register2AdminRadio.isSelected()) {
+			Admin admin = new Admin(tempFirstName, tempLastName, tempPhNumber, tempEmailID, tempPassword, "Admin", tempDob);
 			showLoginPage(actionEvent);
 		} else {
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -98,5 +108,21 @@ public class RegisterController implements Serializable {
 		Parent newscene = FXMLLoader.load(getClass().getResource("register2.fxml"));
 		Main.primaryStage.setScene(new Scene(newscene, 600, 400));
 		Main.primaryStage.show();
+	}
+
+	private void serializeData(Users user) throws IOException {
+		if (user.getType().equals("Student")) {
+			Student student = (Student) user;
+			// Check if db.txt exists if not create it else write to that only.
+			File file = new File("db.txt");
+			if (file.exists()) {
+
+			} else {
+				file.createNewFile();
+				Database db = new Database();
+				Map<String, Student> mp = db.getStudentsDB();
+				mp.put(student.get)
+			}
+		}
 	}
 }
