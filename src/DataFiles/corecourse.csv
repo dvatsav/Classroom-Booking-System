@@ -1,12 +1,19 @@
-COM101,Communications Skills,GF,COM,UG Ist Year,275
-CSE101,Intro to Programming,Vikram Goyal+Tanusri Bhattacharya(V),IP,UG Ist Year,275
-CSE131,Systems Management,Dheeraj Snghi(V) ,SM,UG Ist Year,275
-ECE113,Basic Electronics,GS Visweswaran(V) ,BE,UG Ist Year,275
-MTH100,Maths I,Samaresh Chaterji(V),M-I,UG Ist Year,275
-CSE121,Discrete Mathematics,Donghoon Chang,DM,UG-CSE-2nd Year,128
-CSE201,Advanced Programming,Chetan Arora,AP,UG-CSE-2nd Yr, UG-ECE-2nd Yr Elective,135
-CSE112/ECE112,Computer Organization,Puneet Goyal,CO ,UG-CSE-2nd Yr,116
-ECE2xx,Circuit Theory and Devices,MS Hashmi,CTD,UG-ECE-2nd Yr, UG-CSE-2nd Yr Elective,60
-ECE250,Signals & Systems,Anubha Gupta,S&S,UG-ECE-2nd Yr, UG-CSE-2nd Yr Elective,80
-ECE270,Embedded Logic Design,Alexander Fell,ELD,UG-ECE-2nd Yr, UG-CSE-2nd Yr Elective,81
-MTH203,Maths III ,Sarthok,M-III,UG-ECE-2nd Yr, UG-CSE-2nd Yr Elective,136
+COM101,Communications Skills,Rekha Shorey(G)+ Honey Jhalani(G)+ K M Pathi(V)+ Aditi Angiras(G)+ Ishani Dey(G),4,COM,UG Ist Year
+CSE101,Introduction to Programming,Vikram Goyal ,4,IP,UG Ist Year
+CSE131,Systems Management,Sambuddho Chakravarty,4,SM,UG Ist Year
+ECE111,Digital Circuits,Sumit Darak+Pydi Ganga Mamba Bahubalindruni,4,DC ,UG Ist Year
+MTH100,Maths I,Sartaj Ul Hasan(G)+ Samaresh Chatterji(V),4,M-I,UG Ist Year
+CSE121,Discrete Mathematics,Donghoon Chang,4,DM,UG-CSE-2nd Year
+CSE201,Advanced Programming,Vivek Kumar,4,AP,"UG-CSE-2nd Yr, UG-ECE-CSAM-2nd Yr Elective"
+CSE112,Computer Organization,Naveen Prakash(G),4,CO ,UG-CSE-2nd Yr
+ECE215,Circuit Theory and Devices,M S Hashmi,4,CTD,UG-ECE-2nd Yr
+ECE250,Signals & Systems,Anubha Gupta,4,S&S,"UG-ECE-2nd Yr, UG-CSE-CSAM-2nd Yr Elective"
+ECE270,Embedded Logic Design,Sumit Darak ,4,ELD,UG-ECE-2nd Yr
+MTH203,Maths III ,Sarthok Sircar,4,M-III,"UG-ECE-2nd Yr, UG-CSE-2nd Yr Elective"
+MTH2xx,Real Analysis I(New),Samaresh Chaterji(V),4,RA,"UG-CSAM-2nd Yr,UG-CSE-2nd Yr Elective"
+CSE2xx,Computer Architecture and Operating Systems(New),Bijoy Chand Chatterjee(V),4,CAOS,"UG-CSAM-2nd Yr, UG-ECE-3rd Yr Elective"
+MTH2xx,Number Theory(New),Anuradha Sharma,4,NT,UG-CSAM/CSE-2nd Yr Elective
+MTH2xx,Discrete Mathematics(New),Rajiv Raman,4,DM©,UG-CSAM-2nd Yr
+CSE232,Computer Networks,Pushpendra Singh,4,CN,UG-CSE-3rd Yr
+COM301A,Technical Communication,Hemant kumar(V),2,TCom,UG-CSE-ECE-3rd Yr
+ESC205A,Envrionmental Sciences,Gaurav Arora,2,EVS,UG-CSE-ECE-3rd Yr
