@@ -9,7 +9,7 @@ public class Course {
     private String courseName;
     private String courseCode;
     private String instructor;
-    private ArrayList<String> postConditions;
+    private ArrayList<String> postConditions = new ArrayList<>();
     private String acronym;
     private Calendar timing;
     private Map<Calendar, String> roomAlloted;
@@ -29,12 +29,18 @@ public class Course {
     public String getCourseName() {return courseName;}
     public String getCourseCode() {return courseCode;}
 
+    public void getPostConditions() {
+        for (int i = 0 ; i < postConditions.size() ; ++i) {
+            System.out.println(postConditions.get(i));
+        }
+    }
+
     public void setCourseCode(String courseCode) {
         this.courseCode = courseCode;
     }
 
     public void setPostConditions(String postCondition) {
-        postConditions.add(postCondition);
+        this.postConditions.add(postCondition);
     }
 
     public void setAcronym(String acronym) {
