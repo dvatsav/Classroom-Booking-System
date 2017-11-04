@@ -36,7 +36,7 @@ public class entryPageController {
     @FXML
     private void handleNewUser(ActionEvent event) throws IOException {
         Parent newscene = FXMLLoader.load(getClass().getResource("register.fxml"));
-        Main.primaryStage.setScene(new Scene(newscene, 600, 400));
+        Main.primaryStage.setScene(new Scene(newscene, 1000, 700));
         Main.primaryStage.show();
     }
 
