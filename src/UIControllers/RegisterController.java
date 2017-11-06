@@ -14,9 +14,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegisterController implements Serializable {
-	@FXML private RadioButton register2AdminRadio;
-	@FXML private RadioButton register2FacultyRadio;
-	@FXML private RadioButton register2StudentRadio;
 	@FXML private TextField register_firstname;
 	@FXML private TextField register_lastname;
 	@FXML private TextField register_emailid;
@@ -24,7 +21,7 @@ public class RegisterController implements Serializable {
 	@FXML private TextField register_phnumber;
 	@FXML private PasswordField register_password;
 	@FXML private PasswordField register_repassword;
-	@FXML private TextField register_rollnumber;
+	@FXML private TextField register_rollnum;
 
 	private String tempFirstName = "", tempLastName = "", tempEmailID = "", tempPhNumber = "", tempPassword = "", tempRollNo = "";
 	private LocalDate tempDob;
@@ -44,7 +41,7 @@ public class RegisterController implements Serializable {
 
 	@FXML
 	public void handleFinalPage(ActionEvent even) throws IOException, ClassNotFoundException {
-		tempRollNo = register_rollnumber.getText();
+		tempRollNo = register_rollnum.getText();
 		Student student = new Student(tempFirstName, tempLastName, tempPhNumber, tempEmailID, tempPassword, "Student", tempDob);
 		student.setRollNo(tempRollNo);
 		System.out.println("-------------- " + student);
@@ -55,58 +52,10 @@ public class RegisterController implements Serializable {
 	}
 
 	@FXML
-	public void handleReturn(ActionEvent event) throws IOException {
-		Parent newscene = FXMLLoader.load(getClass().getResource("entryPage.fxml"));
-		Main.primaryStage.setScene(new Scene(newscene, 600, 400));
-		Main.primaryStage.show();
-	}
-
-	@FXML
-	public void handleGoBack(ActionEvent event) throws IOException {
-
-		Parent newscene = FXMLLoader.load(getClass().getResource("register.fxml"));
-		Main.primaryStage.setScene(new Scene(newscene, 600, 400));
-		Main.primaryStage.show();
-
-
-	}
-
-	@FXML
 	public void showLoginPage(ActionEvent actionEvent) throws IOException {
 		Parent newscene = FXMLLoader.load(getClass().getResource("entryPage.fxml"));
 		Main.primaryStage.setScene(new Scene(newscene, 600, 400));
 		Main.primaryStage.show();
-	}
-
-	public void showNextBasedOnAccountType(ActionEvent actionEvent) throws IOException {
-		System.out.println("tempName " + tempFirstName);
-		if (!register_password.getText().equals(register_repassword.getText())) {
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setTitle("Information Dialog");
-			alert.setHeaderText(null);
-			alert.setContentText("Passwords do not match");
-			alert.showAndWait();
-		}
-		else {
-			tempPassword = register_password.getText();
-		}
-		if (register2StudentRadio.isSelected()) {
-			Parent newscene = FXMLLoader.load(getClass().getResource("StudentRegister.fxml"));
-			Main.primaryStage.setScene(new Scene(newscene, 600, 400));
-			Main.primaryStage.show();
-		} else if (register2FacultyRadio.isSelected()) {
-			Faculty faculty = new Faculty(tempFirstName, tempLastName, tempPhNumber, tempEmailID, tempPassword, "Faculty", tempDob);
-			showLoginPage(actionEvent);
-		} else if (register2AdminRadio.isSelected()) {
-			Admin admin = new Admin(tempFirstName, tempLastName, tempPhNumber, tempEmailID, tempPassword, "Admin", tempDob);
-			showLoginPage(actionEvent);
-		} else {
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setTitle("Information Dialog");
-			alert.setHeaderText(null);
-			alert.setContentText("Select one option.");
-			alert.showAndWait();
-		}
 	}
 
 	public void showRegister2Page(ActionEvent actionEvent) throws IOException {

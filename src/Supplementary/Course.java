@@ -1,29 +1,26 @@
 package Supplementary;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Course {
     private String courseName;
     private String courseCode;
     private String instructor;
-    private ArrayList<String> postConditions = new ArrayList<>();
+    public ArrayList<String> postConditions = new ArrayList<>();
     private String acronym;
-    private Calendar timing;
-    private Map<Calendar, String> roomAlloted;
-    private String intendedAudience;
-    private String classStrength;
-    private String creditsOffered;
+    public Map<String, String> timeAndRoom = new HashMap<>();
+    private int creditsOffered;
+    private boolean mandatory;
+    private String preReq;
 
-    public Course(String courseCode, String courseName, String instructor,String credits, String acronym, String intendedAudience) {
+    public Course(boolean Mandatory, String courseName, String courseCode, String instructor, int credits, String acronym, String preReq) {
+        this.mandatory = Mandatory;
         this.courseCode = courseCode;
         this.courseName = courseName;
         this.instructor = instructor;
         this.acronym = acronym;
-        this.intendedAudience = intendedAudience;
         this.creditsOffered = credits;
+        this.preReq = preReq;
     }
 
     public String getCourseName() {return courseName;}
@@ -33,6 +30,14 @@ public class Course {
         for (int i = 0 ; i < postConditions.size() ; ++i) {
             System.out.println(postConditions.get(i));
         }
+    }
+
+    public void addTiming(String Day, String timing) {
+        timeAndRoom.put(Day, timing);
+    }
+
+    public void addPostCondition(String condition) {
+        postConditions.add(condition);
     }
 
     public void setCourseCode(String courseCode) {
@@ -47,28 +52,12 @@ public class Course {
         this.acronym = acronym;
     }
 
-    public void setTiming(Calendar timing) {
-        this.timing = timing;
-    }
-
-    public void setRoomAlloted(Map<Calendar, String> roomAlloted) {
-        this.roomAlloted = roomAlloted;
-    }
-
-    public void setIntendedAudience(String intendedAudience) {
-        this.intendedAudience = intendedAudience;
-    }
-
-    public void setClassStrength(String classStrength) {
-        this.classStrength = classStrength;
-    }
-
-    public void setCreditsOffered(String creditsOffered) {
+    public void setCreditsOffered(int creditsOffered) {
         this.creditsOffered = creditsOffered;
     }
 
     @Override
     public String toString() {
-        return "Course code: " + courseCode + " Course name: " + courseName + " instructor: " + instructor;
+        return "Course code: " + courseCode + " Course name: " + courseName + " instructor: " + instructor + " precondition " + preReq;
     }
 }
