@@ -24,9 +24,28 @@ public class Utilities {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        /*
         for (int i = 0 ; i < courses.size() ; ++i) {
             System.out.println(courses.get(i));
+        }*/
+        /*
+        for (int i = 0 ; i < courses.size() ; ++i) {
+            for (int j = 0 ; j < courses.get(i).postConditions.size() ; ++j){
+                System.out.println(courses.get(i).postConditions.get(j));
+            }
+        }*/
+        /*
+        for (int i = 0 ; i < courses.size() ; ++i) {
+            System.out.println(courses.get(i).timeAndRoom.get("Monday"));
+            System.out.println(courses.get(i).timeAndRoom.get("Tuesday"));
+            System.out.println(courses.get(i).timeAndRoom.get("Wednesday"));
+            System.out.println(courses.get(i).timeAndRoom.get("Thursday"));
+            System.out.println(courses.get(i).timeAndRoom.get("Friday"));
+            System.out.println(courses.get(i).timeAndRoom.get("Tutorial"));
+            System.out.println(courses.get(i).timeAndRoom.get("Labs"));
+
         }
+        */
     }
 
     private static void readFile(BufferedReader br, String csvSplit, ArrayList<Course> courses) throws IOException {
@@ -40,8 +59,8 @@ public class Utilities {
             else mandatory = false;
             Course course = new Course(mandatory, data[1], data[2], data[3], Integer.parseInt(data[4]), data[5], data[13]);
             course.addTiming("Monday", data[6]);
-            course.addTiming("Tueesday", data[7]);
-            course.addTiming("Wedday", data[8]);
+            course.addTiming("Tuesday", data[7]);
+            course.addTiming("Wednesday", data[8]);
             course.addTiming("Thursday", data[9]);
             course.addTiming("Friday", data[10]);
             course.addTiming("Tutorial", data[11]);

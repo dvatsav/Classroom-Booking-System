@@ -15,6 +15,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIControllers.RegisterController">
    <children>
       <VBox layoutX="500.0" layoutY="96.0" prefHeight="412.0" prefWidth="226.0" spacing="10">
@@ -29,11 +31,27 @@
                   <TextField fx:id="register_phnumber" prefHeight="31.0" prefWidth="181.0" />
                </children>
             </HBox>
-            <PasswordField />
-            <PasswordField />
-            <ChoiceBox prefHeight="31.0" prefWidth="231.0" />
-            <TextField />
-            <ChoiceBox prefHeight="31.0" prefWidth="231.0" />
+            <PasswordField fx:id="register_password" />
+            <PasswordField fx:id="register_repassword" />
+            <ChoiceBox prefHeight="31.0" prefWidth="231.0" value="Student">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Student" />
+                            <String fx:value="Faculty" />
+                            <String fx:value="Admin" />
+                        </FXCollections>
+                    </items>
+            </ChoiceBox>
+            <TextField fx:id="register_rollnum" />
+            <ChoiceBox prefHeight="31.0" prefWidth="231.0">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="CSE"/>
+                        <String fx:value="ECE"/>
+                        <String fx:value="CSAM"/>
+                    </FXCollections>
+                </items>
+            </ChoiceBox>
          </children>
       </VBox>
       <VBox layoutX="251.0" layoutY="96.0" prefHeight="412.0" prefWidth="156.0" spacing="10">
@@ -70,7 +88,7 @@
       </MenuBar>
       <VBox layoutY="94.0" prefHeight="606.0" prefWidth="156.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="156.0" text="Return to Login" />
+            <Button mnemonicParsing="false" onAction="#showLoginPage" prefHeight="43.0" prefWidth="156.0" text="Return to Login" />
          </children>
       </VBox>
       <Separator layoutX="153.0" layoutY="31.0" orientation="VERTICAL" prefHeight="668.0" prefWidth="0.0" />

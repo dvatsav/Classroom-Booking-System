@@ -19,8 +19,6 @@ public class entryPageController {
     @FXML private PasswordField login_password;
     @FXML private Button login_button;
 
-
-
     @FXML
     private void handleButtonClick(ActionEvent event) throws IOException {
             if (login_email.getText().equals("deepak16030@iiitd.ac.in") && login_password.getText().equals("n00b"))
@@ -29,8 +27,6 @@ public class entryPageController {
                 Main.primaryStage.setScene(new Scene(newscene, 800, 600));
                 Main.primaryStage.show();
             }
-
-
     }
 
     @FXML

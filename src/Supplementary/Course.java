@@ -6,12 +6,9 @@ public class Course {
     private String courseName;
     private String courseCode;
     private String instructor;
-    private ArrayList<String> postConditions = new ArrayList<>();
+    public ArrayList<String> postConditions = new ArrayList<>();
     private String acronym;
-    private Calendar timing;
-    private Map<String, String> timeAndRoom = new HashMap<>();
-    private String intendedAudience;
-    private String classStrength;
+    public Map<String, String> timeAndRoom = new HashMap<>();
     private int creditsOffered;
     private boolean mandatory;
     private String preReq;
@@ -53,18 +50,6 @@ public class Course {
 
     public void setAcronym(String acronym) {
         this.acronym = acronym;
-    }
-
-    public void setTiming(Calendar timing) {
-        this.timing = timing;
-    }
-
-    public void setIntendedAudience(String intendedAudience) {
-        this.intendedAudience = intendedAudience;
-    }
-
-    public void setClassStrength(String classStrength) {
-        this.classStrength = classStrength;
     }
 
     public void setCreditsOffered(int creditsOffered) {
