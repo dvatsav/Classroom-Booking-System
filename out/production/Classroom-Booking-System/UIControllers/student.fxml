@@ -42,7 +42,7 @@
                <children>
                   <VBox layoutY="30.0" prefHeight="200.0" prefWidth="142.0">
                      <children>
-                        <TextField prefWidth="142.0" promptText="Search for course" />
+                        <TextField fx:id="student_search_course" prefWidth="142.0" promptText="Search for course" />
                         <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="View Faculty" />
                         <Button mnemonicParsing="false" prefWidth="142.0" text="Current timetable" />
                         <DatePicker prefHeight="31.0" prefWidth="142.0" promptText="Book a Room" />
