@@ -27,6 +27,8 @@ public class entryPageController {
                 Main.primaryStage.setScene(new Scene(newscene, 800, 600));
                 Main.primaryStage.show();
             }
+
+
     }
 
     @FXML
