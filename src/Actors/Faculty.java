@@ -12,6 +12,19 @@ public class Faculty extends Users implements Serializable {
         super(firstName, lastName, phoneNumber, email, password, type, dob);
     }
 
+    public Faculty(){}
+
+    @Override
+    public String toString() {
+        return "Faculty{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
 
     //can also check whether a course can be selected by viewing a faculty profile and selecting course
 

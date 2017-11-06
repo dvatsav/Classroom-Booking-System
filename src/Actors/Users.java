@@ -11,6 +11,8 @@ public class Users {
     protected String type;
     protected LocalDate dob;
 
+    public Users(){}
+
 	public Users(String firstName, String lastName, String phoneNumber, String email, String password, String type, LocalDate dob) {
 		this.firstName = firstName;
 		this.lastName = lastName;
