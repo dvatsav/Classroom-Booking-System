@@ -42,7 +42,7 @@
                <children>
                   <VBox layoutY="30.0" prefHeight="200.0" prefWidth="142.0">
                      <children>
-                        <TextField fx:id="student_search_course" prefWidth="142.0" promptText="Search for course" />
+                        <TextField fx:id="student_search_course" prefWidth="142.0" promptText="Search for course" onKeyPressed="#handleGenerateCourse"/>
                         <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="View Faculty" />
                         <Button mnemonicParsing="false" prefWidth="142.0" text="Current timetable" />
                         <DatePicker prefHeight="31.0" prefWidth="142.0" promptText="Book a Room" />
@@ -55,7 +55,7 @@
          <center>
             <AnchorPane prefHeight="370.0" prefWidth="466.0" BorderPane.alignment="CENTER">
                <children>
-                  <TableView layoutX="229.0" layoutY="184.0" prefHeight="568.0" prefWidth="658.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="table_student" layoutX="229.0" layoutY="184.0" prefHeight="568.0" prefWidth="658.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn prefWidth="75.0" text="C1" />
                       <TableColumn prefWidth="75.0" text="C2" />

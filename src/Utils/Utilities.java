@@ -24,28 +24,6 @@ public class Utilities {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        /*
-        for (int i = 0 ; i < courses.size() ; ++i) {
-            System.out.println(courses.get(i));
-        }*/
-        /*
-        for (int i = 0 ; i < courses.size() ; ++i) {
-            for (int j = 0 ; j < courses.get(i).postConditions.size() ; ++j){
-                System.out.println(courses.get(i).postConditions.get(j));
-            }
-        }*/
-        /*
-        for (int i = 0 ; i < courses.size() ; ++i) {
-            System.out.println(courses.get(i).timeAndRoom.get("Monday"));
-            System.out.println(courses.get(i).timeAndRoom.get("Tuesday"));
-            System.out.println(courses.get(i).timeAndRoom.get("Wednesday"));
-            System.out.println(courses.get(i).timeAndRoom.get("Thursday"));
-            System.out.println(courses.get(i).timeAndRoom.get("Friday"));
-            System.out.println(courses.get(i).timeAndRoom.get("Tutorial"));
-            System.out.println(courses.get(i).timeAndRoom.get("Labs"));
-
-        }
-        */
     }
 
     private static void readFile(BufferedReader br, String csvSplit, ArrayList<Course> courses) throws IOException {
