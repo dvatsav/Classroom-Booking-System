@@ -2,6 +2,7 @@ package UIControllers;
 
 
 
+import Utils.Utilities;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +22,7 @@ public class Main extends Application {
         primaryStage.resizableProperty().setValue(Boolean.FALSE);
         Parent root = FXMLLoader.load(getClass().getResource("entryPage.fxml"));
         primaryStage.setTitle("ClassRoom Booking System");
+        Utilities.readCoursesCSV();
         Scene scene = new Scene(root, 600, 400);
 
         primaryStage.setScene(scene);

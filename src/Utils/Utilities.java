@@ -9,12 +9,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Utilities {
+    public static ArrayList<Course> courses = new ArrayList<>();
     public static void readCoursesCSV() {
         String CSVfile1 = "src/DataFiles/alldata.csv";
         BufferedReader br = null;
         String line = "";
         String csvSplit = ",";
-        ArrayList<Course> courses = new ArrayList<>();
+
         try {
             br = new BufferedReader(new FileReader(CSVfile1));
             readFile(br, csvSplit, courses);
