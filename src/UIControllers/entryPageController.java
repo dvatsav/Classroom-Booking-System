@@ -49,7 +49,7 @@ public class entryPageController {
 				System.out.println(student);
 				if (student.getEmail().equals(tempEmailLogin) && student.getPassword().equals(tempPasswordLogin)) {
 					Parent newscene = FXMLLoader.load(getClass().getResource("student.fxml"));
-					Main.primaryStage.setScene(new Scene(newscene, 800, 600));
+					Main.primaryStage.setScene(new Scene(newscene, 1000, 800));
 					Main.primaryStage.show();
 				}
 			}
@@ -58,7 +58,7 @@ public class entryPageController {
 			for (Faculty faculty : fl) {
 				if (faculty.getEmail().equals(tempEmailLogin) && faculty.getPassword().equals(tempPasswordLogin)) {
 					Parent newscene = FXMLLoader.load(getClass().getResource("faculty.fxml"));
-					Main.primaryStage.setScene(new Scene(newscene, 800, 600));
+					Main.primaryStage.setScene(new Scene(newscene, 1000, 800));
 					Main.primaryStage.show();
 				}
 			}
@@ -67,7 +67,7 @@ public class entryPageController {
 			for (Admin admin : al) {
 				if (admin.getEmail().equals(tempEmailLogin) && admin.getPassword().equals(tempPasswordLogin)) {
 					Parent newscene = FXMLLoader.load(getClass().getResource("admin.fxml"));
-					Main.primaryStage.setScene(new Scene(newscene, 800, 600));
+					Main.primaryStage.setScene(new Scene(newscene, 1000, 800));
 					Main.primaryStage.show();
 				}
 			}
