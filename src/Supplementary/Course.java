@@ -9,15 +9,13 @@ public class Course {
     public ArrayList<String> postConditions = new ArrayList<>();
     private String acronym;
     public Map<String, String> timeAndRoom = new HashMap<>();
-
     public String getInstructor() {
         return instructor;
     }
-
     public int getCreditsOffered() {
         return creditsOffered;
     }
-
+    private String postCondition = "";
     private int creditsOffered;
     private boolean mandatory;
     private String preReq;
@@ -32,8 +30,16 @@ public class Course {
         this.preReq = preReq;
     }
 
+    public void convertPostToString() {
+        for (int i = 0 ; i < postConditions.size() ; ++i) {
+            postCondition += postConditions.get(i) + "\n";
+        }
+    }
+
     public String getCourseName() {return courseName;}
     public String getCourseCode() {return courseCode;}
+    public String getPreReq() {return preReq;}
+    public String getPostCondition() {return postCondition;}
 
     public void getPostConditions() {
         for (int i = 0 ; i < postConditions.size() ; ++i) {

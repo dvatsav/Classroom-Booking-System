@@ -1,6 +1,7 @@
 package Utils;
 
 import Supplementary.Course;
+import Supplementary.Room;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 
 public class Utilities {
     public static ArrayList<Course> courses = new ArrayList<>();
+    public static ArrayList<Room> rooms = new ArrayList<Room>();
     public static void readCoursesCSV() {
         String CSVfile1 = "src/DataFiles/alldata.csv";
         BufferedReader br = null;
@@ -44,9 +46,18 @@ public class Utilities {
             course.addTiming("Friday", data[10]);
             course.addTiming("Tutorial", data[11]);
             course.addTiming("Labs", data[12]);
+            Room.addTimings("Monday", data[6]);
+            Room.addTimings("Tuesday", data[7]);
+            Room.addTimings("Wednesday", data[8]);
+            Room.addTimings("Thursday", data[9]);
+            Room.addTimings("Friday", data[10]);
+            Room.addTimings("Tutorial", data[11]);
+            Room.addTimings("Labs", data[12]);
+
             for (int i = 14 ; i < data.length ; ++i) {
                 course.addPostCondition(data[i]);
             }
+            course.convertPostToString();
             courses.add(course);
         }
     }
