@@ -4,7 +4,6 @@
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -17,7 +16,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIControllers.RegisterController">
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIControllers.RegisterController">
    <children>
       <VBox layoutX="500.0" layoutY="96.0" prefHeight="412.0" prefWidth="226.0" spacing="10">
          <children>
@@ -27,13 +26,12 @@
             <DatePicker fx:id="register_dob" prefHeight="31.0" prefWidth="226.0" />
             <HBox prefHeight="31.0" prefWidth="226.0">
                <children>
-                  <ComboBox prefHeight="31.0" prefWidth="45.0" />
-                  <TextField fx:id="register_phnumber" prefHeight="31.0" prefWidth="181.0" />
+                  <TextField fx:id="register_phnumber" prefHeight="31.0" prefWidth="226.0" />
                </children>
             </HBox>
-            <PasswordField fx:id="register_password" />
-            <PasswordField fx:id="register_repassword" />
-            <ChoiceBox prefHeight="31.0" prefWidth="231.0" value="Student">
+            <PasswordField fx:id="register_password" prefHeight="31.0" prefWidth="226.0" />
+            <PasswordField fx:id="register_repassword" prefHeight="31.0" prefWidth="226.0" />
+            <ChoiceBox fx:id="typeOfUser" prefHeight="31.0" prefWidth="231.0" value="Student">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Student" />
@@ -42,8 +40,8 @@
                         </FXCollections>
                     </items>
             </ChoiceBox>
-            <TextField fx:id="register_rollnum" />
-            <ChoiceBox prefHeight="31.0" prefWidth="231.0">
+            <TextField fx:id="register_rollnum" prefHeight="31.0" prefWidth="226.0" />
+            <ChoiceBox fx:id="branchOfUser" prefHeight="31.0" prefWidth="231.0">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                         <String fx:value="CSE" />

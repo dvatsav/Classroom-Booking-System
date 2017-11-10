@@ -8,6 +8,7 @@ import Supplementary.Course;
 
 public class Student extends Users implements Serializable{
     private Map<Course, Calendar> courses;
+    private String branch;
 
 	@Override
 	public String toString() {
@@ -29,7 +30,13 @@ public class Student extends Users implements Serializable{
 
 	private String rollNo;
 
-    public Student(String firstName, String lastName, String phoneNumber, String email, String password, String type, LocalDate dob) {
+	public Student() {
+
+	}
+
+	public Student(String firstName, String lastName, String phoneNumber, String email, String password, String type, LocalDate dob, String rollNo, String branch) {
         super(firstName, lastName, phoneNumber, email, password, type, dob);
+        this.rollNo = rollNo;
+        this.branch = branch;
     }
 }

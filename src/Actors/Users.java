@@ -1,8 +1,9 @@
 package Actors;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Users {
+public class Users implements Serializable{
 	protected String firstName;
 	protected String lastName;
 	protected String phoneNumber;
@@ -10,6 +11,8 @@ public class Users {
     protected String password;
     protected String type;
     protected LocalDate dob;
+
+    public Users(){}
 
 	public Users(String firstName, String lastName, String phoneNumber, String email, String password, String type, LocalDate dob) {
 		this.firstName = firstName;

@@ -9,6 +9,15 @@ public class Course {
     public ArrayList<String> postConditions = new ArrayList<>();
     private String acronym;
     public Map<String, String> timeAndRoom = new HashMap<>();
+
+    public String getInstructor() {
+        return instructor;
+    }
+
+    public int getCreditsOffered() {
+        return creditsOffered;
+    }
+
     private int creditsOffered;
     private boolean mandatory;
     private String preReq;
