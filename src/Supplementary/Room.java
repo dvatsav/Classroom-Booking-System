@@ -2,10 +2,11 @@ package Supplementary;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class Room {
-    private Map<String, ArrayList<HashMap<String, String>>> roomAvailable;
+    public Map<String, ArrayList<HashMap<String, String>>> roomAvailable;
     private String roomNumber;
 
     public Room(String roomNumber, Map map) {
@@ -30,12 +31,9 @@ public class Room {
         else return false;
     }
 
-    public String mapToString() {
-        
-    }
 
     public String toString() {
-        return roomNumber +
+        return roomAvailable.get("Monday").get(0).get("start time") + " " + roomAvailable.get("Monday").get(0).get("end time");
     }
 
     public String getRoomNumber() {return roomNumber;}
