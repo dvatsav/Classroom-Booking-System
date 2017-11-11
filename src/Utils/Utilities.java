@@ -7,8 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 public class Utilities {
     public static ArrayList<Course> courses = new ArrayList<>();
@@ -61,6 +60,7 @@ public class Utilities {
             course.convertPostToString();
             courses.add(course);
         }
+        printAllRooms();
     }
 
     public static void addTimings(String day, String data, String subject) {
@@ -111,10 +111,11 @@ public class Utilities {
             } else {
                 classArray.add(classNumber);
             }
+            /*
             for (int j = 0 ; j < classArray.size() ; ++j) {
                 System.out.print(classArray.get(j) + " ");
             } System.out.println();
-
+*/
 
             for (int j = 0 ; j < classArray.size() ; ++j) {
                 ArrayList<HashMap<String, String>> temp;
@@ -158,6 +159,13 @@ public class Utilities {
                     }
                 }
             }
+        }
+    }
+
+    public static void printAllRooms() {
+        for (int i = 0 ; i < rooms.size() ; ++i) {
+            System.out.println(rooms.get(i).getRoomNumber());
+            System.out.println(rooms.get(i).roomAvailable);
         }
     }
 
