@@ -105,8 +105,8 @@ public class requestbookController {
     }
 
     public void handleConfirmBooking(ActionEvent event) throws IOException, ParseException{
-        String startTime = start_time.getValue().toString() + ":00";
-        String endTime= end_time.getValue().toString() + ":00";
+        String startTime = start_time.getValue().toString();
+        String endTime= end_time.getValue().toString();
         String dateforbook = date_to_book.getValue().toString();
         String dateOfBook = Utilities.convertDateToDay(dateforbook);
         if (Utilities.determineValidTime(startTime, endTime, (String)class_number.getValue(), dateOfBook)) {
