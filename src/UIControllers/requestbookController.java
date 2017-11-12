@@ -20,6 +20,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 
+import java.awt.print.Book;
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -32,6 +34,12 @@ public class requestbookController {
     @FXML JFXTimePicker start_time;
     @FXML JFXTimePicker end_time;
     @FXML TextField purpose;
+
+    private static String callingClass;
+
+    public static void setCallingClass(String callingClas) {
+        callingClass = callingClas;
+    }
 
     @FXML
     public void handleCurrentBookings(ActionEvent event) {
@@ -99,12 +107,12 @@ public class requestbookController {
     }
 
     public void handleBackToHome(ActionEvent event) throws IOException {
-        Parent newscene = FXMLLoader.load(getClass().getResource("student.fxml"));
+        Parent newscene = FXMLLoader.load(getClass().getResource(callingClass));
         Main.primaryStage.setScene(new Scene(newscene,  1200, 800));
         Main.primaryStage.show();
     }
 
-    public void handleConfirmBooking(ActionEvent event) throws IOException, ParseException{
+    public void handleConfirmBooking(ActionEvent event) throws IOException, ParseException, ClassNotFoundException{
         String startTime = start_time.getValue().toString();
         String endTime= end_time.getValue().toString();
         String dateforbook = date_to_book.getValue().toString();
@@ -124,9 +132,22 @@ public class requestbookController {
                 temp.put("Start Time", startTime);
                 temp.put("End Time", endTime);
                 temp.put("Purpose", purpose.getText());
-                BookingRequests.bookingrequests.add(temp);
-                Booking.bookings.add(temp);
-                Parent newscene = FXMLLoader.load(getClass().getResource("student.fxml"));
+                temp.put("Requested by", entryPageController.userEmail);
+                if (entryPageController.userType.equals("Student")) {
+                    File file = new File("/src/DataFiles/bookingreqs.txt");
+                    BookingRequests b = new BookingRequests();
+                    if (file.exists()) {
+                        b.setBookinRequests(b.deserialize());
+                    } else {
+                        b.newBooking();
+                    }
+                    b.addElement(temp);
+                    b.serialize(b.getBookingrequests());
+                }
+                else {
+                    Booking.bookings.add(temp);
+                }
+                Parent newscene = FXMLLoader.load(getClass().getResource(callingClass));
                 Main.primaryStage.setScene(new Scene(newscene,  1200, 800));
                 Main.primaryStage.show();
             }
