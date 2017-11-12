@@ -107,25 +107,6 @@ public class AdminController {
 
     @FXML
     public void handleCurrentBookings(ActionEvent event) {
-        setupTable();
-    }
-
-    private ObservableList<Map> generateDataInMap() {
-        ObservableList<Map> allData = FXCollections.observableArrayList();
-        for (int i = 0; i < Booking.bookings.size() ; ++i) {
-            Map<String, String> dataRow = new HashMap<>();
-
-            dataRow.put("Day", (String)Booking.bookings.get(i).get("Day"));
-            dataRow.put("Room Number", (String)Booking.bookings.get(i).get("Room Number"));
-            dataRow.put("Purpose", (String)Booking.bookings.get(i).get("Purpose"));
-            dataRow.put("Start Time", (String)Booking.bookings.get(i).get("Start Time"));
-            dataRow.put("End Time", (String)Booking.bookings.get(i).get("End Time"));
-            allData.add(dataRow);
-        }
-        return allData;
-    }
-
-    public void setupTable() {
         tableanchor.getChildren().clear();
         TableView tb = new TableView<>(generateDataInMap());
         tb.prefWidthProperty().bind(tableanchor.widthProperty());
@@ -166,6 +147,21 @@ public class AdminController {
         col4.setCellFactory(cellFactoryForMap);
         col5.setCellFactory(cellFactoryForMap);
         tableanchor.getChildren().add(tb);
+    }
+
+    private ObservableList<Map> generateDataInMap() {
+        ObservableList<Map> allData = FXCollections.observableArrayList();
+        for (int i = 0; i < Booking.bookings.size() ; ++i) {
+            Map<String, String> dataRow = new HashMap<>();
+
+            dataRow.put("Day", (String)Booking.bookings.get(i).get("Day"));
+            dataRow.put("Room Number", (String)Booking.bookings.get(i).get("Room Number"));
+            dataRow.put("Purpose", (String)Booking.bookings.get(i).get("Purpose"));
+            dataRow.put("Start Time", (String)Booking.bookings.get(i).get("Start Time"));
+            dataRow.put("End Time", (String)Booking.bookings.get(i).get("End Time"));
+            allData.add(dataRow);
+        }
+        return allData;
     }
 
     @FXML
