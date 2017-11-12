@@ -136,8 +136,4 @@ public class Course {
         this.creditsOffered = creditsOffered;
     }
 
-    @Override
-    public String toString() {
-        return "Course code: " + courseCode + " Course name: " + courseName + " instructor: " + instructor + " precondition " + preReq;
-    }
 }

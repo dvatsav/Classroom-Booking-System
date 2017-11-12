@@ -58,9 +58,9 @@ public class Utilities {
                 if (data[11].substring(0, 1).equals("*")) {
                     String Day1 = data[11].substring(data[11].indexOf("^") + 1, data[11].indexOf("%"));
                     addTimings(Day1, data[11].substring(0, data[11].indexOf("&")), data[5] + " Tutorial");
-                    data[11] = data[11].substring(data[11].indexOf("&"));
-                    String Day2 = data[11].substring(data[11].indexOf("^") + 1, data[11].indexOf("%"));
-                    addTimings(Day2, data[11].substring(data[11].indexOf("&")), data[5] + " Tutorial");
+                    String temp = data[11].substring(data[11].indexOf("&"));
+                    String Day2 = temp.substring(temp.indexOf("^") + 1, temp.indexOf("%"));
+                    addTimings(Day2, data[11], data[5] + " Tutorial");
                 } else {
                     String Day1 = data[11].substring(data[11].indexOf("^") + 1, data[11].indexOf("%"));
                     addTimings(Day1, data[11], data[5] + " Tutorial");
@@ -79,7 +79,7 @@ public class Utilities {
         }
         addRoomsToBooking();
         //printBookings();
-        printAllCourses();
+        //printAllCourses();
     }
 
     public static void addTimings(String day, String data, String subject) {
@@ -245,7 +245,4 @@ public class Utilities {
         return true;
     }
 
-    public static void main(String[] args) {
-        readCoursesCSV();
-    }
 }
