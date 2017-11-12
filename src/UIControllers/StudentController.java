@@ -129,6 +129,7 @@ public class StudentController {
     @FXML
     public void handleBookRoom(ActionEvent event) throws IOException{
         Parent newscene = FXMLLoader.load(getClass().getResource("requestbook.fxml"));
+        requestbookController.setCallingClass("student.fxml");
         Main.primaryStage.setScene(new Scene(newscene, 1200, 800));
         Main.primaryStage.show();
     }

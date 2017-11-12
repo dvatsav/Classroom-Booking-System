@@ -143,6 +143,7 @@ public class Utilities {
                     hmTemp.put("Purpose", subject);
                     hmTemp.put("Start Time", startTempTime);
                     hmTemp.put("End Time", endTempTime);
+                    hmTemp.put("Requested by", "Admin");
 
                     temp.add(hmTemp);
                     room.addToMap(temp, day);
@@ -156,6 +157,7 @@ public class Utilities {
                         hmTemp.put("Purpose", subject);
                         hmTemp.put("Start Time", startTempTime);
                         hmTemp.put("End Time", endTempTime);
+                        hmTemp.put("Requested by", "Admin");
                         temp.add(hmTemp);
                         rooms.get(index).addToMap(temp, day);
                     } else {
@@ -166,6 +168,7 @@ public class Utilities {
                         hmTemp.put("Purpose", subject);
                         hmTemp.put("Start Time", startTempTime);
                         hmTemp.put("End Time", endTempTime);
+                        hmTemp.put("Requested by", "Admin");
                         temp.add(hmTemp);
                         rooms.get(index).addToMap(temp, day);
                     }

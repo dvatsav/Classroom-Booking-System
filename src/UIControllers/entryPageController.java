@@ -25,6 +25,8 @@ import Utils.XlsToCsv;
 
 public class entryPageController {
 
+	public static String userType;
+	public static String userEmail;
     @FXML private TextField login_email;
     @FXML private PasswordField login_password;
     @FXML private ChoiceBox loginUserTypeChoice;
@@ -36,7 +38,9 @@ public class entryPageController {
     	tempEmailLogin = login_email.getText();
     	tempPasswordLogin = login_password.getText();
     	tempTypeOfUserLogin = loginUserTypeChoice.getSelectionModel().getSelectedItem().toString();
-		Database userDb = readDBFromFile();
+		userType = tempTypeOfUserLogin;
+		userEmail = tempEmailLogin;
+    	Database userDb = readDBFromFile();
 		if (tempTypeOfUserLogin.equals("Student")) {
 			HashMap<String, Student> mp = (HashMap<String, Student>) userDb.getStudentsDB();
 			for (Student student : mp.values()) {
