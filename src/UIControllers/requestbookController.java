@@ -1,6 +1,10 @@
 package UIControllers;
 
 import Supplementary.Booking;
+import Supplementary.BookingRequests;
+import Utils.Utilities;
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTimePicker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,10 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Orientation;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Separator;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
@@ -20,11 +21,17 @@ import javafx.util.Callback;
 import javafx.util.StringConverter;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class requestbookController {
     @FXML AnchorPane anchor_with_table;
+    @FXML ChoiceBox class_number;
+    @FXML JFXDatePicker date_to_book;
+    @FXML JFXTimePicker start_time;
+    @FXML JFXTimePicker end_time;
+    @FXML TextField purpose;
 
     @FXML
     public void handleCurrentBookings(ActionEvent event) {
@@ -91,9 +98,39 @@ public class requestbookController {
         return allData;
     }
 
-    public void hanldleBackToHome(ActionEvent event) throws IOException {
+    public void handleBackToHome(ActionEvent event) throws IOException {
         Parent newscene = FXMLLoader.load(getClass().getResource("student.fxml"));
         Main.primaryStage.setScene(new Scene(newscene,  1200, 800));
         Main.primaryStage.show();
+    }
+
+    public void handleConfirmBooking(ActionEvent event) throws IOException, ParseException{
+        String startTime = start_time.getValue().toString() + ":00";
+        String endTime= end_time.getValue().toString() + ":00";
+        String dateforbook = date_to_book.getValue().toString();
+        System.out.println(startTime + " " + endTime + " " + dateforbook);
+
+        String dateOfBook = Utilities.convertDateToDay(dateforbook);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText(null);
+        alert.setContentText("Your request has been submitted! Kindly wait for approval!");
+        Optional<ButtonType> result = alert.showAndWait();
+        ButtonType button = result.orElse(ButtonType.CANCEL);
+        /*
+        if (button == ButtonType.OK) {
+            HashMap<String, String> temp = new HashMap<>();
+            temp.put("Day", "placeholder");
+            temp.put("Class Number", (String)class_number.getValue());
+            temp.put("Start Time", "placeholder");
+            temp.put("End Time", "Placeholder");
+            temp.put("Purpose", purpose.getText());
+            BookingRequests.bookingrequests.add(temp);
+
+            Parent newscene = FXMLLoader.load(getClass().getResource("student.fxml"));
+            Main.primaryStage.setScene(new Scene(newscene,  1200, 800));
+            Main.primaryStage.show();
+        }*/
+
     }
 }

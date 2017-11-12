@@ -13,6 +13,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIControllers.requestbookController">
    <children>
       <SplitPane dividerPositions="0.046365914786967416" layoutX="387.0" layoutY="300.0" orientation="VERTICAL" prefHeight="800.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -52,8 +54,8 @@
                                        <children>
                                           <VBox layoutX="20.0" layoutY="166.0" prefHeight="101.0" prefWidth="140.0" AnchorPane.bottomAnchor="486.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="166.0">
                                              <children>
-                                                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="140.0" text="Confirm Booking" />
-                                                <Button onAction="#hanldleBackToHome" mnemonicParsing="false" prefHeight="50.0" prefWidth="140.0" text="Return to Home" />
+                                                <Button onAction="#handleConfirmBooking" mnemonicParsing="false" prefHeight="50.0" prefWidth="140.0" text="Confirm Booking" />
+                                                <Button onAction="#handleBackToHome" mnemonicParsing="false" prefHeight="50.0" prefWidth="140.0" text="Return to Home" />
                                              </children>
                                           </VBox>
                                        </children>
@@ -71,11 +73,27 @@
                                           </VBox>
                                           <VBox layoutX="227.0" layoutY="230.0" prefHeight="294.0" prefWidth="120.0" spacing="15">
                                              <children>
-                                                <ChoiceBox prefHeight="35.0" prefWidth="123.0" />
-                                                <JFXDatePicker prefHeight="35.0" prefWidth="127.0" />
-                                                <JFXTimePicker prefHeight="35.0" prefWidth="121.0" />
-                                                <JFXTimePicker prefHeight="35.0" prefWidth="121.0" />
-                                                <TextField prefHeight="35.0" prefWidth="116.0" />
+                                                <ChoiceBox fx:id="class_number" prefHeight="35.0" prefWidth="123.0" value="C01">
+                                                        <items>
+                                                            <FXCollections fx:factory="observableArrayList">
+                                                                <String fx:value="C01" />
+                                                                <String fx:value="C02" />
+                                                                <String fx:value="C03" />
+                                                                <String fx:value="C11" />
+                                                                <String fx:value="C12" />
+                                                                <String fx:value="C13" />
+                                                                <String fx:value="C21" />
+                                                                <String fx:value="C22" />
+                                                                <String fx:value="C23" />
+                                                                <String fx:value="S01" />
+                                                                <String fx:value="S01" />
+                                                            </FXCollections>
+                                                        </items>
+                                                </ChoiceBox>
+                                                <JFXDatePicker fx:id="date_to_book" prefHeight="35.0" prefWidth="127.0" />
+                                                <JFXTimePicker fx:id="start_time" prefHeight="35.0" prefWidth="121.0" />
+                                                <JFXTimePicker fx:id="end_time" prefHeight="35.0" prefWidth="121.0" />
+                                                <TextField fx:id="purpose" prefHeight="35.0" prefWidth="116.0" />
                                              </children>
                                           </VBox>
                                        </children></AnchorPane>

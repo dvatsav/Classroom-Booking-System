@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="700 .0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIControllers.RegisterController">
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIControllers.RegisterController">
    <children>
       <VBox layoutX="500.0" layoutY="96.0" prefHeight="412.0" prefWidth="226.0" spacing="10">
          <children>
@@ -41,7 +41,7 @@
                     </items>
             </ChoiceBox>
             <TextField fx:id="register_rollnum" prefHeight="31.0" prefWidth="226.0" />
-            <ChoiceBox fx:id="branchOfUser" prefHeight="31.0" prefWidth="231.0">
+            <ChoiceBox fx:id="branchOfUser" prefHeight="31.0" prefWidth="231.0" value="CSE">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                         <String fx:value="CSE" />

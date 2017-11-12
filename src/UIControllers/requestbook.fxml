@@ -54,8 +54,8 @@
                                        <children>
                                           <VBox layoutX="20.0" layoutY="166.0" prefHeight="101.0" prefWidth="140.0" AnchorPane.bottomAnchor="486.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="166.0">
                                              <children>
-                                                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="140.0" text="Confirm Booking" />
-                                                <Button onAction="#hanldleBackToHome" mnemonicParsing="false" prefHeight="50.0" prefWidth="140.0" text="Return to Home" />
+                                                <Button onAction="#handleConfirmBooking" mnemonicParsing="false" prefHeight="50.0" prefWidth="140.0" text="Confirm Booking" />
+                                                <Button onAction="#handleBackToHome" mnemonicParsing="false" prefHeight="50.0" prefWidth="140.0" text="Return to Home" />
                                              </children>
                                           </VBox>
                                        </children>
@@ -73,7 +73,7 @@
                                           </VBox>
                                           <VBox layoutX="227.0" layoutY="230.0" prefHeight="294.0" prefWidth="120.0" spacing="15">
                                              <children>
-                                                <ChoiceBox prefHeight="35.0" prefWidth="123.0" value="C01">
+                                                <ChoiceBox fx:id="class_number" prefHeight="35.0" prefWidth="123.0" value="C01">
                                                         <items>
                                                             <FXCollections fx:factory="observableArrayList">
                                                                 <String fx:value="C01" />
@@ -90,10 +90,10 @@
                                                             </FXCollections>
                                                         </items>
                                                 </ChoiceBox>
-                                                <JFXDatePicker prefHeight="35.0" prefWidth="127.0" />
-                                                <JFXTimePicker prefHeight="35.0" prefWidth="121.0" />
-                                                <JFXTimePicker prefHeight="35.0" prefWidth="121.0" />
-                                                <TextField prefHeight="35.0" prefWidth="116.0" />
+                                                <JFXDatePicker fx:id="date_to_book" prefHeight="35.0" prefWidth="127.0" />
+                                                <JFXTimePicker fx:id="start_time" prefHeight="35.0" prefWidth="121.0" />
+                                                <JFXTimePicker fx:id="end_time" prefHeight="35.0" prefWidth="121.0" />
+                                                <TextField fx:id="purpose" prefHeight="35.0" prefWidth="116.0" />
                                              </children>
                                           </VBox>
                                        </children></AnchorPane>
