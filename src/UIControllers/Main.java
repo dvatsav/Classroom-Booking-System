@@ -23,6 +23,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("entryPage.fxml"));
         primaryStage.setTitle("ClassRoom Booking System");
         Utilities.readCoursesCSV();
+
         Scene scene = new Scene(root, 600, 400);
 
         primaryStage.setScene(scene);

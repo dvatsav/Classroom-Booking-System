@@ -1,5 +1,9 @@
 package Supplementary;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Booking {
-    private Room room;
+    public static ArrayList<HashMap> bookings = new ArrayList<>();
+
 }
