@@ -38,12 +38,6 @@ public class StudentController {
     @FXML
     public void handleGenerateCourse(KeyEvent keyEvent) {
         anchor_for_table.getChildren().clear();
-        Separator sep = new Separator();
-        sep.setOrientation(Orientation.VERTICAL);
-        sep.prefHeightProperty().bind(anchor_for_table.heightProperty());
-        sep.prefWidth(10.0);
-        sep.setLayoutX(-2.0);
-        sep.setLayoutY(-2.0);
         TableView<Course> table_student = new TableView<>();
         table_student.prefWidthProperty().bind(anchor_for_table.widthProperty());
         table_student.prefHeightProperty().bind(anchor_for_table.heightProperty());
@@ -70,19 +64,12 @@ public class StudentController {
             table_student.setItems(courses);
         }
         anchor_for_table.getChildren().add(table_student);
-        anchor_for_table.getChildren().add(sep);
     }
 
     @FXML
     public void handleCurrentBookings(ActionEvent event) {
         anchor_for_table.getChildren().clear();
         TableView tb = new TableView<>(generateDataInMap());
-        Separator sep = new Separator();
-        sep.setOrientation(Orientation.VERTICAL);
-        sep.prefHeightProperty().bind(anchor_for_table.heightProperty());
-        sep.prefWidth(10.0);
-        sep.setLayoutX(-2.0);
-        sep.setLayoutY(-2.0);
         tb.prefWidthProperty().bind(anchor_for_table.widthProperty());
         tb.prefHeightProperty().bind(anchor_for_table.heightProperty());
         TableColumn<Map, String> col1 = new TableColumn<>("Day");
@@ -121,7 +108,6 @@ public class StudentController {
         col4.setCellFactory(cellFactoryForMap);
         col5.setCellFactory(cellFactoryForMap);
         anchor_for_table.getChildren().add(tb);
-        anchor_for_table.getChildren().add(sep);
     }
 
     private ObservableList<Map> generateDataInMap() {

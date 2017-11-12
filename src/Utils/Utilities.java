@@ -185,6 +185,28 @@ public class Utilities {
         }
     }
 
+    public static String convertDateToDay(String date) {
+        int year = Integer.parseInt(date.substring(0, date.indexOf("-")));
+        date = date.substring(date.indexOf("-") + 1);
+        int month = Integer.parseInt(date.substring(0, date.indexOf("-")));
+        date = date.substring(date.indexOf("-") + 1);
+        int day = Integer.parseInt(date);
+        int t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
+        HashMap<Integer, String> hm = new HashMap<>();
+        hm.put(1, "Monday");
+        hm.put(2, "Tuesday");
+        hm.put(3, "Wednesday");
+        hm.put(4, "Thursday");
+        hm.put(5, "Friday");
+        hm.put(6, "Saturday");
+        hm.put(0, "Sunday");
+        if (month < 3)
+            year -= month;
+        return hm.get((year + year/4 - year/100 + year/400 + t[month - 1] + day) % 7);
+
+
+    }
+
     public static void main(String[] args) {
         readCoursesCSV();
     }
