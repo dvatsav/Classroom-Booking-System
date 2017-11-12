@@ -41,7 +41,7 @@
                     </items>
             </ChoiceBox>
             <TextField fx:id="register_rollnum" prefHeight="31.0" prefWidth="226.0" />
-            <ChoiceBox fx:id="branchOfUser" prefHeight="31.0" prefWidth="231.0">
+            <ChoiceBox fx:id="branchOfUser" prefHeight="31.0" prefWidth="231.0" value="CSE">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                         <String fx:value="CSE" />
