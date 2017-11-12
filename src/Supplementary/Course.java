@@ -101,7 +101,8 @@ public class Course {
             }
         } else {
             String Day1 = timing.substring(timing.indexOf("^") + 1, timing.indexOf("%"));
-            String starttime = timing.substring(0, timing.indexOf("-"));
+            String starttime = timing.substring(timing.indexOf("@") + 1, timing.indexOf("-"));
+            System.out.println(starttime);
             timing = timing.substring(timing.indexOf("-") + 1);
             String endtime = timing.substring(0, timing.indexOf("$"));
             LinkedHashMap<String, String> temp = new LinkedHashMap<>();
