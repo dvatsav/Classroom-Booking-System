@@ -49,13 +49,27 @@ public class Utilities {
             course.addTiming("Friday", data[10]);
             course.addTiming("Tutorial", data[11]);
             course.addTiming("Labs", data[12]);
-            addTimings("Monday", data[6], data[5]);
-            addTimings("Tuesday", data[7], data[5]);
-            addTimings("Wednesday", data[8], data[5]);
-            addTimings("Thursday", data[9], data[5]);
-            addTimings("Friday", data[10], data[5]);
-            addTimings("Tutorial", data[11], data[5]);
-            addTimings("Labs", data[12], data[5]);
+            addTimings("Monday", data[6], data[5] + " Lecture");
+            addTimings("Tuesday", data[7], data[5] + " Lecture");
+            addTimings("Wednesday", data[8], data[5] + " Lecture");
+            addTimings("Thursday", data[9], data[5] + " Lecture");
+            addTimings("Friday", data[10], data[5] + " Lecture");
+            if (!data[11].equals("")){
+                if (data[11].substring(0, 1).equals("*")) {
+                    String Day1 = data[11].substring(data[11].indexOf("^") + 1, data[11].indexOf("%"));
+                    addTimings(Day1, data[11].substring(0, data[11].indexOf("&")), data[5] + " Tutorial");
+                    data[11] = data[11].substring(data[11].indexOf("&"));
+                    String Day2 = data[11].substring(data[11].indexOf("^") + 1, data[11].indexOf("%"));
+                    addTimings(Day2, data[11].substring(data[11].indexOf("&")), data[5] + " Tutorial");
+                } else {
+                    String Day1 = data[11].substring(data[11].indexOf("^") + 1, data[11].indexOf("%"));
+                    addTimings(Day1, data[11], data[5] + " Tutorial");
+                }
+            }
+            if (!data[12].equals("")){
+                    String Day = data[12].substring(data[12].indexOf("^") + 1, data[12].indexOf("%"));
+                    addTimings(Day, data[12], data[5] + " Lab");
+            }
 
             for (int i = 14 ; i < data.length ; ++i) {
                 course.addPostCondition(data[i]);
@@ -64,7 +78,8 @@ public class Utilities {
             courses.add(course);
         }
         addRoomsToBooking();
-        printBookings();
+        //printBookings();
+        printAllCourses();
     }
 
     public static void addTimings(String day, String data, String subject) {
@@ -93,8 +108,6 @@ public class Utilities {
             }
             String startTempTime = data.substring(data.indexOf("@", startAt - 13) + 1, data.indexOf("-", startAt - 13));
             String endTempTime = data.substring(data.indexOf("-", startAt - 13) + 1, data.indexOf("$", startAt - 13));
-            startTempTime += ":00";
-            endTempTime += ":00";
             int numOfClasses = 1;
             //Suppose tutes takes place in multiple classes, then handle using an arraylist
             ArrayList<String> classArray = new ArrayList<>();
@@ -166,10 +179,9 @@ public class Utilities {
             for (Map.Entry<String, ArrayList<LinkedHashMap<String, String>>> entry : rooms.get(i).roomAvailable.entrySet()) {
                 ArrayList<HashMap<String, String>> temp = new ArrayList<>(entry.getValue());
                 String key = entry.getKey();
-                if (!key.equals("Tutorial") && !key.equals("Labs"))
-                    for (int j = 0 ; j < temp.size() ; ++j) {
-                        Booking.bookings.add(temp.get(j));
-                    }
+                for (int j = 0 ; j < temp.size() ; ++j) {
+                    Booking.bookings.add(temp.get(j));
+                }
             }
         }
     }
@@ -187,6 +199,12 @@ public class Utilities {
         }
     }
 
+    public static void printAllCourses() {
+        for (int i = 0 ; i < courses.size() ; ++i) {
+            System.out.println(courses.get(i).getCourseName());
+            System.out.println(courses.get(i).timeAndRoom);
+        }
+    }
     public static String convertDateToDay(String date) {
         int year = Integer.parseInt(date.substring(0, date.indexOf("-")));
         date = date.substring(date.indexOf("-") + 1);
@@ -209,7 +227,7 @@ public class Utilities {
     }
 
     public static boolean determineValidTime(String start, String end, String classroom, String Day) throws ParseException{
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
         Date d1 = sdf.parse(start);
         Date d2 = sdf.parse(end);
         if (d2.getTime() <= d1.getTime()) return false;
