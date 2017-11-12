@@ -26,7 +26,7 @@ import javafx.util.StringConverter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Observable;
+
 
 public class StudentController {
     @FXML private TextField student_search_course;
@@ -141,8 +141,8 @@ public class StudentController {
 
     @FXML
     public void handleBookRoom(ActionEvent event) throws IOException{
-        Parent newscene = FXMLLoader.load(getClass().getResource("bookRoom.fxml"));
-        Main.primaryStage.setScene(new Scene(newscene, 600, 400));
+        Parent newscene = FXMLLoader.load(getClass().getResource("requestbook.fxml"));
+        Main.primaryStage.setScene(new Scene(newscene, 1200, 800));
         Main.primaryStage.show();
     }
 
