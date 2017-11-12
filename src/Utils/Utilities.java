@@ -8,6 +8,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Utilities {
@@ -204,7 +206,25 @@ public class Utilities {
             year -= month;
         return hm.get((year + year/4 - year/100 + year/400 + t[month - 1] + day) % 7);
 
+    }
 
+    public static boolean determineValidTime(String start, String end, String classroom, String Day) throws ParseException{
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        Date d1 = sdf.parse(start);
+        Date d2 = sdf.parse(end);
+        if (d2.getTime() <= d1.getTime()) return false;
+        for (int i = 0 ; i < Booking.bookings.size() ; ++i) {
+            if (Day.equals((String)Booking.bookings.get(i).get("Day")) && classroom.equals((String)Booking.bookings.get(i).get("Room Number"))) {
+                Date d3 = sdf.parse((String)Booking.bookings.get(i).get("Start Time"));
+                Date d4 = sdf.parse((String)Booking.bookings.get(i).get("End Time"));
+                if (d3.getTime() <= d1.getTime() && d1.getTime() <= d4.getTime()) {
+                    return false;
+                } else if (d2.getTime() > d3.getTime() && d2.getTime() < d4.getTime()) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public static void main(String[] args) {

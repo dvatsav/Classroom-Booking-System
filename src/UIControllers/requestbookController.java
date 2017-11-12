@@ -108,29 +108,33 @@ public class requestbookController {
         String startTime = start_time.getValue().toString() + ":00";
         String endTime= end_time.getValue().toString() + ":00";
         String dateforbook = date_to_book.getValue().toString();
-        System.out.println(startTime + " " + endTime + " " + dateforbook);
-
         String dateOfBook = Utilities.convertDateToDay(dateforbook);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Success");
-        alert.setHeaderText(null);
-        alert.setContentText("Your request has been submitted! Kindly wait for approval!");
-        Optional<ButtonType> result = alert.showAndWait();
-        ButtonType button = result.orElse(ButtonType.CANCEL);
-        /*
-        if (button == ButtonType.OK) {
-            HashMap<String, String> temp = new HashMap<>();
-            temp.put("Day", "placeholder");
-            temp.put("Class Number", (String)class_number.getValue());
-            temp.put("Start Time", "placeholder");
-            temp.put("End Time", "Placeholder");
-            temp.put("Purpose", purpose.getText());
-            BookingRequests.bookingrequests.add(temp);
+        if (Utilities.determineValidTime(startTime, endTime, (String)class_number.getValue(), dateOfBook)) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText(null);
+            alert.setContentText("Your request has been submitted! Kindly wait for approval!");
+            Optional<ButtonType> result = alert.showAndWait();
+            ButtonType button = result.orElse(ButtonType.CANCEL);
 
-            Parent newscene = FXMLLoader.load(getClass().getResource("student.fxml"));
-            Main.primaryStage.setScene(new Scene(newscene,  1200, 800));
-            Main.primaryStage.show();
-        }*/
-
+            if (button == ButtonType.OK) {
+                HashMap<String, String> temp = new HashMap<>();
+                temp.put("Day", dateOfBook);
+                temp.put("Room Number", (String)class_number.getValue());
+                temp.put("Start Time", startTime);
+                temp.put("End Time", endTime);
+                temp.put("Purpose", purpose.getText());
+                BookingRequests.bookingrequests.add(temp);
+                Booking.bookings.add(temp);
+                Parent newscene = FXMLLoader.load(getClass().getResource("student.fxml"));
+                Main.primaryStage.setScene(new Scene(newscene,  1200, 800));
+                Main.primaryStage.show();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("The Requested Time Slot is not Available");
+        }
     }
 }
