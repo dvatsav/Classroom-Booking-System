@@ -1,5 +1,6 @@
 package Utils;
 
+import Supplementary.Booking;
 import Supplementary.Course;
 import Supplementary.Room;
 
@@ -60,7 +61,8 @@ public class Utilities {
             course.convertPostToString();
             courses.add(course);
         }
-        printAllRooms();
+        addRoomsToBooking();
+        printBookings();
     }
 
     public static void addTimings(String day, String data, String subject) {
@@ -68,8 +70,6 @@ public class Utilities {
             return;
         }
         //Find the number of times some timing occurs on a particular data string
-
-
         int occurences = 0;
         for (int i = 0 ; i < data.length() ; ++i) {
             if (data.substring(i, i + 1).equals("@")) {
@@ -89,10 +89,8 @@ public class Utilities {
             else {
                 classNumber = data.substring(startAt);
             }
-
             String startTempTime = data.substring(data.indexOf("@", startAt - 13) + 1, data.indexOf("-", startAt - 13));
             String endTempTime = data.substring(data.indexOf("-", startAt - 13) + 1, data.indexOf("$", startAt - 13));
-
             startTempTime += ":00";
             endTempTime += ":00";
             int numOfClasses = 1;
@@ -106,17 +104,10 @@ public class Utilities {
                 for (int j = 0 ; j < numOfClasses - 1; ++j) {
                     classArray.add(classNumber.substring(0, classNumber.indexOf(";")));
                     classNumber = classNumber.substring(classNumber.indexOf(";") + 1);
-
                 }
             } else {
                 classArray.add(classNumber);
             }
-            /*
-            for (int j = 0 ; j < classArray.size() ; ++j) {
-                System.out.print(classArray.get(j) + " ");
-            } System.out.println();
-*/
-
             for (int j = 0 ; j < classArray.size() ; ++j) {
                 ArrayList<HashMap<String, String>> temp;
                 boolean checkExistence = false;
@@ -128,37 +119,62 @@ public class Utilities {
                         break;
                     }
                 }
-
                 if (!checkExistence) {
                     Room room = new Room(classArray.get(j), new HashMap());
                     temp = new ArrayList<>();
-                    HashMap<String, String> hmTemp = new HashMap<>();
-                    hmTemp.put("start time", startTempTime);
-                    hmTemp.put("end time", endTempTime);
-                    hmTemp.put("course", subject);
+                    LinkedHashMap<String, String> hmTemp = new LinkedHashMap<>();
+                    hmTemp.put("Day", day);
+                    hmTemp.put("Room Number", classArray.get(j));
+                    hmTemp.put("Purpose", subject);
+                    hmTemp.put("Start Time", startTempTime);
+                    hmTemp.put("End Time", endTempTime);
+
                     temp.add(hmTemp);
                     room.addToMap(temp, day);
                     rooms.add(room);
                 } else {
                     if (rooms.get(index).checkDay(day)) {
                         temp = new ArrayList<>(rooms.get(index).getArrayList(day));
-                        HashMap<String, String> hmTemp = new HashMap<>();
-                        hmTemp.put("start time", startTempTime);
-                        hmTemp.put("end time", endTempTime);
-                        hmTemp.put("course", subject);
+                        LinkedHashMap<String, String> hmTemp = new LinkedHashMap<>();
+                        hmTemp.put("Day", day);
+                        hmTemp.put("Room Number", classArray.get(j));
+                        hmTemp.put("Purpose", subject);
+                        hmTemp.put("Start Time", startTempTime);
+                        hmTemp.put("End Time", endTempTime);
                         temp.add(hmTemp);
                         rooms.get(index).addToMap(temp, day);
                     } else {
                         temp = new ArrayList<>();
-                        HashMap<String, String> hmTemp = new HashMap<>();
-                        hmTemp.put("start time", startTempTime);
-                        hmTemp.put("end time", endTempTime);
-                        hmTemp.put("course", subject);
+                        LinkedHashMap<String, String> hmTemp = new LinkedHashMap<>();
+                        hmTemp.put("Day", day);
+                        hmTemp.put("Room Number", classArray.get(j));
+                        hmTemp.put("Purpose", subject);
+                        hmTemp.put("Start Time", startTempTime);
+                        hmTemp.put("End Time", endTempTime);
                         temp.add(hmTemp);
                         rooms.get(index).addToMap(temp, day);
                     }
                 }
             }
+        }
+    }
+
+    public static void addRoomsToBooking() {
+        for (int i = 0 ; i < rooms.size() ; ++i) {
+            for (Map.Entry<String, ArrayList<LinkedHashMap<String, String>>> entry : rooms.get(i).roomAvailable.entrySet()) {
+                ArrayList<HashMap<String, String>> temp = new ArrayList<>(entry.getValue());
+                String key = entry.getKey();
+                if (!key.equals("Tutorial") && !key.equals("Labs"))
+                    for (int j = 0 ; j < temp.size() ; ++j) {
+                        Booking.bookings.add(temp.get(j));
+                    }
+            }
+        }
+    }
+
+    public static void printBookings() {
+        for (int i = 0 ; i < Booking.bookings.size() ; ++i) {
+            System.out.println(Booking.bookings.get(i));
         }
     }
 

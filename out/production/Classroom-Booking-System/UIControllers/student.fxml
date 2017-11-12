@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -19,7 +19,7 @@
                 <Menu mnemonicParsing="false" text="File">
                   <items>
                     <MenuItem mnemonicParsing="false" text="Profile" />
-                    <MenuItem mnemonicParsing="false" text="Logout" />
+                    <MenuItem mnemonicParsing="false" text="Logout" onAction="#handleLogout"/>
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
@@ -38,7 +38,7 @@
                         <TextField fx:id="student_search_course" onKeyPressed="#handleGenerateCourse" prefWidth="142.0" promptText="Search for course" />
                         <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="View Faculty" />
                         <Button mnemonicParsing="false" prefWidth="142.0" text="Current timetable" />
-                        <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Current Bookings" />
+                        <Button mnemonicParsing="false" onAction="#handleCurrentBookings" prefHeight="31.0" prefWidth="142.0" text="Current Bookings" />
                         <Button fx:id="book_room" mnemonicParsing="false" onAction="#handleBookRoom" prefHeight="31.0" prefWidth="143.0" text="Book a Room" />
                      </children>
                   </VBox>
@@ -46,11 +46,9 @@
             </AnchorPane>
          </left>
          <center>
-            <AnchorPane prefHeight="370.0" prefWidth="466.0" BorderPane.alignment="CENTER">
+            <AnchorPane fx:id="anchor_for_table" prefHeight="768.0" prefWidth="1296.0" BorderPane.alignment="CENTER">
                <children>
-                  <TableView fx:id="table_student" layoutX="229.0" layoutY="184.0" prefHeight="568.0" prefWidth="658.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-
-                  </TableView>
+                  <Separator layoutX="-2.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="776.0" prefWidth="10.0" />
                </children></AnchorPane>
          </center></BorderPane>
    </children>
