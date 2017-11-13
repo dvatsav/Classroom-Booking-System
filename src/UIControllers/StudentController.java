@@ -361,4 +361,10 @@ public class StudentController {
 		tb.setItems(courses);
 		anchor_for_table.getChildren().add(tb);
 	}
+
+	public void showAboutPage(ActionEvent actionEvent) throws IOException {
+		Parent newscene = FXMLLoader.load(getClass().getResource("about.fxml"));
+		Main.primaryStage.setScene(new Scene(newscene, 1200, 800));
+		Main.primaryStage.show();
+	}
 }

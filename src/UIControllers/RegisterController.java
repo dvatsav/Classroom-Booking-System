@@ -162,4 +162,10 @@ public class RegisterController implements Serializable {
 		ObjectInputStream oin = new ObjectInputStream(new FileInputStream("./src/db.txt"));
 		return ( (Database) oin.readObject() );
 	}
+
+	public void showAboutPage(ActionEvent actionEvent) throws IOException {
+		Parent newscene = FXMLLoader.load(getClass().getResource("about.fxml"));
+		Main.primaryStage.setScene(new Scene(newscene, 1200, 800));
+		Main.primaryStage.show();
+	}
 }

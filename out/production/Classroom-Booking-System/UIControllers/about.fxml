@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIControllers.About">
+   <children>
+      <Label layoutX="181.0" layoutY="105.0" text="ClassRoom Booking System">
+         <font>
+            <Font size="70.0" />
+         </font>
+      </Label>
+      <Label layoutX="976.0" layoutY="191.0" text="Version 1.0" />
+      <Label layoutX="806.0" layoutY="726.0" text="Created By:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="914.0" layoutY="726.0" text="Anubhav Chaudhary (2016013)">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="914.0" layoutY="756.0" text="Deepak Srivatsav (2016030)">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextArea layoutX="189.0" layoutY="274.0" prefHeight="248.0" prefWidth="839.0" text="The purpose of this project is to create a desktop based JavaFX application to manage classroom bookings at IIITD.  Along with classroom bookings it also helps a student manage his/her course selection as it provides them with a personal timetable to which they can add the courses they desire. Moreover this application also helps you to search through the long list of coueses available at IIIT Delhi (above 400 courses) based on thier post conditions mentioned by the professor who takes that course" wrapText="true">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextArea>
+   </children>
+</AnchorPane>

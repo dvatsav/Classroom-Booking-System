@@ -170,4 +170,10 @@ public class AdminController {
         Main.primaryStage.setScene(new Scene(newscene, 600, 400));
         Main.primaryStage.show();
     }
+
+	public void showAboutPage(ActionEvent actionEvent) throws IOException {
+		Parent newscene = FXMLLoader.load(getClass().getResource("about.fxml"));
+		Main.primaryStage.setScene(new Scene(newscene, 1200, 800));
+		Main.primaryStage.show();
+	}
 }
