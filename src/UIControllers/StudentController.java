@@ -349,4 +349,16 @@ public class StudentController {
 		userDb.setStudentsDB(mp);
 		writeDBToFile(userDb);
 	}
+
+	public void showFaculty(ActionEvent actionEvent) {
+		anchor_for_table.getChildren().clear();
+		TableView<Course> tb = new TableView<>();
+		tb.prefWidthProperty().bind(anchor_for_table.widthProperty());
+		tb.prefHeightProperty().bind(anchor_for_table.heightProperty());
+		TableColumn<Course, String> col1 = new TableColumn<>("Instructor Name");
+		tb.getColumns().add(col1);
+		col1.setCellValueFactory(new PropertyValueFactory<Course, String>("instructor"));
+		tb.setItems(courses);
+		anchor_for_table.getChildren().add(tb);
+	}
 }
