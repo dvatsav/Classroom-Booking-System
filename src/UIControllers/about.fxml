@@ -28,7 +28,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextArea layoutX="189.0" wrapText="true" layoutY="274.0" prefHeight="143.0" prefWidth="839.0" text="The purpose of this project is to create a desktop based JavaFX application to manage classroom bookings at IIITD. ">
+      <TextArea layoutX="189.0" layoutY="274.0" prefHeight="248.0" prefWidth="839.0" text="The purpose of this project is to create a desktop based JavaFX application to manage classroom bookings at IIITD.  Along with classroom bookings it also helps a student manage his/her course selection as it provides them with a personal timetable to which they can add the courses they desire. Moreover this application also helps you to search through the long list of coueses available at IIIT Delhi (above 400 courses) based on thier post conditions mentioned by the professor who takes that course" wrapText="true">
          <font>
             <Font size="20.0" />
          </font>
