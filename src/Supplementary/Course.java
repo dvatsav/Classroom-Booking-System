@@ -1,8 +1,9 @@
 package Supplementary;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Course {
+public class Course implements Serializable {
     private String courseName;
     private String courseCode;
     private String instructor;
@@ -18,6 +19,17 @@ public class Course {
     private String postCondition = "";
     private int creditsOffered;
     private boolean mandatory;
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseName='" + courseName + '\'' +
+                ", courseCode='" + courseCode + '\'' +
+                ", instructor='" + instructor + '\'' +
+                ", postConditions=" + postConditions +
+                '}';
+    }
+
     private String preReq;
 
     public Course(boolean Mandatory, String courseName, String courseCode, String instructor, int credits, String acronym, String preReq) {
