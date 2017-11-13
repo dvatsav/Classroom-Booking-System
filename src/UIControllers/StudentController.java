@@ -124,12 +124,12 @@ public class StudentController {
 	@FXML
     public void handleGenerateCourse(KeyEvent keyEvent) {
 //		initialize();
-        anchor_for_table.getChildren().clear();
-        TableView<Course> table_student = new TableView<>();
-        table_student.prefWidthProperty().bind(anchor_for_table.widthProperty());
-        table_student.prefHeightProperty().bind(anchor_for_table.heightProperty());
-        String searchedString = student_search_course.getText();
-        if (keyEvent.getCode() == KeyCode.ENTER) {
+		if (keyEvent.getCode() == KeyCode.ENTER) {
+			anchor_for_table.getChildren().clear();
+			TableView<Course> table_student = new TableView<>();
+			table_student.prefWidthProperty().bind(anchor_for_table.widthProperty());
+			table_student.prefHeightProperty().bind(anchor_for_table.heightProperty());
+			String searchedString = student_search_course.getText();
             TableColumn<Course, String> col1 = new TableColumn<>("Course Name");
             TableColumn<Course, String> col2 = new TableColumn<>("Course Code");
             TableColumn<Course, String> col3 = new TableColumn<>("Instructor");
@@ -184,8 +184,8 @@ public class StudentController {
 					}
 				}
 			});
-        }
-        anchor_for_table.getChildren().add(table_student);
+			anchor_for_table.getChildren().add(table_student);
+		}
     }
 
     @FXML
