@@ -72,7 +72,7 @@ public class entryPageController {
 			}
 		}
 		CurrentLoggenInUser.setCurrentUserEmail(tempEmailLogin);
-
+		CurrentLoggenInUser.setCurrentUserType(tempTypeOfUserLogin);
     }
 
     @FXML
