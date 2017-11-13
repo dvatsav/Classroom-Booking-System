@@ -123,34 +123,69 @@ public class StudentController {
 
 	@FXML
     public void handleGenerateCourse(KeyEvent keyEvent) {
-		initialize();
-//        anchor_for_table.getChildren().clear();
-//        TableView<Course> table_student = new TableView<>();
-//        table_student.prefWidthProperty().bind(anchor_for_table.widthProperty());
-//        table_student.prefHeightProperty().bind(anchor_for_table.heightProperty());
-//        if (keyEvent.getCode() == KeyCode.ENTER) {
-//            TableColumn<Course, String> col1 = new TableColumn<>("Course Name");
-//            TableColumn<Course, String> col2 = new TableColumn<>("Course Code");
-//            TableColumn<Course, String> col3 = new TableColumn<>("Instructor");
-//            TableColumn<Course, String> col4 = new TableColumn<>("Credits");
-//            TableColumn<Course, String> col5 = new TableColumn<>("Pre Conditions");
-//            TableColumn<Course, String> col6 = new TableColumn<>("Post Conditions");
-//            table_student.getColumns().add(col1);
-//            table_student.getColumns().add(col2);
-//            table_student.getColumns().add(col3);
-//            table_student.getColumns().add(col4);
-//            table_student.getColumns().add(col5);
-//            table_student.getColumns().add(col6);
-//            col1.setCellValueFactory(new PropertyValueFactory<Course, String>("courseName"));
-//            col2.setCellValueFactory(new PropertyValueFactory<Course, String>("courseCode"));
-//            col3.setCellValueFactory(new PropertyValueFactory<Course, String>("instructor"));
-//            col4.setCellValueFactory(new PropertyValueFactory<Course, String>("creditsOffered"));
-//            col5.setCellValueFactory(new PropertyValueFactory<Course, String>("preReq"));
-//            col6.setCellValueFactory(new PropertyValueFactory<Course, String>("postCondition"));
-//            col6.prefWidthProperty().bind(table_student.widthProperty().multiply(0.9));
-//            table_student.setItems(courses);
-//        }
-//        anchor_for_table.getChildren().add(table_student);
+//		initialize();
+        anchor_for_table.getChildren().clear();
+        TableView<Course> table_student = new TableView<>();
+        table_student.prefWidthProperty().bind(anchor_for_table.widthProperty());
+        table_student.prefHeightProperty().bind(anchor_for_table.heightProperty());
+        String searchedString = student_search_course.getText();
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            TableColumn<Course, String> col1 = new TableColumn<>("Course Name");
+            TableColumn<Course, String> col2 = new TableColumn<>("Course Code");
+            TableColumn<Course, String> col3 = new TableColumn<>("Instructor");
+            TableColumn<Course, String> col4 = new TableColumn<>("Credits");
+            TableColumn<Course, String> col5 = new TableColumn<>("Pre Conditions");
+            TableColumn<Course, String> col6 = new TableColumn<>("Post Conditions");
+            table_student.getColumns().add(col1);
+            table_student.getColumns().add(col2);
+            table_student.getColumns().add(col3);
+            table_student.getColumns().add(col4);
+            table_student.getColumns().add(col5);
+            table_student.getColumns().add(col6);
+            col1.setCellValueFactory(new PropertyValueFactory<Course, String>("courseName"));
+            col2.setCellValueFactory(new PropertyValueFactory<Course, String>("courseCode"));
+            col3.setCellValueFactory(new PropertyValueFactory<Course, String>("instructor"));
+            col4.setCellValueFactory(new PropertyValueFactory<Course, String>("creditsOffered"));
+            col5.setCellValueFactory(new PropertyValueFactory<Course, String>("preReq"));
+            col6.setCellValueFactory(new PropertyValueFactory<Course, String>("postCondition"));
+            col6.prefWidthProperty().bind(table_student.widthProperty().multiply(0.9));
+            if (searchedString.equals("") || searchedString == null)
+            	table_student.setItems(courses);
+            else {
+            	ArrayList<Course> filteredCourses = new ArrayList<>();
+            	for (Course c : courses){
+            		if (c.getPostCondition().contains(searchedString)) {
+            			filteredCourses.add(c);
+					}
+				}
+				table_student.setItems(FXCollections.observableArrayList(filteredCourses));
+			}
+			ContextMenu cm = new ContextMenu();
+			MenuItem mi1 = new MenuItem("Add to my List Of Courses");
+			mi1.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					Course course = table_student.getSelectionModel().getSelectedItem();
+					try {
+						addCourseToStudentList(course);
+					} catch (IOException | ClassNotFoundException e) {
+						e.printStackTrace();
+					}
+				}
+			});
+			cm.getItems().add(mi1);
+			table_student.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					if (event.getButton() == MouseButton.SECONDARY) {
+						cm.show(table_student, event.getScreenX(), event.getScreenY());
+					} else {
+						cm.hide();
+					}
+				}
+			});
+        }
+        anchor_for_table.getChildren().add(table_student);
     }
 
     @FXML
