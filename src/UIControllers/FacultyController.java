@@ -90,4 +90,11 @@ public class FacultyController {
         }
         return allData;
     }
+
+    @FXML
+    public void handleLogout(ActionEvent event) throws IOException {
+        Parent newscene = FXMLLoader.load(getClass().getResource("entryPage.fxml"));
+        Main.primaryStage.setScene(new Scene(newscene, 600, 400));
+        Main.primaryStage.show();
+    }
 }

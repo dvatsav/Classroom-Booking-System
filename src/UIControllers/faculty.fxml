@@ -18,7 +18,7 @@
                             <menus>
                                 <Menu mnemonicParsing="false" text="File">
                                     <items>
-                                        <MenuItem mnemonicParsing="false" text="Logout" />
+                                        <MenuItem mnemonicParsing="false" text="Logout" onAction="#handleLogout"/>
                                     </items>
                                 </Menu>
                                 <Menu mnemonicParsing="false" text="Edit">
