@@ -21,11 +21,6 @@
                                         <MenuItem mnemonicParsing="false" text="Logout" onAction="#handleLogout"/>
                                     </items>
                                 </Menu>
-                                <Menu mnemonicParsing="false" text="Edit">
-                                    <items>
-                                        <MenuItem mnemonicParsing="false" text="Delete" />
-                                    </items>
-                                </Menu>
                                 <Menu mnemonicParsing="false" text="Help">
                                     <items>
                                         <MenuItem mnemonicParsing="false" text="About" />
@@ -46,7 +41,7 @@
                                             <children>
                                                 <Button mnemonicParsing="false" onAction="#handleBookRoom" prefHeight="31.0" prefWidth="142.0" text="Book A Room" />
                                                 <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Courses Taught By You" onAction="#showCoursesTaught" />
-                                                <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Current Bookings" />
+                                                <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Current Bookings" onAction="#handleCurrentBookings" />
                                                 <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Cancel Booking" />
                                             </children>
                                         </VBox>
