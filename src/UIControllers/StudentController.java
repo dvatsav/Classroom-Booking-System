@@ -105,7 +105,7 @@ public class StudentController {
 				break;
 			}
 		}
-		System.out.println("added");
+//		System.out.println("added");
 		writeDBToFile(userDb);
 	}
 
@@ -115,7 +115,7 @@ public class StudentController {
 	}
 
 	private void writeDBToFile(Database db) throws IOException {
-		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("./src/db.txt"));
+		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("./src/db.txt", false));
 		out.writeObject(db);
 		out.flush();
 		out.close();
@@ -235,7 +235,7 @@ public class StudentController {
 		for (Student student : mp.values()) {
 			if (student.getEmail().equals(CurrentLoggenInUser.getCurrentUserEmail())) {
 				currentUser = student;
-				System.out.println("Here Boi");
+//				System.out.println("Here Boi");
 				break;
 			}
 		}
@@ -287,8 +287,8 @@ public class StudentController {
 				}
 			}
 		});
-		System.out.println(currentUser);
-		System.out.println(currentUser.getMyCourses());
+//		System.out.println(currentUser);
+//		System.out.println(currentUser.getMyCourses());
 		anchor_for_table.getChildren().add(currentTimeTable);
 	}
 
@@ -298,11 +298,16 @@ public class StudentController {
 		for (Student student : mp.values()) {
 			if (student.getEmail().equals(CurrentLoggenInUser.getCurrentUserEmail())) {
 				ArrayList<Course> temp = student.getMyCourses();
-				temp.remove(course);
+				int index = 0;
+				for (Course couresIter : temp) {
+					if (couresIter.getCourseName().equals(course.getCourseName())) {
+						break;
+					}
+					++index;
+				}
+				temp.remove(index);
 				student.setMyCourses(temp);
-				Student tempStudent = student;
-				mp.remove(tempStudent.getRollNo());
-				mp.put(tempStudent.getRollNo(), tempStudent);
+				mp.replace(student.getRollNo(), student);
 				break;
 			}
 		}
