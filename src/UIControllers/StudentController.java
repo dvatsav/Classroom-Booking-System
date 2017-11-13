@@ -26,6 +26,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 import org.apache.poi.ss.usermodel.Table;
@@ -360,5 +361,13 @@ public class StudentController {
 		col1.setCellValueFactory(new PropertyValueFactory<Course, String>("instructor"));
 		tb.setItems(courses);
 		anchor_for_table.getChildren().add(tb);
+	}
+
+	public void showAboutPage(ActionEvent actionEvent) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("about.fxml"));
+		Parent root1 = (Parent) fxmlLoader.load();
+		Stage stage = new Stage();
+		stage.setScene(new Scene(root1));
+		stage.show();
 	}
 }

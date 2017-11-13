@@ -22,6 +22,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 
@@ -187,5 +188,13 @@ public class requestbookController {
 	private Database readDBFromFile() throws IOException, ClassNotFoundException {
 		ObjectInputStream oin = new ObjectInputStream(new FileInputStream("./src/db.txt"));
 		return ( (Database) oin.readObject() );
+	}
+
+	public void showAboutPage(ActionEvent actionEvent) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("about.fxml"));
+		Parent root1 = (Parent) fxmlLoader.load();
+		Stage stage = new Stage();
+		stage.setScene(new Scene(root1));
+		stage.show();
 	}
 }
