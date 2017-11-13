@@ -1,6 +1,12 @@
 package UIControllers;
 
+import Actors.Database;
+import Actors.Faculty;
+import Actors.Student;
 import Supplementary.Booking;
+import Supplementary.Course;
+import Supplementary.CurrentLoggenInUser;
+import Utils.Utilities;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,18 +18,26 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.MapValueFactory;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class FacultyController {
 
     @FXML AnchorPane tableanchor;
+
+	private ObservableList<Course> courses = FXCollections.observableArrayList(Utilities.courses);
+
     @FXML
     public void handleBookRoom(ActionEvent event) throws IOException {
         Parent newscene = FXMLLoader.load(getClass().getResource("requestbook.fxml"));
@@ -97,4 +111,52 @@ public class FacultyController {
         Main.primaryStage.setScene(new Scene(newscene, 600, 400));
         Main.primaryStage.show();
     }
+
+    public void showCoursesTaught(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
+		tableanchor.getChildren().clear();
+		Faculty currentUser = null;
+		Database userDb = readDBFromFile();
+		List<Faculty> fl = userDb.getFacultyDB();
+		for (Faculty faculty : fl) {
+			if (faculty.getEmail().equals(CurrentLoggenInUser.getCurrentUserEmail())) {
+				currentUser = faculty;
+				break;
+			}
+		}
+		ArrayList<Course> filteredCourses = new ArrayList<>();
+		for (Course c : courses){
+			if (c.getInstructor().equals(currentUser.getFirstName() + " " + currentUser.getLastName())) {
+				filteredCourses.add(c);
+			}
+		}
+		TableView tb = new TableView<>(generateDataInMap());
+		tb.prefWidthProperty().bind(tableanchor.widthProperty());
+		tb.prefHeightProperty().bind(tableanchor.heightProperty());
+		TableColumn<Course, String> col1 = new TableColumn<>("Course Name");
+		TableColumn<Course, String> col2 = new TableColumn<>("Course Code");
+		TableColumn<Course, String> col3 = new TableColumn<>("Instructor");
+		TableColumn<Course, String> col4 = new TableColumn<>("Credits");
+		TableColumn<Course, String> col5 = new TableColumn<>("Pre Conditions");
+		TableColumn<Course, String> col6 = new TableColumn<>("Post Conditions");
+		tb.getColumns().add(col1);
+		tb.getColumns().add(col2);
+		tb.getColumns().add(col3);
+		tb.getColumns().add(col4);
+		tb.getColumns().add(col5);
+		tb.getColumns().add(col6);
+		col1.setCellValueFactory(new PropertyValueFactory<Course, String>("courseName"));
+		col2.setCellValueFactory(new PropertyValueFactory<Course, String>("courseCode"));
+		col3.setCellValueFactory(new PropertyValueFactory<Course, String>("instructor"));
+		col4.setCellValueFactory(new PropertyValueFactory<Course, String>("creditsOffered"));
+		col5.setCellValueFactory(new PropertyValueFactory<Course, String>("preReq"));
+		col6.setCellValueFactory(new PropertyValueFactory<Course, String>("postCondition"));
+		col6.prefWidthProperty().bind(tb.widthProperty().multiply(0.9));
+		tb.setItems(FXCollections.observableArrayList(filteredCourses));
+		tableanchor.getChildren().add(tb);
+    }
+
+	private Database readDBFromFile() throws IOException, ClassNotFoundException {
+		ObjectInputStream oin = new ObjectInputStream(new FileInputStream("./src/db.txt"));
+		return ( (Database) oin.readObject() );
+	}
 }
