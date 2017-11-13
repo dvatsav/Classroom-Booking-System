@@ -22,6 +22,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 
@@ -190,8 +191,10 @@ public class requestbookController {
 	}
 
 	public void showAboutPage(ActionEvent actionEvent) throws IOException {
-		Parent newscene = FXMLLoader.load(getClass().getResource("about.fxml"));
-		Main.primaryStage.setScene(new Scene(newscene, 1200, 800));
-		Main.primaryStage.show();
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("about.fxml"));
+		Parent root1 = (Parent) fxmlLoader.load();
+		Stage stage = new Stage();
+		stage.setScene(new Scene(root1));
+		stage.show();
 	}
 }

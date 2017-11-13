@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.io.*;
 import java.time.LocalDate;
@@ -164,8 +165,10 @@ public class RegisterController implements Serializable {
 	}
 
 	public void showAboutPage(ActionEvent actionEvent) throws IOException {
-		Parent newscene = FXMLLoader.load(getClass().getResource("about.fxml"));
-		Main.primaryStage.setScene(new Scene(newscene, 1200, 800));
-		Main.primaryStage.show();
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("about.fxml"));
+		Parent root1 = (Parent) fxmlLoader.load();
+		Stage stage = new Stage();
+		stage.setScene(new Scene(root1));
+		stage.show();
 	}
 }
