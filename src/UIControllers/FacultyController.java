@@ -27,6 +27,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 
+import java.awt.print.Book;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -171,19 +172,26 @@ public class FacultyController {
 		stage.show();
 	}
 
-	public void showMyBooking(ActionEvent actionEvent) {
+	public void showMyBooking(ActionEvent actionEvent)  {
 		tableanchor.getChildren().clear();
-		ArrayList<HashMap> bookings = Booking.bookings;
+		ArrayList<HashMap> bookings = null;
+		try {
+			bookings = Booking.deserialize();
+		} catch (IOException | ClassNotFoundException | NullPointerException e) {
+			System.out.println("No confirmedbooking.txt Found!");
+//			e.printStackTrace();
+		}
 		ArrayList<BookingHelper> temp = new ArrayList<>();
-
-		for (HashMap booking : bookings) {
-			if (booking != null) {
-				if (booking.get("Requested by").equals(CurrentLoggenInUser.getCurrentUserEmail())) {
-					BookingHelper tempObj = new BookingHelper((String) booking.get("Day"), (String) booking.get("Room Number"),
-							(String) booking.get("Start Time"), (String) booking.get("End Time"),
-							(String) booking.get("Purpose"), (String) booking.get("Requested by"));
+		if (bookings != null) {
+			for (HashMap booking : bookings) {
+				if (booking != null) {
+					if (booking.get("Requested by").equals(CurrentLoggenInUser.getCurrentUserEmail())) {
+						BookingHelper tempObj = new BookingHelper((String) booking.get("Day"), (String) booking.get("Room Number"),
+								(String) booking.get("Start Time"), (String) booking.get("End Time"),
+								(String) booking.get("Purpose"), (String) booking.get("Requested by"));
 //				System.out.println(tempObj);
-					temp.add(tempObj);
+						temp.add(tempObj);
+					}
 				}
 			}
 		}
@@ -214,7 +222,11 @@ public class FacultyController {
 			@Override
 			public void handle(ActionEvent event) {
 				BookingHelper bookingHelper = tb.getSelectionModel().getSelectedItem();
+				try {
 					removeBooking(bookingHelper);
+				} catch (IOException | ClassNotFoundException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 		cm.getItems().add(mi1);
@@ -233,8 +245,8 @@ public class FacultyController {
 
 	}
 
-	private void removeBooking(BookingHelper bookingHelper) {
-    	ArrayList<HashMap> booking = Booking.bookings;
+	private void removeBooking(BookingHelper bookingHelper) throws IOException, ClassNotFoundException {
+    	ArrayList<HashMap> booking = Booking.deserialize();
 
 		for (HashMap hashMap : booking) {
 			if (hashMap.get("Day").equals(bookingHelper.getDay()) && hashMap.get("Room Number").equals(bookingHelper.getRoomNumber()) &&
@@ -244,5 +256,6 @@ public class FacultyController {
 				break;
 			}
 		}
+		Booking.serialize();
 	}
 }

@@ -159,6 +159,7 @@ public class requestbookController {
                 }
                 else {
                     Booking.bookings.add(temp);
+                    Booking.serialize();
                 }
                 Parent newscene = FXMLLoader.load(getClass().getResource(callingClass));
                 Main.primaryStage.setScene(new Scene(newscene,  1200, 800));
