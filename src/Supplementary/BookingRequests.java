@@ -41,6 +41,8 @@ public class BookingRequests implements Serializable{
         bookingrequests = new ArrayList<>();
     }
 
+    public void removeBooking(HashMap<String, String> hm) {bookingrequests.remove(hm);}
+
     public ArrayList<HashMap> getBookingrequests() {
         return bookingrequests;
     }
