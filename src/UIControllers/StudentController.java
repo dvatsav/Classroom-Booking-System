@@ -372,8 +372,46 @@ public class StudentController {
 		anchor_for_table.getChildren().clear();
 		BookingRequests br = new BookingRequests();
 		ArrayList<HashMap> al = br.deserialize();
+		ArrayList<BookingHelper> temp = new ArrayList<>();
+
 		for (HashMap hashMap : al) {
-			System.out.println(hashMap.get("Requested by"));
+			if (hashMap.get("Requested by").equals(CurrentLoggenInUser.getCurrentUserEmail())) {
+				BookingHelper tempObj = new BookingHelper((String) hashMap.get("Day"), (String) hashMap.get("Room Number"),
+						(String) hashMap.get("Start Time"), (String) hashMap.get("End Time"),
+						(String) hashMap.get("Purpose"), (String) hashMap.get("Requested by"));
+//				System.out.println(tempObj);
+				temp.add(tempObj);
+			}
 		}
+
+		ObservableList tempMyCourse = FXCollections.observableArrayList(temp);
+		// After getting all requests
+		TableView<BookingHelper> tb = new TableView<>();
+		tb.prefWidthProperty().bind(anchor_for_table.widthProperty());
+		tb.prefHeightProperty().bind(anchor_for_table.heightProperty());
+		TableColumn<BookingHelper, String> col1 = new TableColumn<>("Date/Day");
+		TableColumn<BookingHelper, String> col2 = new TableColumn<>("Room Number");
+		TableColumn<BookingHelper, String> col3 = new TableColumn<>("Start Time");
+		TableColumn<BookingHelper, String> col4 = new TableColumn<>("End Time");
+		TableColumn<BookingHelper, String> col5 = new TableColumn<>("Purpose");
+//		temp.put("Day", dateOfBook);
+//		temp.put("Room Number", (String)class_number.getValue());
+//		temp.put("Start Time", startTime);
+//		temp.put("End Time", endTime);
+//		temp.put("Purpose", purpose.getText());
+//		temp.put("Requested by", entryPageController.userEmail);
+//		tb.getColumns().setAll(col1, col2, col3, col4, col5);
+		tb.getColumns().add(col1);
+		tb.getColumns().add(col2);
+		tb.getColumns().add(col3);
+		tb.getColumns().add(col4);
+		tb.getColumns().add(col5);
+		col1.setCellValueFactory(new PropertyValueFactory<BookingHelper, String>("day"));
+		col2.setCellValueFactory(new PropertyValueFactory<BookingHelper, String>("roomNumber"));
+		col3.setCellValueFactory(new PropertyValueFactory<BookingHelper, String>("startTime"));
+		col4.setCellValueFactory(new PropertyValueFactory<BookingHelper, String>("endTime"));
+		col5.setCellValueFactory(new PropertyValueFactory<BookingHelper, String>("purpose"));
+		tb.setItems(tempMyCourse);
+		anchor_for_table.getChildren().add(tb);
 	}
 }
