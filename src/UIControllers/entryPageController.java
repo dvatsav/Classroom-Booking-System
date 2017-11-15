@@ -4,6 +4,7 @@ import Actors.Admin;
 import Actors.Database;
 import Actors.Faculty;
 import Actors.Student;
+import Supplementary.CurrentLoggenInUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -70,7 +71,8 @@ public class entryPageController {
 				}
 			}
 		}
-
+		CurrentLoggenInUser.setCurrentUserEmail(tempEmailLogin);
+		CurrentLoggenInUser.setCurrentUserType(tempTypeOfUserLogin);
     }
 
     @FXML

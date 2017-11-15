@@ -1,7 +1,12 @@
 package UIControllers;
 
+import Actors.Admin;
+import Actors.Database;
+import Actors.Faculty;
+import Actors.Student;
 import Supplementary.Booking;
 import Supplementary.BookingRequests;
+import Supplementary.CurrentLoggenInUser;
 import Utils.Utilities;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTimePicker;
@@ -17,12 +22,15 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 
 import java.awt.print.Book;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -158,4 +166,35 @@ public class requestbookController {
             alert.setContentText("The Requested Time Slot is not Available");
         }
     }
+
+    public void showPreviousPage(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
+		Database userDb = readDBFromFile();
+		String typeOfUser = CurrentLoggenInUser.getCurrentUserType();
+		if (typeOfUser.equals("Student")) {
+			Parent newscene = FXMLLoader.load(getClass().getResource("student.fxml"));
+			Main.primaryStage.setScene(new Scene(newscene,  1200, 800));
+			Main.primaryStage.show();
+		} else if (typeOfUser.equals("Faculty")) {
+			Parent newscene = FXMLLoader.load(getClass().getResource("faculty.fxml"));
+			Main.primaryStage.setScene(new Scene(newscene,  1200, 800));
+			Main.primaryStage.show();
+		} else if (typeOfUser.equals("Admin")) {
+			Parent newscene = FXMLLoader.load(getClass().getResource("admin.fxml"));
+			Main.primaryStage.setScene(new Scene(newscene, 1200, 800));
+			Main.primaryStage.show();
+		}
+    }
+
+	private Database readDBFromFile() throws IOException, ClassNotFoundException {
+		ObjectInputStream oin = new ObjectInputStream(new FileInputStream("./src/db.txt"));
+		return ( (Database) oin.readObject() );
+	}
+
+	public void showAboutPage(ActionEvent actionEvent) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("about.fxml"));
+		Parent root1 = (Parent) fxmlLoader.load();
+		Stage stage = new Stage();
+		stage.setScene(new Scene(root1));
+		stage.show();
+	}
 }

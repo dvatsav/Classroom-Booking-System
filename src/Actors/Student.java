@@ -9,8 +9,17 @@ import java.util.Map;
 import Supplementary.Course;
 
 public class Student extends Users implements Serializable{
-    private Map<Course, Calendar> courses;
-    private String branch;
+    private ArrayList<Course> myCourses = new ArrayList<>();
+
+	public ArrayList<Course> getMyCourses() {
+		return myCourses;
+	}
+
+	public void setMyCourses(ArrayList<Course> myCourses) {
+		this.myCourses = myCourses;
+	}
+
+	private String branch;
 
 	@Override
 	public String toString() {

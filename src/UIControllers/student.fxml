@@ -19,13 +19,12 @@
                       <menus>
                           <Menu mnemonicParsing="false" text="File">
                               <items>
-                                  <MenuItem mnemonicParsing="false" text="Profile" />
                                   <MenuItem mnemonicParsing="false" onAction="#handleLogout" text="Logout" />
                               </items>
                           </Menu>
                           <Menu mnemonicParsing="false" text="Help">
                               <items>
-                                  <MenuItem mnemonicParsing="false" text="About" />
+                                  <MenuItem mnemonicParsing="false" text="About" onAction="#showAboutPage" />
                               </items>
                           </Menu>
                       </menus>
@@ -41,8 +40,8 @@
                               <VBox layoutY="30.0" prefHeight="200.0" prefWidth="142.0">
                                   <children>
                                       <TextField fx:id="student_search_course" onKeyPressed="#handleGenerateCourse" prefWidth="142.0" promptText="Search for course" />
-                                      <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="View Faculty" />
-                                      <Button mnemonicParsing="false" prefWidth="142.0" text="Current timetable" />
+                                      <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="View Faculty" onAction="#showFaculty"/>
+                                      <Button mnemonicParsing="false" prefWidth="142.0" text="Current timetable" onAction="#showMyCourses"/>
                                       <Button mnemonicParsing="false" onAction="#handleCurrentBookings" prefHeight="31.0" prefWidth="142.0" text="Current Bookings" />
                                       <Button fx:id="book_room" mnemonicParsing="false" onAction="#handleBookRoom" prefHeight="31.0" prefWidth="143.0" text="Book a Room" />
                                       <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="144.0" text="View Requests" />
