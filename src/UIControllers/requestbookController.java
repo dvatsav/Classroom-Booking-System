@@ -142,10 +142,11 @@ public class requestbookController {
                 temp.put("Purpose", purpose.getText());
                 temp.put("Requested by", entryPageController.userEmail);
                 if (entryPageController.userType.equals("Student")) {
-                    File file = new File("/src/DataFiles/bookingreqs.txt");
+                    File file = new File("./src/DataFiles/bookingreqs.txt");
                     BookingRequests b = new BookingRequests();
                     if (file.exists()) {
                         b.setBookinRequests(b.deserialize());
+                        System.out.println("exists");
                     } else {
                         b.newBooking();
                     }
