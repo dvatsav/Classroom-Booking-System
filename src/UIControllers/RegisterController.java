@@ -1,6 +1,8 @@
 package UIControllers;
 
 import Actors.*;
+import Supplementary.AccountRequests;
+import Supplementary.BookingRequests;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +28,7 @@ public class RegisterController implements Serializable {
 	@FXML private ChoiceBox branchOfUser;
 
 	private String tempFirstName = "", tempLastName = "", tempEmailID = "", tempPhNumber = "", tempPassword = "", tempRollNo = "", tempUserType = "", tempUserBranch = "";
-	private LocalDate tempDob;
+	private String tempDob;
 
 	@FXML
 	public void handleFinalPage(ActionEvent even) throws IOException, ClassNotFoundException {
@@ -34,7 +36,7 @@ public class RegisterController implements Serializable {
 		tempFirstName = register_firstname.getText();
 		tempLastName = register_lastname.getText();
 		tempEmailID = register_emailid.getText();
-		tempDob = register_dob.getValue();
+		tempDob = register_dob.getValue().toString();
 		tempPhNumber = register_phnumber.getText();
 		tempUserType = typeOfUser.getSelectionModel().getSelectedItem().toString();
 		if (register_password.getText().equals(register_repassword.getText())) {
@@ -53,15 +55,75 @@ public class RegisterController implements Serializable {
 				tempRollNo = register_rollnum.getText();
 				tempUserBranch = branchOfUser.getSelectionModel().getSelectedItem().toString();
 				Student student = new Student(tempFirstName, tempLastName, tempPhNumber, tempEmailID, tempPassword, tempUserType, tempDob, tempRollNo, tempUserBranch);
+				HashMap<String, String> hm = new HashMap<>();
+				hm.put("User Type", "Student");
+				hm.put("First Name", tempFirstName);
+				hm.put("Last Name", tempLastName);
+				hm.put("Phone Number", tempPhNumber);
+				hm.put("Email ID", tempEmailID);
+				hm.put("Password", tempPassword);
+				hm.put("Date of Birth", tempDob.toString());
+				hm.put("Roll Number", tempRollNo);
+				hm.put("Branch", tempUserBranch);
+				File file = new File("./src/DataFiles/accountreqs.txt");
+				AccountRequests a = new AccountRequests();
+				if (file.exists()) {
+					a.setAccountRequests(a.deserialize());
+					System.out.println("exists");
+				} else {
+					a.newAccount();
+				}
+				a.addElement(hm);
+				a.serialize(a.getAccountRequests());
 				System.out.println("-------------- " + student);
 				serializeData(student);
 			} else if (tempUserType.equals("Faculty")) {
 				Faculty faculty = new Faculty(tempFirstName, tempLastName, tempPhNumber, tempEmailID, tempPassword, tempUserType, tempDob);
 				System.out.println("-----------------" + faculty);
+				HashMap<String, String> hm = new HashMap<>();
+				hm.put("User Type", "Faculty");
+				hm.put("First Name", tempFirstName);
+				hm.put("Last Name", tempLastName);
+				hm.put("Phone Number", tempPhNumber);
+				hm.put("Email ID", tempEmailID);
+				hm.put("Password", tempPassword);
+				hm.put("Date of Birth", tempDob.toString());
+				hm.put("Roll Number", "-");
+				hm.put("Branch", "-");
+				File file = new File("./src/DataFiles/accountreqs.txt");
+				AccountRequests a = new AccountRequests();
+				if (file.exists()) {
+					a.setAccountRequests(a.deserialize());
+					System.out.println("exists");
+				} else {
+					a.newAccount();
+				}
+				a.addElement(hm);
+				a.serialize(a.getAccountRequests());
 				serializeData(faculty);
 			} else if (tempUserType.equals("Admin")) {
 				Admin admin = new Admin(tempFirstName, tempLastName, tempPhNumber, tempEmailID, tempPassword, tempUserType, tempDob);
 				System.out.println("-----------" + admin);
+				HashMap<String, String> hm = new HashMap<>();
+				hm.put("User Type", "Admin");
+				hm.put("First Name", tempFirstName);
+				hm.put("Last Name", tempLastName);
+				hm.put("Phone Number", tempPhNumber);
+				hm.put("Email ID", tempEmailID);
+				hm.put("Password", tempPassword);
+				hm.put("Date of Birth", tempDob.toString());
+				hm.put("Roll Number", "-");
+				hm.put("Branch", "-");
+				File file = new File("./src/DataFiles/accountreqs.txt");
+				AccountRequests a = new AccountRequests();
+				if (file.exists()) {
+					a.setAccountRequests(a.deserialize());
+					System.out.println("exists");
+				} else {
+					a.newAccount();
+				}
+				a.addElement(hm);
+				a.serialize(a.getAccountRequests());
 				serializeData(admin);
 			}
 			Parent newscene = FXMLLoader.load(getClass().getResource("entryPage.fxml"));

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Faculty extends Users implements Serializable {
     private ArrayList<Course> coursesTaught;
 
-    public Faculty(String firstName, String lastName, String phoneNumber, String email, String password, String type, LocalDate dob) {
+    public Faculty(String firstName, String lastName, String phoneNumber, String email, String password, String type, String dob) {
         super(firstName, lastName, phoneNumber, email, password, type, dob);
     }
 

@@ -34,8 +34,82 @@ public class AdminController {
 
     @FXML AnchorPane tableanchor;
     @FXML
-    public void handleAccReq(ActionEvent event) throws IOException {
+    public void handleAccReq(ActionEvent event) throws IOException, ClassNotFoundException {
+        AccountRequests a = new AccountRequests();
+        a.setAccountRequests(a.deserialize());
+        tableanchor.getChildren().clear();
+        TableView tb = new TableView<>(generateDataInMap3(a));
+        tb.prefWidthProperty().bind(tableanchor.widthProperty());
+        tb.prefHeightProperty().bind(tableanchor.heightProperty());
+        TableColumn<Map, String> col1 = new TableColumn<>("User Type");
+        TableColumn<Map, String> col2 = new TableColumn<>("First Name");
+        TableColumn<Map, String> col3 = new TableColumn<>("Last Name");
+        TableColumn<Map, String> col4 = new TableColumn<>("Phone Number");
+        TableColumn<Map, String> col5 = new TableColumn<>("Email ID");
+        TableColumn<Map, String> col6 = new TableColumn<>("Password");
+        TableColumn<Map, String> col7 = new TableColumn<>("Date of Birth");
+        TableColumn<Map, String> col8 = new TableColumn<>("Roll Number");
+        TableColumn<Map, String> col9 = new TableColumn<>("Branch");
 
+        col1.setCellValueFactory(new MapValueFactory("User Type"));
+        col2.setCellValueFactory(new MapValueFactory("First Name"));
+        col3.setCellValueFactory(new MapValueFactory("Last Name"));
+        col4.setCellValueFactory(new MapValueFactory("Phone Number"));
+        col5.setCellValueFactory(new MapValueFactory("Email ID"));
+        col6.setCellValueFactory(new MapValueFactory<>("Password"));
+        col7.setCellValueFactory(new MapValueFactory<>("Date of Birth"));
+        col8.setCellValueFactory(new MapValueFactory<>("Roll Number"));
+        col9.setCellValueFactory(new MapValueFactory<>("Branch"));
+
+        //tb.setEditable(true);
+        tb.getSelectionModel().setCellSelectionEnabled(true);
+        tb.getColumns().setAll(col1, col2, col3, col4, col5, col6, col7, col8, col9);
+        Callback<TableColumn<Map, String>,TableCell<Map, String>>
+                cellFactoryForMap = new Callback<TableColumn<Map, String>, TableCell<Map, String>>() {
+            @Override
+            public TableCell<Map, String> call(TableColumn<Map, String> p) {
+                return new TextFieldTableCell<>(new StringConverter() {
+                    @Override
+                    public String toString(Object t) {
+                        return t.toString();
+                    }
+
+                    @Override
+                    public String fromString(String string) {
+                        return string;
+                    }
+                });
+            }
+        };
+        col1.setCellFactory(cellFactoryForMap);
+        col2.setCellFactory(cellFactoryForMap);
+        col3.setCellFactory(cellFactoryForMap);
+        col4.setCellFactory(cellFactoryForMap);
+        col5.setCellFactory(cellFactoryForMap);
+        col6.setCellFactory(cellFactoryForMap);
+        col7.setCellFactory(cellFactoryForMap);
+        col8.setCellFactory(cellFactoryForMap);
+        col9.setCellFactory(cellFactoryForMap);
+        tableanchor.getChildren().add(tb);
+    }
+
+    public ObservableList<Map> generateDataInMap3(AccountRequests a) {
+        ObservableList<Map> allData = FXCollections.observableArrayList();
+        for (int i = 0; i < a.getAccountRequests().size() ; ++i) {
+            Map<String, String> dataRow = new HashMap<>();
+
+            dataRow.put("User Type", (String)a.getAccountRequests().get(i).get("User Type"));
+            dataRow.put("First Name", (String)a.getAccountRequests().get(i).get("First Name"));
+            dataRow.put("Last Name", (String)a.getAccountRequests().get(i).get("Last Name"));
+            dataRow.put("Phone Number", (String)a.getAccountRequests().get(i).get("Phone Number"));
+            dataRow.put("Email ID", (String)a.getAccountRequests().get(i).get("Email ID"));
+            dataRow.put("Password", (String)a.getAccountRequests().get(i).get("Password"));
+            dataRow.put("Date of Birth", (String)a.getAccountRequests().get(i).get("Date of Birth"));
+            dataRow.put("Roll Number", (String)a.getAccountRequests().get(i).get("Roll Number"));
+            dataRow.put("Branch", (String)a.getAccountRequests().get(i).get("Branch"));
+            allData.add(dataRow);
+        }
+        return allData;
     }
 
     @FXML
