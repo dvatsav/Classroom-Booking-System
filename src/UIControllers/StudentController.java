@@ -368,14 +368,20 @@ public class StudentController {
 		stage.show();
 	}
 
-	public void showMyRequests(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
+	public void showMyRequests(ActionEvent actionEvent) {
 		anchor_for_table.getChildren().clear();
 		BookingRequests br = new BookingRequests();
-		ArrayList<HashMap> al = br.deserialize();
+		ArrayList<HashMap> al = null;
+		try {
+			al = br.deserialize();
+		} catch (IOException | ClassNotFoundException e) {
+			System.out.println("No bookingreqs.txt Found!");
+//			e.printStackTrace();
+		}
 		ArrayList<BookingHelper> temp = new ArrayList<>();
 
 		for (HashMap hashMap : al) {
-			if (hashMap.get("Requested by").equals(CurrentLoggenInUser.getCurrentUserEmail())) {
+			if (hashMap != null && hashMap.get("Requested by").equals(CurrentLoggenInUser.getCurrentUserEmail())) {
 				BookingHelper tempObj = new BookingHelper((String) hashMap.get("Day"), (String) hashMap.get("Room Number"),
 						(String) hashMap.get("Start Time"), (String) hashMap.get("End Time"),
 						(String) hashMap.get("Purpose"), (String) hashMap.get("Requested by"));
@@ -394,13 +400,6 @@ public class StudentController {
 		TableColumn<BookingHelper, String> col3 = new TableColumn<>("Start Time");
 		TableColumn<BookingHelper, String> col4 = new TableColumn<>("End Time");
 		TableColumn<BookingHelper, String> col5 = new TableColumn<>("Purpose");
-//		temp.put("Day", dateOfBook);
-//		temp.put("Room Number", (String)class_number.getValue());
-//		temp.put("Start Time", startTime);
-//		temp.put("End Time", endTime);
-//		temp.put("Purpose", purpose.getText());
-//		temp.put("Requested by", entryPageController.userEmail);
-//		tb.getColumns().setAll(col1, col2, col3, col4, col5);
 		tb.getColumns().add(col1);
 		tb.getColumns().add(col2);
 		tb.getColumns().add(col3);
@@ -411,7 +410,56 @@ public class StudentController {
 		col3.setCellValueFactory(new PropertyValueFactory<BookingHelper, String>("startTime"));
 		col4.setCellValueFactory(new PropertyValueFactory<BookingHelper, String>("endTime"));
 		col5.setCellValueFactory(new PropertyValueFactory<BookingHelper, String>("purpose"));
+		ContextMenu cm = new ContextMenu();
+		MenuItem mi1 = new MenuItem("Remove booking");
+		mi1.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				BookingHelper bookingHelper = tb.getSelectionModel().getSelectedItem();
+				try {
+					removeBooking(bookingHelper);
+				} catch (IOException | ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		cm.getItems().add(mi1);
+		tb.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				if (event.getButton() == MouseButton.SECONDARY) {
+					cm.show(tb, event.getScreenX(), event.getScreenY());
+				} else {
+					cm.hide();
+				}
+			}
+		});
 		tb.setItems(tempMyCourse);
 		anchor_for_table.getChildren().add(tb);
+	}
+
+	private void removeBooking(BookingHelper bookingHelper) throws IOException, ClassNotFoundException {
+		BookingRequests br = new BookingRequests();
+		ArrayList<HashMap> al = br.deserialize();
+
+		for (HashMap hashMap : al) {
+			if (hashMap.get("Day").equals(bookingHelper.getDay()) && hashMap.get("Room Number").equals(bookingHelper.getRoomNumber()) &&
+					hashMap.get("Start Time").equals(bookingHelper.getStartTime()) && hashMap.get("End Time").equals(bookingHelper.getEndTime()) &&
+					hashMap.get("Purpose").equals(bookingHelper.getPurpose()) && hashMap.get("Requested by").equals(CurrentLoggenInUser.getCurrentUserEmail())) {
+				al.remove(hashMap);
+				break;
+			}
+		}
+		br.setBookinRequests(al);
+		br.serialize(al);
+
+		//		temp.put("Day", dateOfBook);
+//		temp.put("Room Number", (String)class_number.getValue());
+//		temp.put("Start Time", startTime);
+//		temp.put("End Time", endTime);
+//		temp.put("Purpose", purpose.getText());
+//		temp.put("Requested by", entryPageController.userEmail);
+//		tb.getColumns().setAll(col1, col2, col3, col4, col5);
+
 	}
 }
