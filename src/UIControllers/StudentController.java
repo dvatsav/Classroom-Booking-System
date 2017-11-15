@@ -2,10 +2,7 @@ package UIControllers;
 
 import Actors.Database;
 import Actors.Student;
-import Supplementary.Booking;
-import Supplementary.Course;
-import Supplementary.CurrentLoggenInUser;
-import Supplementary.Room;
+import Supplementary.*;
 import Utils.Utilities;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -369,5 +366,14 @@ public class StudentController {
 		Stage stage = new Stage();
 		stage.setScene(new Scene(root1));
 		stage.show();
+	}
+
+	public void showMyRequests(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
+		anchor_for_table.getChildren().clear();
+		BookingRequests br = new BookingRequests();
+		ArrayList<HashMap> al = br.deserialize();
+		for (HashMap hashMap : al) {
+			System.out.println(hashMap.get("Requested by"));
+		}
 	}
 }
