@@ -10,11 +10,11 @@ public class Users implements Serializable{
     protected String email;
     protected String password;
     protected String type;
-    protected LocalDate dob;
+    protected String dob;
 
     public Users(){}
 
-	public Users(String firstName, String lastName, String phoneNumber, String email, String password, String type, LocalDate dob) {
+	public Users(String firstName, String lastName, String phoneNumber, String email, String password, String type, String dob) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.phoneNumber = phoneNumber;
@@ -72,11 +72,11 @@ public class Users implements Serializable{
 		this.type = type;
 	}
 
-	public LocalDate getDob() {
+	public String getDob() {
 		return dob;
 	}
 
-	public void setDob(LocalDate dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 }
