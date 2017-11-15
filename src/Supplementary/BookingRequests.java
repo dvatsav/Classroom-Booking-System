@@ -11,7 +11,7 @@ public class BookingRequests implements Serializable{
         ObjectOutputStream out = null;
         try {
             out = new ObjectOutputStream(new FileOutputStream("./src/DataFiles/bookingreqs.txt"));
-            out.writeObject(ar);
+            out.writeObject(bookingrequests);
         } finally {
             out.close();
         }
