@@ -11,7 +11,7 @@ public class BookingRequests implements Serializable{
         ObjectOutputStream out = null;
         try {
             out = new ObjectOutputStream(new FileOutputStream("./src/DataFiles/bookingreqs.txt"));
-            out.writeObject(ar);
+            out.writeObject(bookingrequests);
         } finally {
             out.close();
         }
@@ -40,6 +40,8 @@ public class BookingRequests implements Serializable{
     public void newBooking() {
         bookingrequests = new ArrayList<>();
     }
+
+    public void removeBooking(HashMap<String, String> hm) {bookingrequests.remove(hm);}
 
     public ArrayList<HashMap> getBookingrequests() {
         return bookingrequests;
