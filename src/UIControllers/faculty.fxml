@@ -42,7 +42,7 @@
                                                 <Button mnemonicParsing="false" onAction="#handleBookRoom" prefHeight="31.0" prefWidth="142.0" text="Book A Room" />
                                                 <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Courses Taught By You" onAction="#showCoursesTaught" />
                                                 <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Current Bookings" onAction="#handleCurrentBookings" />
-                                                <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Cancel Booking" />
+                                                <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Cancel Booking" onAction="#showMyBooking" />
                                             </children>
                                         </VBox>
                                     </children>

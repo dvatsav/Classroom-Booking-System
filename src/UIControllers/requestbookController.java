@@ -129,7 +129,11 @@ public class requestbookController {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
             alert.setHeaderText(null);
-            alert.setContentText("Your request has been submitted! Kindly wait for approval!");
+            if (entryPageController.userType.equals("Student")) {
+				alert.setContentText("Your request has been submitted! Kindly wait for approval!");
+			} else {
+            	alert.setContentText("Your room has been booked.");
+			}
             Optional<ButtonType> result = alert.showAndWait();
             ButtonType button = result.orElse(ButtonType.CANCEL);
 
