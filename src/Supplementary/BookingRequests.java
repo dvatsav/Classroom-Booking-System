@@ -19,7 +19,7 @@ public class BookingRequests implements Serializable{
 
     public ArrayList<HashMap> deserialize() throws IOException, ClassNotFoundException {
         ObjectInputStream in = null;
-        ArrayList<HashMap> books;
+        ArrayList<HashMap> books = null;
         try {
             in = new ObjectInputStream(new FileInputStream("./src/DataFiles/bookingreqs.txt"));
             books = (ArrayList<HashMap>) in.readObject();

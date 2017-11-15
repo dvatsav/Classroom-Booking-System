@@ -368,10 +368,16 @@ public class StudentController {
 		stage.show();
 	}
 
-	public void showMyRequests(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
+	public void showMyRequests(ActionEvent actionEvent) {
 		anchor_for_table.getChildren().clear();
 		BookingRequests br = new BookingRequests();
-		ArrayList<HashMap> al = br.deserialize();
+		ArrayList<HashMap> al = null;
+		try {
+			al = br.deserialize();
+		} catch (IOException | ClassNotFoundException e) {
+			System.out.println("No bookingreqs.txt Found!");
+//			e.printStackTrace();
+		}
 		ArrayList<BookingHelper> temp = new ArrayList<>();
 
 		for (HashMap hashMap : al) {
