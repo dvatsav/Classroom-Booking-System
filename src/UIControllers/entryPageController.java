@@ -10,10 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 
 import java.io.*;
@@ -49,22 +46,40 @@ public class entryPageController {
 		}
 		if (tempTypeOfUserLogin.equals("Student")) {
 			HashMap<String, Student> mp = (HashMap<String, Student>) userDb.getStudentsDB();
+			int flag = 0;
+			if (mp == null || mp.size() == 0) {
+				nouser();
+				return;
+			}
 			for (Student student : mp.values()) {
 				System.out.println(student);
 				if (student.getEmail().equals(tempEmailLogin) && student.getPassword().equals(tempPasswordLogin)) {
 					Parent newscene = FXMLLoader.load(getClass().getResource("student.fxml"));
+					flag = 1;
 					Main.primaryStage.setScene(new Scene(newscene,  1200, 800));
 					Main.primaryStage.show();
 				}
 			}
+			if (flag == 0) {
+				nouser();
+			}
 		} else if (tempTypeOfUserLogin.equals("Faculty")) {
 			List<Faculty> fl = userDb.getFacultyDB();
+			int flag = 0;
+			if (fl == null || fl.size() == 0) {
+				nouser();
+				return;
+			}
 			for (Faculty faculty : fl) {
 				if (faculty.getEmail().equals(tempEmailLogin) && faculty.getPassword().equals(tempPasswordLogin)) {
 					Parent newscene = FXMLLoader.load(getClass().getResource("faculty.fxml"));
+					flag = 1;
 					Main.primaryStage.setScene(new Scene(newscene,  1200, 800));
 					Main.primaryStage.show();
 				}
+			}
+			if (flag == 0) {
+				nouser();
 			}
 		} else if (tempTypeOfUserLogin.equals("Admin")) {
 			if (tempEmailLogin.equals("admin@iiitd.ac.in") && tempPasswordLogin.equals("hello")) {
@@ -73,18 +88,38 @@ public class entryPageController {
 				Main.primaryStage.show();
 			} else {
 				List<Admin> al = userDb.getAdminDB();
+				if (al == null || al.size() == 0) {
+					nouser();
+					return;
+				}
+				int flag = 0;
 				for (Admin admin : al) {
 					if (admin.getEmail().equals(tempEmailLogin) && admin.getPassword().equals(tempPasswordLogin)) {
 						Parent newscene = FXMLLoader.load(getClass().getResource("admin.fxml"));
+						flag = 1;
 						Main.primaryStage.setScene(new Scene(newscene, 1200, 800));
 						Main.primaryStage.show();
 					}
 				}
+				if (flag == 0) {
+					nouser();
+				}
 			}
+
 		}
 		CurrentLoggenInUser.setCurrentUserEmail(tempEmailLogin);
 		CurrentLoggenInUser.setCurrentUserType(tempTypeOfUserLogin);
     }
+
+    private void nouser() {
+
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setTitle("Error");
+		alert.setHeaderText(null);
+		alert.setContentText("User Does not Exist");
+		alert.show();
+
+	}
 
     @FXML
     private void handleNewUser(ActionEvent event) throws IOException {

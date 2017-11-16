@@ -41,7 +41,7 @@ public class requestbookController {
     @FXML JFXDatePicker date_to_book;
     @FXML JFXTimePicker start_time;
     @FXML JFXTimePicker end_time;
-    @FXML TextField purpose;
+    @FXML TextArea purpose;
 
     private static String callingClass;
 
@@ -121,10 +121,22 @@ public class requestbookController {
     }
 
     public void handleConfirmBooking(ActionEvent event) throws IOException, ParseException, ClassNotFoundException{
+
+        if (start_time.getValue() == null || end_time.getValue() == null || date_to_book.getValue() == null || purpose.getText().equals("")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Please Enter All Fields");
+            alert.show();
+            return;
+        }
+
         String startTime = start_time.getValue().toString();
         String endTime= end_time.getValue().toString();
         String dateforbook = date_to_book.getValue().toString();
         String dateOfBook = Utilities.convertDateToDay(dateforbook);
+
+
         if (Utilities.determineValidTime(startTime, endTime, (String)class_number.getValue(), dateOfBook)) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
