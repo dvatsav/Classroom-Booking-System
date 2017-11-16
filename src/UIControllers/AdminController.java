@@ -401,142 +401,145 @@ public class AdminController {
 	 * @throws ClassNotFoundException
 	 */
     @FXML
-    public void handleBookReq(ActionEvent event) throws ClassNotFoundException, IOException{
+    public void handleBookReq(ActionEvent event) {
         BookingRequests b = new BookingRequests();
-        b.setBookinRequests(b.deserialize());
-        System.out.println(b.getBookingrequests());
-        tableanchor.getChildren().clear();
-        TableView tb = new TableView<>(generateDataInMap2(b));
-        tb.prefWidthProperty().bind(tableanchor.widthProperty());
-        tb.prefHeightProperty().bind(tableanchor.heightProperty());
-        TableColumn<Map, String> col1 = new TableColumn<>("Day");
-        TableColumn<Map, String> col2 = new TableColumn<>("Room Number");
-        TableColumn<Map, String> col3 = new TableColumn<>("Purpose");
-        TableColumn<Map, String> col4 = new TableColumn<>("Start Time");
-        TableColumn<Map, String> col5 = new TableColumn<>("End Time");
-        TableColumn<Map, String> col6 = new TableColumn<>("Requested by");
-        col1.setCellValueFactory(new MapValueFactory("Day"));
-        col2.setCellValueFactory(new MapValueFactory("Room Number"));
-        col3.setCellValueFactory(new MapValueFactory("Purpose"));
-        col4.setCellValueFactory(new MapValueFactory("Start Time"));
-        col5.setCellValueFactory(new MapValueFactory("End Time"));
-        col6.setCellValueFactory(new MapValueFactory<>("Requested by"));
-        //tb.setEditable(true);
-        tb.getSelectionModel().setCellSelectionEnabled(true);
-        tb.getColumns().setAll(col1, col2, col3, col4, col5, col6);
-        Callback<TableColumn<Map, String>,TableCell<Map, String>>
-                cellFactoryForMap = new Callback<TableColumn<Map, String>, TableCell<Map, String>>() {
-            @Override
-            public TableCell<Map, String> call(TableColumn<Map, String> p) {
-                return new TextFieldTableCell<>(new StringConverter() {
-                    @Override
-                    public String toString(Object t) {
-                        return t.toString();
-                    }
+		try {
+			b.setBookinRequests(b.deserialize());
+		} catch (IOException | ClassNotFoundException | NullPointerException e) {
+			System.out.println("No bookingreqs.txt found");
+		}
+		System.out.println(b.getBookingrequests());
+		if (b.getBookingrequests() != null) {
+			tableanchor.getChildren().clear();
+			TableView tb = new TableView<>(generateDataInMap2(b));
+			tb.prefWidthProperty().bind(tableanchor.widthProperty());
+			tb.prefHeightProperty().bind(tableanchor.heightProperty());
+			TableColumn<Map, String> col1 = new TableColumn<>("Day");
+			TableColumn<Map, String> col2 = new TableColumn<>("Room Number");
+			TableColumn<Map, String> col3 = new TableColumn<>("Purpose");
+			TableColumn<Map, String> col4 = new TableColumn<>("Start Time");
+			TableColumn<Map, String> col5 = new TableColumn<>("End Time");
+			TableColumn<Map, String> col6 = new TableColumn<>("Requested by");
+			col1.setCellValueFactory(new MapValueFactory("Day"));
+			col2.setCellValueFactory(new MapValueFactory("Room Number"));
+			col3.setCellValueFactory(new MapValueFactory("Purpose"));
+			col4.setCellValueFactory(new MapValueFactory("Start Time"));
+			col5.setCellValueFactory(new MapValueFactory("End Time"));
+			col6.setCellValueFactory(new MapValueFactory<>("Requested by"));
+			//tb.setEditable(true);
+			tb.getSelectionModel().setCellSelectionEnabled(true);
+			tb.getColumns().setAll(col1, col2, col3, col4, col5, col6);
+			Callback<TableColumn<Map, String>, TableCell<Map, String>>
+					cellFactoryForMap = new Callback<TableColumn<Map, String>, TableCell<Map, String>>() {
+				@Override
+				public TableCell<Map, String> call(TableColumn<Map, String> p) {
+					return new TextFieldTableCell<>(new StringConverter() {
+						@Override
+						public String toString(Object t) {
+							return t.toString();
+						}
 
-                    @Override
-                    public String fromString(String string) {
-                        return string;
-                    }
-                });
-            }
-        };
-        col1.setCellFactory(cellFactoryForMap);
-        col2.setCellFactory(cellFactoryForMap);
-        col3.setCellFactory(cellFactoryForMap);
-        col4.setCellFactory(cellFactoryForMap);
-        col5.setCellFactory(cellFactoryForMap);
-        col6.setCellFactory(cellFactoryForMap);
-        tableanchor.getChildren().add(tb);
-        ContextMenu cm = new ContextMenu();
-        MenuItem item1 = new MenuItem("Accept");
-        item1.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                HashMap<String, String> hm = new HashMap<String, String>((HashMap)tb.getSelectionModel().getSelectedItem());
-                Booking.bookings.add(hm);
-                try {
-                    Booking.serialize();
-                } catch (IOException e){
-                    e.printStackTrace();
-                }
-                if (CurrentLoggenInUser.getadminMailPassword() != null) {
-                    try {
-                        SendEmail.send(CurrentLoggenInUser.adminMailID, CurrentLoggenInUser.getadminMailPassword(), hm.get("Email ID"), "Booking Request Approved", "Hello " + hm.get("First Name") + " " + hm.get("Last Name") + "\n\n" + "Your Booking Request for " + hm.get("Purpose") + " has been approved.");
-                    } catch (Exception e) {
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Error");
-                        alert.setHeaderText(null);
-                        alert.setContentText("Wrong Email Password entered. Please verify. No approval email will be sent this time.");
-                        alert.show();
-                    }
-                }
-                tb.getItems().remove(hm);
-                File file = new File("./src/DataFiles/bookingreqs.txt");
-                BookingRequests b = new BookingRequests();
-                if (file.exists()) {
-                    try {
-                        b.setBookinRequests(b.deserialize());
-                        System.out.println(hm);
-                        b.removeBooking(hm);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    catch (ClassNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    b.newBooking();
-                }
-                try {
-                    b.serialize(b.getBookingrequests());
-                } catch (IOException e){
-                    e.printStackTrace();
-                }
-            }
-        });
+						@Override
+						public String fromString(String string) {
+							return string;
+						}
+					});
+				}
+			};
+			col1.setCellFactory(cellFactoryForMap);
+			col2.setCellFactory(cellFactoryForMap);
+			col3.setCellFactory(cellFactoryForMap);
+			col4.setCellFactory(cellFactoryForMap);
+			col5.setCellFactory(cellFactoryForMap);
+			col6.setCellFactory(cellFactoryForMap);
+			tableanchor.getChildren().add(tb);
+			ContextMenu cm = new ContextMenu();
+			MenuItem item1 = new MenuItem("Accept");
+			item1.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					HashMap<String, String> hm = new HashMap<String, String>((HashMap) tb.getSelectionModel().getSelectedItem());
+					Booking.bookings.add(hm);
+					try {
+						Booking.serialize();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					if (CurrentLoggenInUser.getadminMailPassword() != null) {
+						try {
+							SendEmail.send(CurrentLoggenInUser.adminMailID, CurrentLoggenInUser.getadminMailPassword(), hm.get("Email ID"), "Booking Request Approved", "Hello " + hm.get("First Name") + " " + hm.get("Last Name") + "\n\n" + "Your Booking Request for " + hm.get("Purpose") + " has been approved.");
+						} catch (Exception e) {
+							Alert alert = new Alert(Alert.AlertType.INFORMATION);
+							alert.setTitle("Error");
+							alert.setHeaderText(null);
+							alert.setContentText("Wrong Email Password entered. Please verify. No approval email will be sent this time.");
+							alert.show();
+						}
+					}
+					tb.getItems().remove(hm);
+					File file = new File("./src/DataFiles/bookingreqs.txt");
+					BookingRequests b = new BookingRequests();
+					if (file.exists()) {
+						try {
+							b.setBookinRequests(b.deserialize());
+							System.out.println(hm);
+							b.removeBooking(hm);
+						} catch (IOException e) {
+							e.printStackTrace();
+						} catch (ClassNotFoundException e) {
+							e.printStackTrace();
+						}
+					} else {
+						b.newBooking();
+					}
+					try {
+						b.serialize(b.getBookingrequests());
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			});
 
-        MenuItem item2 = new MenuItem("Reject");
-        item2.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                HashMap<String, String> hm = new HashMap<String, String>((HashMap)tb.getSelectionModel().getSelectedItem());
-                tb.getItems().remove(hm);
-                File file = new File("./src/DataFiles/bookingreqs.txt");
-                BookingRequests b = new BookingRequests();
-                if (file.exists()) {
-                    try {
-                        b.setBookinRequests(b.deserialize());
-                        b.removeBooking(hm);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    catch (ClassNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    b.newBooking();
-                }
-                try {
-                    b.serialize(b.getBookingrequests());
-                } catch (IOException e){
-                    e.printStackTrace();
-                }
-            }
-        });
-        cm.getItems().add(item1);
-        cm.getItems().add(item2);
-        tb.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if (event.getButton() == MouseButton.SECONDARY && tb.getSelectionModel().getSelectedItem() != null) {
-                    cm.show(tb, event.getScreenX(), event.getScreenY());
-                } else {
-                    cm.hide();
-                }
-            }
-        });
-
+			MenuItem item2 = new MenuItem("Reject");
+			item2.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					HashMap<String, String> hm = new HashMap<String, String>((HashMap) tb.getSelectionModel().getSelectedItem());
+					tb.getItems().remove(hm);
+					File file = new File("./src/DataFiles/bookingreqs.txt");
+					BookingRequests b = new BookingRequests();
+					if (file.exists()) {
+						try {
+							b.setBookinRequests(b.deserialize());
+							b.removeBooking(hm);
+						} catch (IOException e) {
+							e.printStackTrace();
+						} catch (ClassNotFoundException e) {
+							e.printStackTrace();
+						}
+					} else {
+						b.newBooking();
+					}
+					try {
+						b.serialize(b.getBookingrequests());
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			});
+			cm.getItems().add(item1);
+			cm.getItems().add(item2);
+			tb.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					if (event.getButton() == MouseButton.SECONDARY && tb.getSelectionModel().getSelectedItem() != null) {
+						cm.show(tb, event.getScreenX(), event.getScreenY());
+					} else {
+						cm.hide();
+					}
+				}
+			});
+		}
     }
 
     public ObservableList<Map> generateDataInMap2(BookingRequests b) {
