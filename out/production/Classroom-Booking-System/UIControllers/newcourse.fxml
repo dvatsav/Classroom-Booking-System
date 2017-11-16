@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIControllers.NewcourseController">
+   <children>
+      <SplitPane dividerPositions="0.046365914786967416" layoutX="328.0" layoutY="191.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <MenuBar layoutY="2.0" prefHeight="34.0" prefWidth="1198.0">
+                    <menus>
+                      <Menu mnemonicParsing="false" text="File">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="Close" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Edit">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="Delete" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Help">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="About" />
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="228.0" layoutY="48.0" prefHeight="54.0" prefWidth="743.0" text="Request Course for following Semester" textAlignment="CENTER">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <VBox layoutX="356.0" layoutY="178.0" prefHeight="448.0" prefWidth="152.0" spacing="10">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="33.0" prefWidth="154.0" text="Course Name">
+                           <font>
+                              <Font size="19.0" />
+                           </font></Label>
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="152.0" text="Credits">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="136.0" prefWidth="152.0" text="Pre Requisites">
+                           <font>
+                              <Font size="19.0" />
+                           </font></Label>
+                        <Label alignment="CENTER" prefHeight="197.0" prefWidth="152.0" text="Post Conditions">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="610.0" layoutY="178.0" prefHeight="448.0" prefWidth="229.0" spacing="10">
+                     <children>
+                        <TextField fx:id="course_name" prefHeight="31.0" prefWidth="228.0" />
+                         <ChoiceBox fx:id="credits" prefHeight="31.0" prefWidth="228.0" value="4">
+                             <items>
+                                 <FXCollections fx:factory="observableArrayList">
+                                     <String fx:value="2" />
+                                     <String fx:value="4" />
+
+                                 </FXCollections>
+                             </items>
+                         </ChoiceBox>
+                        <TextArea fx:id="pre_requisite" prefHeight="134.0" prefWidth="229.0" />
+                        <TextArea fx:id="post_conditions" prefHeight="200.0" prefWidth="200.0" />
+                     </children></VBox>
+                  <Button fx:id="submit_button" layoutX="547.0" layoutY="647.0" mnemonicParsing="false" onAction="#handleSubmit" prefWidth="105.0" style="-fx-border-radius: 10px;" text="Submit" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

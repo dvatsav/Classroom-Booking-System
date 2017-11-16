@@ -39,8 +39,18 @@ import java.util.Map;
 public class FacultyController {
 
     @FXML AnchorPane tableanchor;
-
+	public static Stage stage;
 	private ObservableList<Course> courses = FXCollections.observableArrayList(Utilities.courses);
+
+	@FXML
+	public void handleNewCourse(ActionEvent event) throws IOException{
+		Parent newscene = FXMLLoader.load(getClass().getResource("newcourse.fxml"));
+		stage = new Stage();
+		stage.resizableProperty().set(Boolean.FALSE);
+		stage.setTitle("Request a New Course");
+		stage.setScene(new Scene(newscene, 1200, 800));
+		stage.show();
+	}
 
     @FXML
     public void handleBookRoom(ActionEvent event) throws IOException {
@@ -233,7 +243,7 @@ public class FacultyController {
 		tb.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				if (event.getButton() == MouseButton.SECONDARY) {
+				if (event.getButton() == MouseButton.SECONDARY && tb.getSelectionModel().getSelectedItem() != null) {
 					cm.show(tb, event.getScreenX(), event.getScreenY());
 				} else {
 					cm.hide();

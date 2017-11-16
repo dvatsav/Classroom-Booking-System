@@ -316,7 +316,7 @@ public class StudentController {
 		currentTimeTable.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				if (event.getButton() == MouseButton.SECONDARY) {
+				if (event.getButton() == MouseButton.SECONDARY && currentTimeTable.getSelectionModel().getSelectedItem() != null) {
 					cm.show(currentTimeTable, event.getScreenX(), event.getScreenY());
 				} else {
 					cm.hide();

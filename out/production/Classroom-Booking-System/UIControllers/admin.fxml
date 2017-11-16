@@ -23,7 +23,7 @@
                                </Menu>
                                <Menu mnemonicParsing="false" text="Help">
                                    <items>
-                                       <MenuItem mnemonicParsing="false" text="About" onAction="#showAboutPage"/>
+                                       <MenuItem mnemonicParsing="false" onAction="#showAboutPage" text="About" />
                                    </items>
                                </Menu>
                            </menus>
@@ -36,12 +36,13 @@
                            <items>
                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="757.0" prefWidth="137.0">
                                    <children>
-                                       <VBox layoutY="30.0" prefHeight="200.0" prefWidth="142.0">
+                                       <VBox fx:id="course_requests" layoutY="30.0" prefHeight="200.0" prefWidth="142.0">
                                            <children>
                                                <Button fx:id="button_current_bookings" mnemonicParsing="false" onAction="#handleCurrentBookings" prefHeight="31.0" prefWidth="142.0" text="Current Bookings" />
                                                <Button mnemonicParsing="false" onAction="#handleBookReq" prefHeight="31.0" prefWidth="142.0" text="Student Requests" />
                                                <Button mnemonicParsing="false" onAction="#handleAccReq" prefHeight="31.0" prefWidth="142.0" text="Account Requests" />
                                                <Button mnemonicParsing="false" onAction="#handleBookRoom" prefHeight="31.0" prefWidth="142.0" text="Book A Room" />
+                                               <Button onAction="#handleCourseReq" mnemonicParsing="false" prefHeight="31.0" prefWidth="143.0" text="Course Requests" />
                                            </children>
                                        </VBox>
                                    </children>

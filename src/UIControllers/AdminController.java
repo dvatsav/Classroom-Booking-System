@@ -3,9 +3,7 @@ package UIControllers;
 import Actors.Admin;
 import Actors.Faculty;
 import Actors.Student;
-import Supplementary.AccountRequests;
-import Supplementary.Booking;
-import Supplementary.BookingRequests;
+import Supplementary.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,6 +34,133 @@ import java.util.Map;
 public class AdminController {
 
     @FXML AnchorPane tableanchor;
+
+    @FXML
+    public void handleCourseReq(ActionEvent event) throws IOException, ClassNotFoundException {
+        CourseRequests c = new CourseRequests();
+        c.setCourseRequests(c.deserialize());
+        tableanchor.getChildren().clear();
+        TableView tb = new TableView<>(generateDataInMap4(c));
+        tb.prefWidthProperty().bind(tableanchor.widthProperty());
+        tb.prefHeightProperty().bind(tableanchor.heightProperty());
+        TableColumn<Map, String> col1 = new TableColumn<>("Proposed By");
+        TableColumn<Map, String> col2 = new TableColumn<>("Course Name");
+        TableColumn<Map, String> col3 = new TableColumn<>("Credits");
+        TableColumn<Map, String> col4 = new TableColumn<>("Pre Requisites");
+        TableColumn<Map, String> col5 = new TableColumn<>("Post Conditions");
+        col1.setCellValueFactory(new MapValueFactory("Proposed By"));
+        col2.setCellValueFactory(new MapValueFactory("Course Name"));
+        col3.setCellValueFactory(new MapValueFactory("Credits"));
+        col4.setCellValueFactory(new MapValueFactory("Pre Requisites"));
+        col5.setCellValueFactory(new MapValueFactory("Post Conditions"));
+        tb.getSelectionModel().setCellSelectionEnabled(true);
+        tb.getColumns().setAll(col1, col2, col3, col4, col5);
+        Callback<TableColumn<Map, String>,TableCell<Map, String>>
+                cellFactoryForMap = new Callback<TableColumn<Map, String>, TableCell<Map, String>>() {
+            @Override
+            public TableCell<Map, String> call(TableColumn<Map, String> p) {
+                return new TextFieldTableCell<>(new StringConverter() {
+                    @Override
+                    public String toString(Object t) {
+                        return t.toString();
+                    }
+
+                    @Override
+                    public String fromString(String string) {
+                        return string;
+                    }
+                });
+            }
+        };
+        col1.setCellFactory(cellFactoryForMap);
+        col2.setCellFactory(cellFactoryForMap);
+        col3.setCellFactory(cellFactoryForMap);
+        col4.setCellFactory(cellFactoryForMap);
+        col5.setCellFactory(cellFactoryForMap);
+        tableanchor.getChildren().add(tb);
+        ContextMenu cm = new ContextMenu();
+        MenuItem item1 = new MenuItem("Accept");
+        item1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                HashMap<String, String> hm = new HashMap<>((HashMap)tb.getSelectionModel().getSelectedItem());
+                tb.getItems().remove(hm);
+                File file = new File("./src/DataFiles/coursereqs.txt");
+                CourseRequests c = new CourseRequests();
+                if (file.exists()) {
+                    try {
+                        c.setCourseRequests(c.deserialize());
+                        System.out.println(hm);
+                        c.removeCourse(hm);
+                    } catch(IOException | ClassNotFoundException e){
+                        e.printStackTrace();
+                    }
+                } else {
+                    c.newCourse();
+                }
+                try {
+                    c.serialize(c.getcourserequests());
+                } catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        MenuItem item2 = new MenuItem("Reject");
+        item2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                HashMap<String, String> hm = new HashMap<>((HashMap)tb.getSelectionModel().getSelectedItem());
+                tb.getItems().remove(hm);
+                File file = new File("./src/DataFiles/coursereqs.txt");
+                CourseRequests c = new CourseRequests();
+                if (file.exists()) {
+                    try {
+                        c.setCourseRequests(c.deserialize());
+                        System.out.println(hm);
+                        c.removeCourse(hm);
+                    } catch(IOException | ClassNotFoundException e){
+                        e.printStackTrace();
+                    }
+                } else {
+                    c.newCourse();
+                }
+                try {
+                    c.serialize(c.getcourserequests());
+                } catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+        });
+        cm.getItems().add(item1);
+        cm.getItems().add(item2);
+        tb.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getButton() == MouseButton.SECONDARY && tb.getSelectionModel().getSelectedItem() != null) {
+                    cm.show(tb, event.getScreenX(), event.getScreenY());
+                } else {
+                    cm.hide();
+                }
+            }
+        });
+    }
+
+    public ObservableList<Map> generateDataInMap4(CourseRequests c) {
+        ObservableList<Map> allData = FXCollections.observableArrayList();
+        for (int i = 0; i < c.getcourserequests().size() ; ++i) {
+            Map<String, String> dataRow = new HashMap<>();
+
+            dataRow.put("Proposed By", (String)c.getcourserequests().get(i).get("Proposed By"));
+            dataRow.put("Course Name", (String)c.getcourserequests().get(i).get("Course Name"));
+            dataRow.put("Credits", (String)c.getcourserequests().get(i).get("Credits"));
+            dataRow.put("Pre Requisites", (String)c.getcourserequests().get(i).get("Pre Requisites"));
+            dataRow.put("Post Conditions", (String)c.getcourserequests().get(i).get("Post Conditions"));
+            allData.add(dataRow);
+        }
+        return allData;
+    }
+
     @FXML
     public void handleAccReq(ActionEvent event) throws IOException, ClassNotFoundException {
         AccountRequests a = new AccountRequests();
