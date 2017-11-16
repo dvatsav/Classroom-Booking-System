@@ -30,6 +30,7 @@ import org.apache.poi.ss.usermodel.Table;
 
 import javax.rmi.CORBA.Util;
 import java.io.*;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,7 +43,7 @@ public class StudentController {
     private ObservableList<Course> courses = FXCollections.observableArrayList(Utilities.courses);
 
 	@FXML
-	public void initialize() {
+	public void initialize() throws ParseException{
 		anchor_for_table.getChildren().clear();
 		TableView<Course> table_student = new TableView<>();
 		table_student.prefWidthProperty().bind(anchor_for_table.widthProperty());

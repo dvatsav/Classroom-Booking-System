@@ -85,7 +85,7 @@ public class Course implements Serializable {
         }
 
         else if (Day.equals("Tutorial")) {
-            if (Day.substring(0, 1).equals("*")) {
+            if (timing.substring(0, 1).equals("*")) {
                 String Day1 = timing.substring(timing.indexOf("^") + 1, timing.indexOf("%"));
                 String starttime = timing.substring(timing.indexOf("@") + 1, timing.indexOf("-"));
                 timing = timing.substring(timing.indexOf("-") + 1);
