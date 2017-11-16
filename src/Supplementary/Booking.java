@@ -4,6 +4,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * <h1>Booking Class</h1>
+ * <p>This class is used to serialize the various booking requests once they are confirmed.</p>
+ */
 public class Booking implements Serializable{
     public static ArrayList<HashMap> bookings = new ArrayList<>();
 

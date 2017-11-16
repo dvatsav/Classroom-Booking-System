@@ -42,6 +42,11 @@ public class FacultyController {
 	public static Stage stage;
 	private ObservableList<Course> courses = FXCollections.observableArrayList(Utilities.courses);
 
+	/**
+	 * Loads the new course window.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	public void handleNewCourse(ActionEvent event) throws IOException{
 		Parent newscene = FXMLLoader.load(getClass().getResource("newcourse.fxml"));
@@ -52,6 +57,11 @@ public class FacultyController {
 		stage.show();
 	}
 
+	/**
+	 * Loads the room booking window.
+	 * @param event
+	 * @throws IOException
+	 */
     @FXML
     public void handleBookRoom(ActionEvent event) throws IOException {
         Parent newscene = FXMLLoader.load(getClass().getResource("requestbook.fxml"));
@@ -60,6 +70,10 @@ public class FacultyController {
         Main.primaryStage.show();
     }
 
+	/**
+	 * This function manages how the table is loaded and what all functions can the user perform on the table once he
+	 * clicks on current booking button.
+	 */
     @FXML
     public void handleCurrentBookings(ActionEvent event) {
 		tableanchor.getChildren().clear();
@@ -104,7 +118,11 @@ public class FacultyController {
 		tableanchor.getChildren().add(tb);
     }
 
-    private ObservableList<Map> generateDataInMap() {
+	/**
+	 * Helper function for table data.
+	 * @return
+	 */
+	private ObservableList<Map> generateDataInMap() {
         ObservableList<Map> allData = FXCollections.observableArrayList();
         for (int i = 0; i < Booking.bookings.size() ; ++i) {
             Map<String, String> dataRow = new HashMap<>();

@@ -3,6 +3,10 @@ package Supplementary;
 import java.io.Serializable;
 import java.util.*;
 
+/**
+ * <h1>Course Class</h1>
+ * <p>This class is used to store information related to a particular course. </p>
+ */
 public class Course implements Serializable {
     private String courseName;
     private String courseCode;

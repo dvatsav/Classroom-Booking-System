@@ -38,6 +38,11 @@ public class AdminController {
 
     @FXML AnchorPane tableanchor;
     public static Stage stage2;
+
+    /**
+     * This method opens the password window for the admin.
+     * @throws IOException
+     */
     @FXML
     public void handleMailLogin(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("getpassword.fxml"));
@@ -48,7 +53,11 @@ public class AdminController {
 
     }
 
-    @FXML
+	/**
+	 * This function handles the mail logout event for the admin.
+	 * @param event
+	 */
+	@FXML
     public void handleMailLogout(ActionEvent event) {
         CurrentLoggenInUser.setNull();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -67,7 +76,13 @@ public class AdminController {
         AdminController.stage2.close();
     }
 
-    @FXML
+	/**
+	 * This function manages how the table is loaded and what all functions can the user perform on the table once he
+	 * clicks on course request button.
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	@FXML
     public void handleCourseReq(ActionEvent event) throws IOException, ClassNotFoundException {
         CourseRequests c = new CourseRequests();
         c.setCourseRequests(c.deserialize());
@@ -178,7 +193,10 @@ public class AdminController {
         });
     }
 
-    public ObservableList<Map> generateDataInMap4(CourseRequests c) {
+	/**
+	 * Helper function to generate data for table.
+	 */
+	public ObservableList<Map> generateDataInMap4(CourseRequests c) {
         ObservableList<Map> allData = FXCollections.observableArrayList();
         for (int i = 0; i < c.getcourserequests().size() ; ++i) {
             Map<String, String> dataRow = new HashMap<>();
@@ -193,6 +211,12 @@ public class AdminController {
         return allData;
     }
 
+	/**
+	 * This function manages how the table is loaded and what all functions can the user perform on the table once he
+	 * clicks on account request button.
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
     @FXML
     public void handleAccReq(ActionEvent event) throws IOException, ClassNotFoundException {
         AccountRequests a = new AccountRequests();
@@ -348,7 +372,10 @@ public class AdminController {
 
     }
 
-    public ObservableList<Map> generateDataInMap3(AccountRequests a) {
+	/**
+	 * Another helper function to load data in table.
+	 */
+	public ObservableList<Map> generateDataInMap3(AccountRequests a) {
         ObservableList<Map> allData = FXCollections.observableArrayList();
         for (int i = 0; i < a.getAccountRequests().size() ; ++i) {
             Map<String, String> dataRow = new HashMap<>();
@@ -367,6 +394,12 @@ public class AdminController {
         return allData;
     }
 
+	/**
+	 * This function manages how the table is loaded and what all functions can the user perform on the table once he
+	 * clicks on booking request button. It allows the admin to accept/reject the request.
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
     @FXML
     public void handleBookReq(ActionEvent event) throws ClassNotFoundException, IOException{
         BookingRequests b = new BookingRequests();
@@ -522,7 +555,11 @@ public class AdminController {
         return allData;
     }
 
-    @FXML
+	/**
+	 * Loads the room booking UI.
+	 * @throws IOException
+	 */
+	@FXML
     public void handleBookRoom(ActionEvent event) throws IOException {
         Parent newscene = FXMLLoader.load(getClass().getResource("requestbook.fxml"));
         requestbookController.setCallingClass("admin.fxml");
@@ -530,6 +567,10 @@ public class AdminController {
         Main.primaryStage.show();
     }
 
+	/**
+	 * This function manages how the table is loaded and what all functions can the user perform on the table once he
+	 * clicks on current booking button. It basically shows all the bookings that has been previously made and accepted.
+	 */
     @FXML
     public void handleCurrentBookings(ActionEvent event) {
         tableanchor.getChildren().clear();
@@ -574,7 +615,10 @@ public class AdminController {
         tableanchor.getChildren().add(tb);
     }
 
-    private ObservableList<Map> generateDataInMap() {
+	/**
+	 * Helper function for table data.
+	 */
+	private ObservableList<Map> generateDataInMap() {
         ObservableList<Map> allData = FXCollections.observableArrayList();
         for (int i = 0; i < Booking.bookings.size() ; ++i) {
             Map<String, String> dataRow = new HashMap<>();
@@ -589,13 +633,21 @@ public class AdminController {
         return allData;
     }
 
-    @FXML
+	/**
+	 * Logs the user out.
+	 * @throws IOException
+	 */
+	@FXML
     private void handleLogout() throws IOException{
         Parent newscene = FXMLLoader.load(getClass().getResource("entryPage.fxml"));
         Main.primaryStage.setScene(new Scene(newscene, 600, 400));
         Main.primaryStage.show();
     }
 
+	/**
+	 * Shows the about page.
+	 * @throws IOException
+	 */
 	public void showAboutPage(ActionEvent actionEvent) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("about.fxml"));
 		Parent root1 = (Parent) fxmlLoader.load();

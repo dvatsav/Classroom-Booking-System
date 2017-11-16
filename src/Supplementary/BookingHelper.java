@@ -1,7 +1,8 @@
 package Supplementary;
 
 /**
- * Created by Anubhav on 15-Nov-17.
+ * <h1>Booking Helper Class</h1>
+ * <p>This class is used to load the information related to various courses in the table.</p>
  */
 public class BookingHelper {
 	private String day;

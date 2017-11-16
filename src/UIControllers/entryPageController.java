@@ -30,7 +30,13 @@ public class entryPageController {
 
     String tempEmailLogin = "", tempPasswordLogin = "", tempTypeOfUserLogin = "";
 
-    @FXML
+	/**
+	 * This function is responsible for searching the information entered by the user in our database and check if such
+	 * user exists. If it does it logs him/her in, otherwise will display an alert box.
+	 * @param event
+	 * @throws IOException
+	 */
+	@FXML
     private void handleButtonClick(ActionEvent event) throws IOException {
     	tempEmailLogin = login_email.getText();
     	tempPasswordLogin = login_password.getText();
@@ -111,7 +117,10 @@ public class entryPageController {
 		CurrentLoggenInUser.setCurrentUserType(tempTypeOfUserLogin);
     }
 
-    private void nouser() {
+	/**
+	 * Launchs the noUser dialog box.
+	 */
+	private void nouser() {
 
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
 		alert.setTitle("Error");
@@ -121,6 +130,11 @@ public class entryPageController {
 
 	}
 
+	/**
+	 * Loads the register page.
+	 * @param event
+	 * @throws IOException
+	 */
     @FXML
     private void handleNewUser(ActionEvent event) throws IOException {
         Parent newscene = FXMLLoader.load(getClass().getResource("register.fxml"));
@@ -128,20 +142,25 @@ public class entryPageController {
         Main.primaryStage.show();
     }
 
-    @FXML
-    public void handleReturnToLogin(ActionEvent event) throws IOException {
-        Parent newscene = FXMLLoader.load(getClass().getResource("entryPage.fxml"));
-        Main.primaryStage.setScene(new Scene(newscene, 600, 400));
-        Main.primaryStage.show();
-    }
 
-    @FXML
+	/**
+	 * Shows the forgot password page.
+	 * @param actionEvent
+	 * @throws IOException
+	 */
+	@FXML
     public void showForgotPasswordPage(ActionEvent actionEvent) throws IOException {
         Parent newscene = FXMLLoader.load(getClass().getResource("forgotPassword.fxml"));
         Main.primaryStage.setScene(new Scene(newscene, 600, 400));
         Main.primaryStage.show();
     }
 
+	/**
+	 * Helper function to read database.
+	 * @return
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	private Database readDBFromFile() throws IOException, ClassNotFoundException {
 		ObjectInputStream oin = new ObjectInputStream(new FileInputStream("./src/db.txt"));
 		return ( (Database) oin.readObject() );

@@ -5,6 +5,10 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * <h1>Faculty Class</h1>
+ * <p>This type of user group represents the faculty which can introduce new courses.</p>
+ */
 public class Faculty extends Users implements Serializable {
     private ArrayList<Course> coursesTaught;
 
@@ -26,6 +30,5 @@ public class Faculty extends Users implements Serializable {
                 '}';
     }
 
-    //can also check whether a course can be selected by viewing a faculty profile and selecting course
 
 }

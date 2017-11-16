@@ -3,6 +3,11 @@ package Actors;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+/**
+ * <h1>Users Class</h1>
+ * <p>This class is the basic structure for all the user groups in our app. It has basic fields which will be shared
+ * across all user groups.</p>
+ */
 public class Users implements Serializable{
 	protected String firstName;
 	protected String lastName;
