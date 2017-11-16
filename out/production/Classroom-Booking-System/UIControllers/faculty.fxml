@@ -18,12 +18,12 @@
                             <menus>
                                 <Menu mnemonicParsing="false" text="File">
                                     <items>
-                                        <MenuItem mnemonicParsing="false" text="Logout" onAction="#handleLogout"/>
+                                        <MenuItem mnemonicParsing="false" onAction="#handleLogout" text="Logout" />
                                     </items>
                                 </Menu>
                                 <Menu mnemonicParsing="false" text="Help">
                                     <items>
-                                        <MenuItem mnemonicParsing="false" text="About" onAction="#showAboutPage" />
+                                        <MenuItem mnemonicParsing="false" onAction="#showAboutPage" text="About" />
                                     </items>
                                 </Menu>
 
@@ -40,9 +40,10 @@
                                         <VBox layoutY="30.0" prefHeight="200.0" prefWidth="142.0">
                                             <children>
                                                 <Button mnemonicParsing="false" onAction="#handleBookRoom" prefHeight="31.0" prefWidth="142.0" text="Book A Room" />
-                                                <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Courses Taught By You" onAction="#showCoursesTaught" />
-                                                <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Current Bookings" onAction="#handleCurrentBookings" />
-                                                <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Cancel Booking" onAction="#showMyBooking" />
+                                                <Button mnemonicParsing="false" onAction="#showCoursesTaught" prefHeight="31.0" prefWidth="142.0" text="Courses Taught By You" />
+                                                <Button mnemonicParsing="false" onAction="#handleCurrentBookings" prefHeight="31.0" prefWidth="142.0" text="Current Bookings" />
+                                                <Button mnemonicParsing="false" onAction="#showMyBooking" prefHeight="31.0" prefWidth="142.0" text="Cancel Booking" />
+                                    <Button mnemonicParsing="false" onAction="#handleNewCourse" prefHeight="31.0" prefWidth="144.0" text="New Course" />
                                             </children>
                                         </VBox>
                                     </children>
