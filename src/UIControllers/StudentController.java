@@ -35,13 +35,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * <h1>Student Controller Class</h1>
+ * <p>This class controls all activities of the students GUI page</p>
+ */
 public class StudentController {
     @FXML private TextField student_search_course;
     @FXML private AnchorPane anchor_for_table;
-	//private ArrayList<Course> displaycourses = new ArrayList<>();
+
     private ObservableList<Course> courses = FXCollections.observableArrayList(Utilities.courses);
 
+	/**
+	 * This function initializes a view of all the courses that are available in the institute
+	 * This is the first page that comes up when a student logs in
+	 * @throws ParseException
+	 */
 	@FXML
 	public void initialize() throws ParseException{
 		anchor_for_table.getChildren().clear();
@@ -96,6 +104,12 @@ public class StudentController {
 		anchor_for_table.getChildren().add(table_student);
 	}
 
+	/**
+	 * This Function adds a specific course to the course list of a student
+	 * @param course object of course containing details about that course
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	private void addCourseToStudentList(Course course) throws IOException, ClassNotFoundException {
 		Database userDb = readDBFromFile();
 		HashMap<String, Student> mp = (HashMap<String, Student>) userDb.getStudentsDB();
@@ -107,15 +121,25 @@ public class StudentController {
 				break;
 			}
 		}
-//		System.out.println("added");
 		writeDBToFile(userDb);
 	}
 
+	/**
+	 * This function reads the database
+	 * @return returns the database object
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	private Database readDBFromFile() throws IOException, ClassNotFoundException {
 		ObjectInputStream oin = new ObjectInputStream(new FileInputStream("./src/db.txt"));
 		return ( (Database) oin.readObject() );
 	}
 
+	/**
+	 * This function wrties to the database object and the serializes the file
+	 * @param db
+	 * @throws IOException
+	 */
 	private void writeDBToFile(Database db) throws IOException {
 		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("./src/db.txt", false));
 		out.writeObject(db);
@@ -123,9 +147,18 @@ public class StudentController {
 		out.close();
 	}
 
+	/**
+	 * This function Generates and displays all pertinant courses to a student
+	 * It filters out based on search parameter, non clashing courses and those that the student has
+	 * not yet selected
+ 	 * @param keyEvent key event, checks whether the enter key has been pressed
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 * @throws ParseException
+	 */
 	@FXML
     public void handleGenerateCourse(KeyEvent keyEvent) throws IOException, ClassNotFoundException, ParseException{
-//		initialize();
+
 		if (keyEvent.getCode() == KeyCode.ENTER) {
 			anchor_for_table.getChildren().clear();
 			TableView<Course> table_student = new TableView<>();
@@ -181,8 +214,6 @@ public class StudentController {
 				table_student.setItems(FXCollections.observableArrayList(filteredCourses));
 			}
 
-
-
 			ContextMenu cm = new ContextMenu();
 			MenuItem mi1 = new MenuItem("Add to my List Of Courses");
 			mi1.setOnAction(new EventHandler<ActionEvent>() {
@@ -212,15 +243,10 @@ public class StudentController {
 		}
     }
 
-	public boolean notPresent(ArrayList<Course> ar, Course c) {
-		for (Course d  : ar) {
-			if (c.equals(d)) {
-				return false;
-			}
-		}
-		return true;
-	}
-
+	/**
+	 * This function generates the display of all currently booked rooms
+	 * @param event Action event, on click of the button
+	 */
     @FXML
     public void handleCurrentBookings(ActionEvent event) {
         anchor_for_table.getChildren().clear();
@@ -265,6 +291,10 @@ public class StudentController {
         anchor_for_table.getChildren().add(tb);
     }
 
+	/**
+	 * This function is used to generate a Map object that will be used to populate the table
+	 * @return returns an Observable list used to populate the map
+	 */
     private ObservableList<Map> generateDataInMap() {
         ObservableList<Map> allData = FXCollections.observableArrayList();
         for (int i = 0 ; i < Booking.bookings.size() ; ++i) {
@@ -280,7 +310,12 @@ public class StudentController {
         return allData;
     }
 
-    @FXML
+	/**
+	 * This function handles the request for booking a room
+	 * @param event, On click event
+	 * @throws IOException
+	 */
+	@FXML
     public void handleBookRoom(ActionEvent event) throws IOException{
         Parent newscene = FXMLLoader.load(getClass().getResource("requestbook.fxml"));
         requestbookController.setCallingClass("student.fxml");
@@ -288,6 +323,11 @@ public class StudentController {
         Main.primaryStage.show();
     }
 
+	/**
+	 * This Function handles logging out of the user
+	 * @param event, on click event
+	 * @throws IOException
+	 */
     @FXML
     public void handleLogout(ActionEvent event) throws IOException {
         Parent newscene = FXMLLoader.load(getClass().getResource("entryPage.fxml"));
@@ -295,6 +335,13 @@ public class StudentController {
         Main.primaryStage.show();
     }
 
+	/**
+	 * This function handles the showing of all the courses selected by the user. The selected courses
+	 * are retrieved from a database stored in the student class
+	 * @param actionEvent
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	public void showMyCourses(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
 		anchor_for_table.getChildren().clear();
 		Student currentUser = null;
@@ -355,11 +402,16 @@ public class StudentController {
 				}
 			}
 		});
-//		System.out.println(currentUser);
-//		System.out.println(currentUser.getMyCourses());
 		anchor_for_table.getChildren().add(currentTimeTable);
 	}
 
+	/**
+	 * This function handles the removal of a course from the current timetable of a student by removing the element from t
+	 * the respective database in its student object
+	 * @param course
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	private void removeCourseFromMyCourses(Course course) throws IOException, ClassNotFoundException {
 		Database userDb = readDBFromFile();
 		HashMap<String, Student> mp = (HashMap<String, Student>) userDb.getStudentsDB();
@@ -383,6 +435,10 @@ public class StudentController {
 		writeDBToFile(userDb);
 	}
 
+	/**
+	 * This function shows a table with a list of all the faculty members
+	 * @param actionEvent
+	 */
 	public void showFaculty(ActionEvent actionEvent) {
 		anchor_for_table.getChildren().clear();
 		TableView<Course> tb = new TableView<>();
@@ -395,6 +451,11 @@ public class StudentController {
 		anchor_for_table.getChildren().add(tb);
 	}
 
+	/**
+	 * This function handles displaying the about and help page
+	 * @param actionEvent
+	 * @throws IOException
+	 */
 	public void showAboutPage(ActionEvent actionEvent) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("about.fxml"));
 		Parent root1 = (Parent) fxmlLoader.load();
@@ -403,6 +464,11 @@ public class StudentController {
 		stage.show();
 	}
 
+	/**
+	 * This function handles the showing of all booking request made by a particular student
+	 * It its retrieved from the database stored in the respective student object
+	 * @param actionEvent
+	 */
 	public void showMyRequests(ActionEvent actionEvent) {
 		anchor_for_table.getChildren().clear();
 		BookingRequests br = new BookingRequests();
@@ -411,7 +477,6 @@ public class StudentController {
 			al = br.deserialize();
 		} catch (IOException | ClassNotFoundException e) {
 			System.out.println("No bookingreqs.txt Found!");
-//			e.printStackTrace();
 		}
 		ArrayList<BookingHelper> temp = new ArrayList<>();
 
@@ -420,13 +485,11 @@ public class StudentController {
 				BookingHelper tempObj = new BookingHelper((String) hashMap.get("Day"), (String) hashMap.get("Room Number"),
 						(String) hashMap.get("Start Time"), (String) hashMap.get("End Time"),
 						(String) hashMap.get("Purpose"), (String) hashMap.get("Requested by"));
-//				System.out.println(tempObj);
 				temp.add(tempObj);
 			}
 		}
 
 		ObservableList tempMyCourse = FXCollections.observableArrayList(temp);
-		// After getting all requests
 		TableView<BookingHelper> tb = new TableView<>();
 		tb.prefWidthProperty().bind(anchor_for_table.widthProperty());
 		tb.prefHeightProperty().bind(anchor_for_table.heightProperty());
@@ -473,6 +536,12 @@ public class StudentController {
 		anchor_for_table.getChildren().add(tb);
 	}
 
+	/**
+	 * This function removes a particular booking from the bookinglist of a student
+	 * @param bookingHelper
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	private void removeBooking(BookingHelper bookingHelper) throws IOException, ClassNotFoundException {
 		BookingRequests br = new BookingRequests();
 		ArrayList<HashMap> al = br.deserialize();
@@ -487,14 +556,6 @@ public class StudentController {
 		}
 		br.setBookinRequests(al);
 		br.serialize(al);
-
-		//		temp.put("Day", dateOfBook);
-//		temp.put("Room Number", (String)class_number.getValue());
-//		temp.put("Start Time", startTime);
-//		temp.put("End Time", endTime);
-//		temp.put("Purpose", purpose.getText());
-//		temp.put("Requested by", entryPageController.userEmail);
-//		tb.getColumns().setAll(col1, col2, col3, col4, col5);
 
 	}
 }

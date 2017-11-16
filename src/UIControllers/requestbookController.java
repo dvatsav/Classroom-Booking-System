@@ -35,6 +35,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * <h1>RequestBookController Class</h1>
+ * <p>This class is used to control the booking requests</p>
+ */
 public class requestbookController {
     @FXML AnchorPane anchor_with_table;
     @FXML ChoiceBox class_number;
@@ -49,6 +53,10 @@ public class requestbookController {
         callingClass = callingClas;
     }
 
+    /**
+     * This function is used to display all the current bookings that are taken
+     * @param event
+     */
     @FXML
     public void handleCurrentBookings(ActionEvent event) {
         anchor_with_table.getChildren().clear();
@@ -99,6 +107,11 @@ public class requestbookController {
         anchor_with_table.getChildren().add(tb);
     }
 
+    /**
+     * This function is sued to generate a map object that will then be used
+     * to populate the displayed table
+     * @return
+     */
     private ObservableList<Map> generateDataInMap() {
         ObservableList<Map> allData = FXCollections.observableArrayList();
         for (int i = 0; i < Booking.bookings.size() ; ++i) {
@@ -114,12 +127,26 @@ public class requestbookController {
         return allData;
     }
 
+    /**
+     * Function that handles returning back to the GUI of the class that called this booking function
+     * @param event
+     * @throws IOException
+     */
     public void handleBackToHome(ActionEvent event) throws IOException {
         Parent newscene = FXMLLoader.load(getClass().getResource(callingClass));
         Main.primaryStage.setScene(new Scene(newscene,  1200, 800));
         Main.primaryStage.show();
     }
 
+    /**
+     * This function handles the onclick action of a user confiming the request to book a room
+     * if the user is an admin or faculty, the room is automatically booked. If Student, a request is sent
+     * to the admin.
+     * @param event
+     * @throws IOException
+     * @throws ParseException
+     * @throws ClassNotFoundException
+     */
     public void handleConfirmBooking(ActionEvent event) throws IOException, ParseException, ClassNotFoundException{
 
         if (start_time.getValue() == null || end_time.getValue() == null || date_to_book.getValue() == null || purpose.getText().equals("")) {
@@ -185,6 +212,12 @@ public class requestbookController {
         }
     }
 
+    /**
+     * This function returns to the previous calling page
+     * @param actionEvent
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public void showPreviousPage(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
 		Database userDb = readDBFromFile();
 		String typeOfUser = CurrentLoggenInUser.getCurrentUserType();
@@ -203,11 +236,22 @@ public class requestbookController {
 		}
     }
 
+    /**
+     * This function reads data from the database of users
+     * @return returns database object
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
 	private Database readDBFromFile() throws IOException, ClassNotFoundException {
 		ObjectInputStream oin = new ObjectInputStream(new FileInputStream("./src/db.txt"));
 		return ( (Database) oin.readObject() );
 	}
 
+    /**
+     * This function shows the about / help page
+     * @param actionEvent
+     * @throws IOException
+     */
 	public void showAboutPage(ActionEvent actionEvent) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("about.fxml"));
 		Parent root1 = (Parent) fxmlLoader.load();
