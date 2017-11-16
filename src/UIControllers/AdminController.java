@@ -4,6 +4,7 @@ import Actors.Admin;
 import Actors.Faculty;
 import Actors.Student;
 import Supplementary.*;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -379,6 +380,11 @@ public class AdminController {
             public void handle(ActionEvent event) {
                 HashMap<String, String> hm = new HashMap<String, String>((HashMap)tb.getSelectionModel().getSelectedItem());
                 Booking.bookings.add(hm);
+                try {
+                    Booking.serialize();
+                } catch (IOException e){
+                    e.printStackTrace();
+                }
                 tb.getItems().remove(hm);
                 File file = new File("./src/DataFiles/bookingreqs.txt");
                 BookingRequests b = new BookingRequests();

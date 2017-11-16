@@ -1,8 +1,9 @@
 package Supplementary;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Room {
+public class Room implements Serializable{
     public Map<String, ArrayList<LinkedHashMap<String, String>>> roomAvailable;
     private String roomNumber;
 
