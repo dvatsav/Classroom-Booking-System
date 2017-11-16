@@ -4,6 +4,7 @@ import Actors.Admin;
 import Actors.Faculty;
 import Actors.Student;
 import Supplementary.*;
+import Utils.SendEmail;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,6 +27,7 @@ import javafx.util.Callback;
 import javafx.util.StringConverter;
 import sun.awt.image.ImageWatched;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -35,6 +37,35 @@ import java.util.Map;
 public class AdminController {
 
     @FXML AnchorPane tableanchor;
+    public static Stage stage2;
+    @FXML
+    public void handleMailLogin(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("getpassword.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        stage2 = new Stage();
+        stage2.setScene(new Scene(root1));
+        stage2.show();
+
+    }
+
+    @FXML
+    public void handleMailLogout(ActionEvent event) {
+        CurrentLoggenInUser.setNull();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText(null);
+        alert.setContentText("Logout Successful");
+        alert.show();
+    }
+
+    @FXML private TextField password;
+
+    @FXML
+    public void handleStorePassword(ActionEvent event) {
+        String password2 = password.getText();
+        CurrentLoggenInUser.setadminMailPassword(password2);
+        AdminController.stage2.close();
+    }
 
     @FXML
     public void handleCourseReq(ActionEvent event) throws IOException, ClassNotFoundException {
@@ -235,6 +266,17 @@ public class AdminController {
                     try {
                         a.setAccountRequests(a.deserialize());
                         System.out.println(hm);
+                        if (CurrentLoggenInUser.getadminMailPassword() != null) {
+                            try {
+                                SendEmail.send(CurrentLoggenInUser.adminMailID, CurrentLoggenInUser.getadminMailPassword(), hm.get("Email ID"), "Account Request Approved", "Hello " + hm.get("First Name") + " " + hm.get("Last Name") + "\n\n" + "Your Account Request has been approved. You may Now Log In");
+                            } catch (Exception e) {
+                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                alert.setTitle("Error");
+                                alert.setHeaderText(null);
+                                alert.setContentText("Wrong Email Password entered. Please verify. No approval email will be sent this time.");
+                                alert.show();
+                            }
+                        }
                         a.removeAccount(hm);
                         if (hm.get("User Type").equals("Student")) {
                             Student student = new Student(hm.get("First Name"), hm.get("Last Name"), hm.get("Phone Number"), hm.get("Email ID"), hm.get("Password"), hm.get("User Type"), hm.get("Date of Birth"), hm.get("Roll Number"), hm.get("Branch"));
@@ -384,6 +426,17 @@ public class AdminController {
                     Booking.serialize();
                 } catch (IOException e){
                     e.printStackTrace();
+                }
+                if (CurrentLoggenInUser.getadminMailPassword() != null) {
+                    try {
+                        SendEmail.send(CurrentLoggenInUser.adminMailID, CurrentLoggenInUser.getadminMailPassword(), hm.get("Email ID"), "Booking Request Approved", "Hello " + hm.get("First Name") + " " + hm.get("Last Name") + "\n\n" + "Your Booking Request for " + hm.get("Purpose") + " has been approved.");
+                    } catch (Exception e) {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Error");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Wrong Email Password entered. Please verify. No approval email will be sent this time.");
+                        alert.show();
+                    }
                 }
                 tb.getItems().remove(hm);
                 File file = new File("./src/DataFiles/bookingreqs.txt");
