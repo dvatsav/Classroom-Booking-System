@@ -238,10 +238,32 @@ public class Utilities {
             if (Day.equals((String)Booking.bookings.get(i).get("Day")) && classroom.equals((String)Booking.bookings.get(i).get("Room Number"))) {
                 Date d3 = sdf.parse((String)Booking.bookings.get(i).get("Start Time"));
                 Date d4 = sdf.parse((String)Booking.bookings.get(i).get("End Time"));
-                if (d3.getTime() <= d1.getTime() && d1.getTime() <= d4.getTime()) {
+                if (d3.getTime() <= d1.getTime() && d1.getTime() < d4.getTime()) {
                     return false;
                 } else if (d2.getTime() > d3.getTime() && d2.getTime() < d4.getTime()) {
                     return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static boolean checkValidCourseTine(Course course1, Course course2) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        for (int i = 0 ; i < course1.timeAndRoom.size() ; ++i) {
+            for (int j = 0 ; j < course2.timeAndRoom.size() ; ++j) {
+                if (course1.timeAndRoom.get(i).get("Day").equals(course2.timeAndRoom.get(j).get("Day"))) {
+                    Date d1 = sdf.parse(course1.timeAndRoom.get(i).get("Start Time"));
+                    Date d2 = sdf.parse(course1.timeAndRoom.get(i).get("End Time"));
+                    Date d3 = sdf.parse(course2.timeAndRoom.get(j).get("Start Time"));
+                    Date d4 = sdf.parse(course2.timeAndRoom.get(j).get("End Time"));
+                    if (d3.getTime() <= d1.getTime() && d1.getTime() < d4.getTime()) {
+                        //System.out.println(course1.timeAndRoom.get(i) + " " + course2.timeAndRoom.get(j));
+                        return false;
+                    } else if (d2.getTime() > d3.getTime() && d2.getTime() < d4.getTime()) {
+                        //System.out.println(course1.timeAndRoom.get(i) + " " + course2.timeAndRoom.get(j));
+                        return false;
+                    }
                 }
             }
         }
