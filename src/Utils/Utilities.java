@@ -9,9 +9,18 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * <h1>Utilities Class</h1>
+ * <p>This class provides several miscellaneous utilities that are used in the program.</p>
+ * <p>This includes, reading and parsing CSV files, converting dates to days, checking time validities</p>
+ */
 public class Utilities implements Serializable{
     public static ArrayList<Course> courses = new ArrayList<>();
     public static ArrayList<Room> rooms = new ArrayList<>();
+
+    /**
+     * This function is used to load the CSV file
+     */
     public static void readCoursesCSV() {
         String CSVfile1 = "src/DataFiles/alldata.csv";
         BufferedReader br = null;
@@ -29,6 +38,15 @@ public class Utilities implements Serializable{
         }
     }
 
+    /**
+     * This Function is used to to read the CSV file and begins parsing Data.
+     * Then adds all courses to the courses array
+     * Also adds all the parsed rooms to bookings
+     * @param br This is the bufferedReader stream
+     * @param csvSplit This is the delimitter for the CSV
+     * @param courses This is an arrayList to contain all the Course objects
+     * @throws IOException
+     */
     private static void readFile(BufferedReader br, String csvSplit, ArrayList<Course> courses) throws IOException {
         String line;
         while ((line = br.readLine()) != null) {
@@ -75,15 +93,18 @@ public class Utilities implements Serializable{
             courses.add(course);
         }
         addRoomsToBooking();
-        //printBookings();
-        //printAllCourses();
     }
 
+    /**
+     * This function adds all the timings to the Room class for a particular room
+     * @param day Used to add all timings for a particular day
+     * @param data Contains the timing details
+     * @param subject Contains the lecture subject/course
+     */
     public static void addTimings(String day, String data, String subject) {
         if (data.equals("") || data.equals(" ")) {
             return;
         }
-        //Find the number of times some timing occurs on a particular data string
         int occurences = 0;
         for (int i = 0 ; i < data.length() ; ++i) {
             if (data.substring(i, i + 1).equals("@")) {
@@ -92,7 +113,7 @@ public class Utilities implements Serializable{
         }
         int startAt = 0;
         int endAt = 0;
-        //For each time occurence (for eg DM tutes)
+
         for (int i = 0 ; i < occurences ; ++i) {
             startAt = data.indexOf("$", startAt) + 1;
             String classNumber = "";
@@ -106,7 +127,6 @@ public class Utilities implements Serializable{
             String startTempTime = data.substring(data.indexOf("@", startAt - 13) + 1, data.indexOf("-", startAt - 13));
             String endTempTime = data.substring(data.indexOf("-", startAt - 13) + 1, data.indexOf("$", startAt - 13));
             int numOfClasses = 1;
-            //Suppose tutes takes place in multiple classes, then handle using an arraylist
             ArrayList<String> classArray = new ArrayList<>();
             for (int j = 0 ; j < classNumber.length() ; ++j) {
                 if (classNumber.substring(j, j + 1).equals(";"))
@@ -174,6 +194,9 @@ public class Utilities implements Serializable{
         }
     }
 
+    /**
+     * This function adds all booked classrooms to an arraylist storing all currently booked rooms
+     */
     public static void addRoomsToBooking() {
         for (int i = 0 ; i < rooms.size() ; ++i) {
             for (Map.Entry<String, ArrayList<LinkedHashMap<String, String>>> entry : rooms.get(i).roomAvailable.entrySet()) {
@@ -186,25 +209,11 @@ public class Utilities implements Serializable{
         }
     }
 
-    public static void printBookings() {
-        for (int i = 0 ; i < Booking.bookings.size() ; ++i) {
-            System.out.println(Booking.bookings.get(i));
-        }
-    }
-
-    public static void printAllRooms() {
-        for (int i = 0 ; i < rooms.size() ; ++i) {
-            System.out.println(rooms.get(i).getRoomNumber());
-            System.out.println(rooms.get(i).roomAvailable);
-        }
-    }
-
-    public static void printAllCourses() {
-        for (int i = 0 ; i < courses.size() ; ++i) {
-            System.out.println(courses.get(i).getCourseName());
-            System.out.println(courses.get(i).timeAndRoom);
-        }
-    }
+    /**
+     * This function converts a date string given in the format (YYYY-MM-DD) to the corresponding day
+     * @param date Contains the string date
+     * @return returns the day
+     */
     public static String convertDateToDay(String date) {
         int year = Integer.parseInt(date.substring(0, date.indexOf("-")));
         date = date.substring(date.indexOf("-") + 1);
@@ -226,6 +235,15 @@ public class Utilities implements Serializable{
 
     }
 
+    /**
+     * This function returns a boolean value determing whether there is an overlap between a bookings
+     * @param start start time of booking
+     * @param end end time of booking
+     * @param classroom classroom attempting to be booked
+     * @param Day Day on which booking is for
+     * @return return boolean true or false
+     * @throws ParseException
+     */
     public static boolean determineValidTime(String start, String end, String classroom, String Day) throws ParseException{
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
         Date d1 = sdf.parse(start);
@@ -245,6 +263,13 @@ public class Utilities implements Serializable{
         return true;
     }
 
+    /**
+     * This functions checks whether there are any overlapping timinigs between two courses
+     * @param course1 course 1
+     * @param course2 course 2
+     * @return returns boolean true or false
+     * @throws ParseException
+     */
     public static boolean checkValidCourseTime(Course course1, Course course2) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
         for (int i = 0 ; i < course1.timeAndRoom.size() ; ++i) {
@@ -267,6 +292,10 @@ public class Utilities implements Serializable{
         return true;
     }
 
+    /**
+     * This function serializes the course arraylist
+     * @throws IOException
+     */
     public static void serializeCourses() throws IOException{
         ObjectOutputStream out = null;
         try {
@@ -277,6 +306,10 @@ public class Utilities implements Serializable{
         }
     }
 
+    /**
+     * This function serializes the rooms arraylist
+     * @throws IOException
+     */
     public static void serializeRooms() throws IOException{
         ObjectOutputStream out = null;
         try {
@@ -287,6 +320,11 @@ public class Utilities implements Serializable{
         }
     }
 
+    /**
+     * This function deserializes the courses arraylist
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static void deSerializeCourses() throws IOException, ClassNotFoundException{
         ObjectInputStream in = null;
         try {
@@ -297,6 +335,11 @@ public class Utilities implements Serializable{
         }
     }
 
+    /**
+     * This function deserializes the rooms arraylist
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static void deSerializeRooms() throws IOException, ClassNotFoundException{
         ObjectInputStream in = null;
         try {

@@ -5,7 +5,21 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
+/**
+ * <h1>SendEmail Class</h1>
+ * <p>This Class handles the sending of emails to students</p>
+ * <p>It used in case any approvals need to be notified to students</p>
+ */
 public class SendEmail {
+    /**
+     * This function sends the email using smtp protocol of google
+     * source: https://www.javatpoint.com
+     * @param from from email address
+     * @param password from password
+     * @param to to email address
+     * @param sub subject
+     * @param msg message
+     */
     public static void send(String from,String password,String to,String sub,String msg){
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
