@@ -9,6 +9,7 @@ import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +29,7 @@ import javafx.util.StringConverter;
 import sun.awt.image.ImageWatched;
 
 import javax.swing.*;
+import java.awt.print.Book;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -85,7 +87,16 @@ public class AdminController {
 	@FXML
     public void handleCourseReq(ActionEvent event) throws IOException, ClassNotFoundException {
         CourseRequests c = new CourseRequests();
-        c.setCourseRequests(c.deserialize());
+        try {
+            c.setCourseRequests(c.deserialize());
+        } catch(Exception e) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("No Course Requests Available");
+            alert.show();
+            return;
+        }
         tableanchor.getChildren().clear();
         TableView tb = new TableView<>(generateDataInMap4(c));
         tb.prefWidthProperty().bind(tableanchor.widthProperty());
@@ -220,7 +231,16 @@ public class AdminController {
     @FXML
     public void handleAccReq(ActionEvent event) throws IOException, ClassNotFoundException {
         AccountRequests a = new AccountRequests();
-        a.setAccountRequests(a.deserialize());
+        try{
+            a.setAccountRequests(a.deserialize());
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("No Account Requests Available");
+            alert.show();
+            return;
+        }
         tableanchor.getChildren().clear();
         TableView tb = new TableView<>(generateDataInMap3(a));
         tb.prefWidthProperty().bind(tableanchor.widthProperty());
@@ -245,7 +265,6 @@ public class AdminController {
         col8.setCellValueFactory(new MapValueFactory<>("Roll Number"));
         col9.setCellValueFactory(new MapValueFactory<>("Branch"));
 
-        //tb.setEditable(true);
         tb.getSelectionModel().setCellSelectionEnabled(true);
         tb.getColumns().setAll(col1, col2, col3, col4, col5, col6, col7, col8, col9);
         Callback<TableColumn<Map, String>,TableCell<Map, String>>
@@ -407,6 +426,12 @@ public class AdminController {
 			b.setBookinRequests(b.deserialize());
 		} catch (IOException | ClassNotFoundException | NullPointerException e) {
 			System.out.println("No bookingreqs.txt found");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("No Booking Requests Available");
+            alert.show();
+            return;
 		}
 		System.out.println(b.getBookingrequests());
 		if (b.getBookingrequests() != null) {
@@ -542,6 +567,11 @@ public class AdminController {
 		}
     }
 
+    /**
+     * Function used to generate a map object to populate the table
+     * @param b
+     * @return
+     */
     public ObservableList<Map> generateDataInMap2(BookingRequests b) {
         ObservableList<Map> allData = FXCollections.observableArrayList();
         for (int i = 0; i < b.getBookingrequests().size() ; ++i) {
@@ -575,7 +605,7 @@ public class AdminController {
 	 * clicks on current booking button. It basically shows all the bookings that has been previously made and accepted.
 	 */
     @FXML
-    public void handleCurrentBookings(ActionEvent event) {
+    public void handleCurrentBookings(ActionEvent event){
         tableanchor.getChildren().clear();
         TableView tb = new TableView<>(generateDataInMap());
         tb.prefWidthProperty().bind(tableanchor.widthProperty());
@@ -616,6 +646,39 @@ public class AdminController {
         col4.setCellFactory(cellFactoryForMap);
         col5.setCellFactory(cellFactoryForMap);
         tableanchor.getChildren().add(tb);
+        ContextMenu cm = new ContextMenu();
+        MenuItem item1 = new MenuItem("Cancel this Booking");
+        item1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Map<String, String> hm = new LinkedHashMap<String, String>((LinkedHashMap) tb.getSelectionModel().getSelectedItem());
+
+                Booking.bookings.remove(hm);
+                for (int i = 0 ; i < Booking.bookings.size() ; ++i) {
+                    if ((hm.get("Day") + hm.get("Room Number") + hm.get("Purpose") + hm.get("Start Time") + hm.get("End Time")).equals((String) Booking.bookings.get(i).get("Day") + Booking.bookings.get(i).get("Room Number") + Booking.bookings.get(i).get("Purpose") + Booking.bookings.get(i).get("Start Time") + Booking.bookings.get(i).get("End Time"))) {
+                        Booking.bookings.remove(Booking.bookings.get(i));
+                        break;
+                    }
+                }
+                try{
+                    Booking.serialize();
+                } catch(IOException e){
+                    e.printStackTrace();
+                }
+                tb.getItems().remove(hm);
+            }
+        });
+        cm.getItems().add(item1);
+        tb.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getButton() == MouseButton.SECONDARY && tb.getSelectionModel().getSelectedItem() != null) {
+                    cm.show(tb, event.getScreenX(), event.getScreenY());
+                } else {
+                    cm.hide();
+                }
+            }
+        });
     }
 
 	/**
@@ -624,7 +687,7 @@ public class AdminController {
 	private ObservableList<Map> generateDataInMap() {
         ObservableList<Map> allData = FXCollections.observableArrayList();
         for (int i = 0; i < Booking.bookings.size() ; ++i) {
-            Map<String, String> dataRow = new HashMap<>();
+            Map<String, String> dataRow = new LinkedHashMap<>();
 
             dataRow.put("Day", (String)Booking.bookings.get(i).get("Day"));
             dataRow.put("Room Number", (String)Booking.bookings.get(i).get("Room Number"));
