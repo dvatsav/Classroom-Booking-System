@@ -248,7 +248,7 @@ public class Utilities {
         return true;
     }
 
-    public static boolean checkValidCourseTine(Course course1, Course course2) throws ParseException {
+    public static boolean checkValidCourseTime(Course course1, Course course2) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
         for (int i = 0 ; i < course1.timeAndRoom.size() ; ++i) {
             for (int j = 0 ; j < course2.timeAndRoom.size() ; ++j) {
@@ -269,5 +269,4 @@ public class Utilities {
         }
         return true;
     }
-
 }

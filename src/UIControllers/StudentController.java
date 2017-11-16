@@ -39,7 +39,7 @@ import java.util.Map;
 public class StudentController {
     @FXML private TextField student_search_course;
     @FXML private AnchorPane anchor_for_table;
-
+	//private ArrayList<Course> displaycourses = new ArrayList<>();
     private ObservableList<Course> courses = FXCollections.observableArrayList(Utilities.courses);
 
 	@FXML
@@ -68,6 +68,7 @@ public class StudentController {
 		col6.setCellValueFactory(new PropertyValueFactory<Course, String>("postCondition"));
 		col6.prefWidthProperty().bind(table_student.widthProperty().multiply(0.9));
 		table_student.setItems(courses);
+		/*
 		ContextMenu cm = new ContextMenu();
 		MenuItem mi1 = new MenuItem("Add to my List Of Courses");
 		mi1.setOnAction(new EventHandler<ActionEvent>() {
@@ -92,6 +93,7 @@ public class StudentController {
 				}
 			}
 		});
+		*/
 		anchor_for_table.getChildren().add(table_student);
 	}
 
@@ -123,7 +125,7 @@ public class StudentController {
 	}
 
 	@FXML
-    public void handleGenerateCourse(KeyEvent keyEvent) {
+    public void handleGenerateCourse(KeyEvent keyEvent) throws IOException, ClassNotFoundException, ParseException{
 //		initialize();
 		if (keyEvent.getCode() == KeyCode.ENTER) {
 			anchor_for_table.getChildren().clear();
@@ -150,17 +152,38 @@ public class StudentController {
             col5.setCellValueFactory(new PropertyValueFactory<Course, String>("preReq"));
             col6.setCellValueFactory(new PropertyValueFactory<Course, String>("postCondition"));
             col6.prefWidthProperty().bind(table_student.widthProperty().multiply(0.9));
-            if (searchedString.equals("") || searchedString == null)
-            	table_student.setItems(courses);
-            else {
-            	ArrayList<Course> filteredCourses = new ArrayList<>();
+
+            Database userDb = readDBFromFile();
+			HashMap<String, Student> mp = (HashMap<String, Student>) userDb.getStudentsDB();
+			Student student = null;
+			ArrayList<Course> studCourses;
+			for (Student s : mp.values())
+				if (s.getEmail().equals(CurrentLoggenInUser.getCurrentUserEmail()))
+					student = s;
+			studCourses = new ArrayList<>(student.getMyCourses());
+			ArrayList<Course> filteredCourses = new ArrayList<>(Utilities.courses);
+			if (studCourses.size() > 0) {
+				for (Course d : courses) {
+					for (Course c : studCourses) {
+						if (!Utilities.checkValidCourseTime(c, d) || c.equals(d)) {
+							filteredCourses.remove(d);
+						}
+					}
+				}
+			}
+			if (searchedString.equals("") || searchedString == null) {
+				table_student.setItems(FXCollections.observableArrayList(filteredCourses));
+			} else {
             	for (Course c : courses){
-            		if (c.getPostCondition().contains(searchedString)) {
-            			filteredCourses.add(c);
+            		if (!c.getPostCondition().toLowerCase().replace(".", "").replace(",", "").contains(searchedString.toLowerCase())) {
+						filteredCourses.remove(c);
 					}
 				}
 				table_student.setItems(FXCollections.observableArrayList(filteredCourses));
 			}
+
+
+
 			ContextMenu cm = new ContextMenu();
 			MenuItem mi1 = new MenuItem("Add to my List Of Courses");
 			mi1.setOnAction(new EventHandler<ActionEvent>() {
@@ -188,6 +211,15 @@ public class StudentController {
 			anchor_for_table.getChildren().add(table_student);
 		}
     }
+
+	public boolean notPresent(ArrayList<Course> ar, Course c) {
+		for (Course d  : ar) {
+			if (c.equals(d)) {
+				return false;
+			}
+		}
+		return true;
+	}
 
     @FXML
     public void handleCurrentBookings(ActionEvent event) {
