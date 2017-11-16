@@ -209,6 +209,7 @@ public class requestbookController {
             alert.setTitle("Error");
             alert.setHeaderText(null);
             alert.setContentText("The Requested Time Slot is not Available");
+            alert.show();
         }
     }
 
