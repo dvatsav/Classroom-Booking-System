@@ -4,15 +4,12 @@ import Supplementary.Booking;
 import Supplementary.Course;
 import Supplementary.Room;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class Utilities {
+public class Utilities implements Serializable{
     public static ArrayList<Course> courses = new ArrayList<>();
     public static ArrayList<Room> rooms = new ArrayList<>();
     public static void readCoursesCSV() {
@@ -269,4 +266,45 @@ public class Utilities {
         }
         return true;
     }
+
+    public static void serializeCourses() throws IOException{
+        ObjectOutputStream out = null;
+        try {
+            out = new ObjectOutputStream(new FileOutputStream("./src/DataFiles/courses.txt"));
+            out.writeObject(courses);
+        } finally {
+            out.close();
+        }
+    }
+
+    public static void serializeRooms() throws IOException{
+        ObjectOutputStream out = null;
+        try {
+            out = new ObjectOutputStream(new FileOutputStream("./src/DataFiles/rooms.txt"));
+            out.writeObject(rooms);
+        } finally {
+            out.close();
+        }
+    }
+
+    public static void deSerializeCourses() throws IOException, ClassNotFoundException{
+        ObjectInputStream in = null;
+        try {
+            in = new ObjectInputStream(new FileInputStream("./src/DataFiles/courses.txt"));
+            courses = (ArrayList<Course>) in.readObject();
+        } finally {
+            in.close();
+        }
+    }
+
+    public static void deSerializeRooms() throws IOException, ClassNotFoundException{
+        ObjectInputStream in = null;
+        try {
+            in = new ObjectInputStream(new FileInputStream("./src/DataFiles/rooms.txt"));
+            rooms = (ArrayList<Room>) in.readObject();
+        } finally {
+            in.close();
+        }
+    }
+
 }

@@ -81,7 +81,7 @@
                                                                 <String fx:value="C22" />
                                                                 <String fx:value="C23" />
                                                                 <String fx:value="S01" />
-                                                                <String fx:value="S01" />
+                                                                <String fx:value="S02" />
                                                             </FXCollections>
                                                         </items>
                                                 </ChoiceBox>

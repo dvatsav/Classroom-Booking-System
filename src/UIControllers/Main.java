@@ -2,6 +2,7 @@ package UIControllers;
 
 
 
+import Supplementary.Booking;
 import Utils.Utilities;
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 public class Main extends Application {
@@ -22,8 +24,18 @@ public class Main extends Application {
         primaryStage.resizableProperty().setValue(Boolean.FALSE);
         Parent root = FXMLLoader.load(getClass().getResource("entryPage.fxml"));
         primaryStage.setTitle("ClassRoom Booking System");
-        Utilities.readCoursesCSV();
+        File file = new File("./src/DataFiles/courses.txt");
 
+        if (file.exists()) {
+            Utilities.deSerializeCourses();
+            Utilities.deSerializeRooms();
+            Booking.deserialize();
+        }
+        else {
+            Utilities.readCoursesCSV();
+            Utilities.serializeCourses();
+            Utilities.serializeRooms();
+        }
         Scene scene = new Scene(root, 600, 400);
 
         primaryStage.setScene(scene);
