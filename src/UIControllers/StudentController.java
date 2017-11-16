@@ -68,7 +68,6 @@ public class StudentController {
 		col6.setCellValueFactory(new PropertyValueFactory<Course, String>("postCondition"));
 		col6.prefWidthProperty().bind(table_student.widthProperty().multiply(0.9));
 		table_student.setItems(courses);
-		/*
 		ContextMenu cm = new ContextMenu();
 		MenuItem mi1 = new MenuItem("Add to my List Of Courses");
 		mi1.setOnAction(new EventHandler<ActionEvent>() {
@@ -77,6 +76,7 @@ public class StudentController {
 				Course course = table_student.getSelectionModel().getSelectedItem();
 				try {
 					addCourseToStudentList(course);
+					table_student.getItems().remove(course);
 				} catch (IOException | ClassNotFoundException e) {
 					e.printStackTrace();
 				}
@@ -93,7 +93,6 @@ public class StudentController {
 				}
 			}
 		});
-		*/
 		anchor_for_table.getChildren().add(table_student);
 	}
 
@@ -192,6 +191,7 @@ public class StudentController {
 					Course course = table_student.getSelectionModel().getSelectedItem();
 					try {
 						addCourseToStudentList(course);
+						table_student.getItems().remove(course);
 					} catch (IOException | ClassNotFoundException e) {
 						e.printStackTrace();
 					}
