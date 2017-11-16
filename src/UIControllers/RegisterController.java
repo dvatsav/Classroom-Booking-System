@@ -37,6 +37,25 @@ public class RegisterController implements Serializable {
 	@FXML
 	public void handleFinalPage(ActionEvent even) throws IOException, ClassNotFoundException {
 		boolean passwordMatch = false;
+		if (register_firstname.getText().equals("") || register_lastname.getText().equals("") || register_password.getText().equals("") || register_phnumber.getText().equals("") || register_emailid.getText().equals("") || register_dob.getValue() == null || register_repassword.getText().equals("")) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setTitle("Error");
+			alert.setHeaderText(null);
+			alert.setContentText("Please Enter All Fields");
+			alert.show();
+			return;
+		}
+
+		if (typeOfUser.getValue().toString().equals("Student") && (register_rollnum.getText().equals("") || branchOfUser.getValue() == null)) {
+
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setTitle("Error");
+			alert.setHeaderText(null);
+			alert.setContentText("Please Enter All Fields");
+			alert.show();
+			return;
+		}
+
 		tempFirstName = register_firstname.getText();
 		tempLastName = register_lastname.getText();
 		tempEmailID = register_emailid.getText();
@@ -130,6 +149,15 @@ public class RegisterController implements Serializable {
 				a.serialize(a.getAccountRequests());
 				//serializeData(admin);
 			}
+
+
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setTitle("Success");
+			alert.setHeaderText(null);
+			alert.setContentText("Please Await Approval of Admin");
+			alert.show();
+
+
 			Parent newscene = FXMLLoader.load(getClass().getResource("entryPage.fxml"));
 			Main.primaryStage.setScene(new Scene(newscene, 600, 400));
 			Main.primaryStage.show();

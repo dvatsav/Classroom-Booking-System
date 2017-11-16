@@ -42,7 +42,8 @@
                                                <Button mnemonicParsing="false" onAction="#handleBookReq" prefHeight="31.0" prefWidth="142.0" text="Student Requests" />
                                                <Button mnemonicParsing="false" onAction="#handleAccReq" prefHeight="31.0" prefWidth="142.0" text="Account Requests" />
                                                <Button mnemonicParsing="false" onAction="#handleBookRoom" prefHeight="31.0" prefWidth="142.0" text="Book A Room" />
-                                               <Button onAction="#handleCourseReq" mnemonicParsing="false" prefHeight="31.0" prefWidth="143.0" text="Course Requests" />
+                                               <Button mnemonicParsing="false" onAction="#handleCourseReq" prefHeight="31.0" prefWidth="143.0" text="Course Requests" />
+                                    <Button mnemonicParsing="false" onAction="#handleMailLogin" prefHeight="31.0" prefWidth="144.0" text="Mail Login" />
                                            </children>
                                        </VBox>
                                    </children>
