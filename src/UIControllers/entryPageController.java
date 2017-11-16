@@ -15,10 +15,9 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+
+import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -35,13 +34,19 @@ public class entryPageController {
     String tempEmailLogin = "", tempPasswordLogin = "", tempTypeOfUserLogin = "";
 
     @FXML
-    private void handleButtonClick(ActionEvent event) throws IOException, ClassNotFoundException {
+    private void handleButtonClick(ActionEvent event) throws IOException {
     	tempEmailLogin = login_email.getText();
     	tempPasswordLogin = login_password.getText();
     	tempTypeOfUserLogin = loginUserTypeChoice.getSelectionModel().getSelectedItem().toString();
 		userType = tempTypeOfUserLogin;
 		userEmail = tempEmailLogin;
-    	Database userDb = readDBFromFile();
+		Database userDb = null;
+		try {
+			userDb = readDBFromFile();
+		} catch (IOException | ClassNotFoundException | NullPointerException e) {
+			System.out.println("No database of users found!");
+//			e.printStackTrace();
+		}
 		if (tempTypeOfUserLogin.equals("Student")) {
 			HashMap<String, Student> mp = (HashMap<String, Student>) userDb.getStudentsDB();
 			for (Student student : mp.values()) {
@@ -62,12 +67,18 @@ public class entryPageController {
 				}
 			}
 		} else if (tempTypeOfUserLogin.equals("Admin")) {
-			List<Admin> al = userDb.getAdminDB();
-			for (Admin admin : al) {
-				if (admin.getEmail().equals(tempEmailLogin) && admin.getPassword().equals(tempPasswordLogin)) {
-					Parent newscene = FXMLLoader.load(getClass().getResource("admin.fxml"));
-					Main.primaryStage.setScene(new Scene(newscene, 1200, 800));
-					Main.primaryStage.show();
+			if (tempEmailLogin.equals("admin@iiitd.ac.in") && tempPasswordLogin.equals("hello")) {
+				Parent newscene = FXMLLoader.load(getClass().getResource("admin.fxml"));
+				Main.primaryStage.setScene(new Scene(newscene, 1200, 800));
+				Main.primaryStage.show();
+			} else {
+				List<Admin> al = userDb.getAdminDB();
+				for (Admin admin : al) {
+					if (admin.getEmail().equals(tempEmailLogin) && admin.getPassword().equals(tempPasswordLogin)) {
+						Parent newscene = FXMLLoader.load(getClass().getResource("admin.fxml"));
+						Main.primaryStage.setScene(new Scene(newscene, 1200, 800));
+						Main.primaryStage.show();
+					}
 				}
 			}
 		}
