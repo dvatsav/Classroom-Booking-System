@@ -45,8 +45,8 @@ public class AccountRequests {
         accountrequests = new ArrayList<>();
     }
 
-    public void removeAccount(Users user) {
-        accountrequests.remove(user);
+    public void removeAccount(HashMap hm) {
+        accountrequests.remove(hm);
     }
 
     public ArrayList<HashMap> getAccountRequests() {

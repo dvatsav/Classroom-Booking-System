@@ -1,5 +1,8 @@
 package UIControllers;
 
+import Actors.Admin;
+import Actors.Faculty;
+import Actors.Student;
 import Supplementary.AccountRequests;
 import Supplementary.Booking;
 import Supplementary.BookingRequests;
@@ -91,6 +94,90 @@ public class AdminController {
         col8.setCellFactory(cellFactoryForMap);
         col9.setCellFactory(cellFactoryForMap);
         tableanchor.getChildren().add(tb);
+
+        ContextMenu cm = new ContextMenu();
+        MenuItem item1 = new MenuItem("Accept");
+        item1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                HashMap<String, String> hm = new HashMap<>((HashMap)tb.getSelectionModel().getSelectedItem());
+                //Add to db.txt here
+                tb.getItems().remove(hm);
+                File file = new File("./src/DataFiles/accountreqs.txt");
+                AccountRequests a = new AccountRequests();
+                if (file.exists()) {
+                    try {
+                        a.setAccountRequests(a.deserialize());
+                        System.out.println(hm);
+                        a.removeAccount(hm);
+                        if (hm.get("User Type").equals("Student")) {
+                            Student student = new Student(hm.get("First Name"), hm.get("Last Name"), hm.get("Phone Number"), hm.get("Email ID"), hm.get("Password"), hm.get("User Type"), hm.get("Date of Birth"), hm.get("Roll Number"), hm.get("Branch"));
+                            RegisterController.serializeData(student);
+                        } else if (hm.get("User Type").equals("Faculty")) {
+                            Faculty faculty = new Faculty(hm.get("First Name"), hm.get("Last Name"), hm.get("Phone Number"), hm.get("Email ID"), hm.get("Password"), hm.get("User Type"), hm.get("Date of Birth"));
+                            RegisterController.serializeData(faculty);
+                        } else {
+                            Admin admin = new Admin(hm.get("First Name"), hm.get("Last Name"), hm.get("Phone Number"), hm.get("Email ID"), hm.get("Password"), hm.get("User Type"), hm.get("Date of Birth"));
+                            RegisterController.serializeData(admin);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    a.newAccount();
+                }
+                try {
+                    a.serialize(a.getAccountRequests());
+                } catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        MenuItem item2 = new MenuItem("Reject");
+        item2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                HashMap<String, String> hm = new HashMap<String, String>((HashMap)tb.getSelectionModel().getSelectedItem());
+                tb.getItems().remove(hm);
+                File file = new File("./src/DataFiles/accountreqs.txt");
+                AccountRequests a = new AccountRequests();
+                if (file.exists()) {
+                    try {
+                        a.setAccountRequests(a.deserialize());
+                        a.removeAccount(hm);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    a.newAccount();
+                }
+                try {
+                    a.serialize(a.getAccountRequests());
+                } catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+        });
+        cm.getItems().add(item1);
+        cm.getItems().add(item2);
+        tb.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getButton() == MouseButton.SECONDARY && tb.getSelectionModel().getSelectedItem() != null) {
+                    cm.show(tb, event.getScreenX(), event.getScreenY());
+                } else {
+                    cm.hide();
+                }
+            }
+        });
+
     }
 
     public ObservableList<Map> generateDataInMap3(AccountRequests a) {

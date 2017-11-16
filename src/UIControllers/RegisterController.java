@@ -54,7 +54,7 @@ public class RegisterController implements Serializable {
 			if (tempUserType.equals("Student")) {
 				tempRollNo = register_rollnum.getText();
 				tempUserBranch = branchOfUser.getSelectionModel().getSelectedItem().toString();
-				Student student = new Student(tempFirstName, tempLastName, tempPhNumber, tempEmailID, tempPassword, tempUserType, tempDob, tempRollNo, tempUserBranch);
+				//Student student = new Student(tempFirstName, tempLastName, tempPhNumber, tempEmailID, tempPassword, tempUserType, tempDob, tempRollNo, tempUserBranch);
 				HashMap<String, String> hm = new HashMap<>();
 				hm.put("User Type", "Student");
 				hm.put("First Name", tempFirstName);
@@ -75,11 +75,11 @@ public class RegisterController implements Serializable {
 				}
 				a.addElement(hm);
 				a.serialize(a.getAccountRequests());
-				System.out.println("-------------- " + student);
-				serializeData(student);
+				//System.out.println("-------------- " + student);
+				//serializeData(student);
 			} else if (tempUserType.equals("Faculty")) {
-				Faculty faculty = new Faculty(tempFirstName, tempLastName, tempPhNumber, tempEmailID, tempPassword, tempUserType, tempDob);
-				System.out.println("-----------------" + faculty);
+				//Faculty faculty = new Faculty(tempFirstName, tempLastName, tempPhNumber, tempEmailID, tempPassword, tempUserType, tempDob);
+				//System.out.println("-----------------" + faculty);
 				HashMap<String, String> hm = new HashMap<>();
 				hm.put("User Type", "Faculty");
 				hm.put("First Name", tempFirstName);
@@ -100,10 +100,10 @@ public class RegisterController implements Serializable {
 				}
 				a.addElement(hm);
 				a.serialize(a.getAccountRequests());
-				serializeData(faculty);
+				//serializeData(faculty);
 			} else if (tempUserType.equals("Admin")) {
-				Admin admin = new Admin(tempFirstName, tempLastName, tempPhNumber, tempEmailID, tempPassword, tempUserType, tempDob);
-				System.out.println("-----------" + admin);
+				//Admin admin = new Admin(tempFirstName, tempLastName, tempPhNumber, tempEmailID, tempPassword, tempUserType, tempDob);
+				//.out.println("-----------" + admin);
 				HashMap<String, String> hm = new HashMap<>();
 				hm.put("User Type", "Admin");
 				hm.put("First Name", tempFirstName);
@@ -124,7 +124,7 @@ public class RegisterController implements Serializable {
 				}
 				a.addElement(hm);
 				a.serialize(a.getAccountRequests());
-				serializeData(admin);
+				//serializeData(admin);
 			}
 			Parent newscene = FXMLLoader.load(getClass().getResource("entryPage.fxml"));
 			Main.primaryStage.setScene(new Scene(newscene, 600, 400));
@@ -140,7 +140,7 @@ public class RegisterController implements Serializable {
 	}
 
 
-	private void serializeData(Users user) throws IOException, ClassNotFoundException {
+	public static void serializeData(Users user) throws IOException, ClassNotFoundException {
 		if (user.getType().equals("Student")) {
 			Student student = (Student) user;
 			// Check if db.txt exists if not create it else write to that only.
@@ -214,14 +214,14 @@ public class RegisterController implements Serializable {
 		}
 	}
 
-	private void writeDBToFile(Database db) throws IOException {
+	private static void writeDBToFile(Database db) throws IOException {
 		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("./src/db.txt"));
 		out.writeObject(db);
 		out.flush();
 		out.close();
 	}
 
-	private Database readDBFromFile() throws IOException, ClassNotFoundException {
+	private static Database readDBFromFile() throws IOException, ClassNotFoundException {
 		ObjectInputStream oin = new ObjectInputStream(new FileInputStream("./src/db.txt"));
 		return ( (Database) oin.readObject() );
 	}
