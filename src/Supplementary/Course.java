@@ -53,6 +53,16 @@ public class Course implements Serializable {
     public String getPreReq() {return preReq;}
     public String getPostCondition() {return postCondition;}
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this.getClass() == obj.getClass()) {
+            obj = (Course) obj;
+            return this.courseName.equals(((Course) obj).courseName) && this.instructor.equals(((Course) obj).instructor)
+                    && this.postCondition.equals(((Course) obj).postCondition);
+        }
+        return false;
+    }
+
     public void getPostConditions() {
         for (int i = 0 ; i < postConditions.size() ; ++i) {
             System.out.println(postConditions.get(i));
