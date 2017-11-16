@@ -57,9 +57,4 @@ public class BookingHelper {
 				", requestedBy='" + requestedBy + '\'' +
 				'}';
 	}
-//	temp.put("Room Number", (String)class_number.getValue());
-//		temp.put("Start Time", startTime);
-//		temp.put("End Time", endTime);
-//		temp.put("Purpose", purpose.getText());
-//		temp.put("Requested by", entryPageController.userEmail);
 }

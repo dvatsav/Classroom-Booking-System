@@ -146,20 +146,4 @@ public class Course implements Serializable {
         postConditions.add(condition);
     }
 
-    public void setCourseCode(String courseCode) {
-        this.courseCode = courseCode;
-    }
-
-    public void setPostConditions(String postCondition) {
-        this.postConditions.add(postCondition);
-    }
-
-    public void setAcronym(String acronym) {
-        this.acronym = acronym;
-    }
-
-    public void setCreditsOffered(int creditsOffered) {
-        this.creditsOffered = creditsOffered;
-    }
-
 }

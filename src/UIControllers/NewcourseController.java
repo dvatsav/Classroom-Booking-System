@@ -20,6 +20,12 @@ public class NewcourseController {
 
     private String courseName, credit, preReq, postCond;
 
+    /**
+     * This generates and submits a request for a new course to be launched by a faculty member.
+     * @param event
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     @FXML
     public void handleSubmit(ActionEvent event) throws IOException, ClassNotFoundException{
         courseName = course_name.getText();

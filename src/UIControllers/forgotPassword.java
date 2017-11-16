@@ -9,11 +9,12 @@ import javafx.scene.control.ButtonType;
 
 import java.io.IOException;
 
-/**
- * Created by Anubhav on 23-Oct-17.
- */
 public class forgotPassword {
-
+	/**
+	 * Starts the login page.
+	 * @param actionEvent
+	 * @throws IOException
+	 */
 	public void showLoginPage(ActionEvent actionEvent) throws IOException {
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
 		alert.setTitle("Information Dialog");

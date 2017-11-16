@@ -18,6 +18,11 @@ public class Main extends Application {
 
     public static Stage primaryStage;
 
+    /**
+     * This function starts the application by loading the entryPage.xml
+     * @param stage
+     * @throws Exception
+     */
     @Override
     public void start(Stage stage) throws Exception{
         primaryStage = stage;
