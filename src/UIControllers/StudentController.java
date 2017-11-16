@@ -99,7 +99,9 @@ public class StudentController {
 		HashMap<String, Student> mp = (HashMap<String, Student>) userDb.getStudentsDB();
 		for (Student student : mp.values()) {
 			if (student.getEmail().equals(CurrentLoggenInUser.getCurrentUserEmail())) {
-				student.getMyCourses().add(course);
+				if (!student.getMyCourses().contains(course)) {
+					student.getMyCourses().add(course);
+				}
 				break;
 			}
 		}
