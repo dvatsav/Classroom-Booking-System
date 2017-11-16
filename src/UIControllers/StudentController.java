@@ -161,6 +161,7 @@ public class StudentController {
 					student = s;
 			studCourses = new ArrayList<>(student.getMyCourses());
 			ArrayList<Course> filteredCourses = new ArrayList<>(Utilities.courses);
+//			ArrayList<Course> filteredCourses = new ArrayList<>();
 			if (studCourses.size() > 0) {
 				for (Course d : courses) {
 					for (Course c : studCourses) {
@@ -174,7 +175,8 @@ public class StudentController {
 				table_student.setItems(FXCollections.observableArrayList(filteredCourses));
 			} else {
             	for (Course c : courses){
-            		if (!c.getPostCondition().toLowerCase().replace(".", "").replace(",", "").contains(searchedString.toLowerCase())) {
+            		if (!c.getPostCondition().toLowerCase().replace(".", "").replace(",", "").contains(searchedString.toLowerCase()) &&
+							!c.getCourseName().toLowerCase().contains(searchedString.toLowerCase())) {
 						filteredCourses.remove(c);
 					}
 				}
