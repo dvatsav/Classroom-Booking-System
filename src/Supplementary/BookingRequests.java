@@ -5,6 +5,10 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * <h1>Booking Requests Class</h1>
+ * <p>This class is used to store the requests before the accepted or rejected by the admin.</p>
+ */
 public class BookingRequests implements Serializable{
     private ArrayList<HashMap> bookingrequests;
     public void serialize(ArrayList<HashMap> ar) throws IOException {

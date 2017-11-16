@@ -4,6 +4,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * <h1>Course Requests</h1>
+ * <p>This class is used to store the requests of a new course before it is approved by an admin.</p>
+ */
 public class CourseRequests implements Serializable{
     private ArrayList<HashMap> courserequests;
     public void serialize(ArrayList<HashMap> ar) throws IOException {

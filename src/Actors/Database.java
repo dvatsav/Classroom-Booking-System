@@ -7,6 +7,7 @@ import java.util.Map;
 
 /**
  * Created by Anubhav on 02-Nov-17.
+ * <p>This class is used to store the database of users in a local file.</p>
  */
 public class Database implements Serializable{
 	HashMap<String, Student> studentsDB;

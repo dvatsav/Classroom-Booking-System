@@ -1,7 +1,8 @@
 package Supplementary;
 
 /**
- * Created by Anubhav on 15-Nov-17.
+ * <h1>Booking Helper Class</h1>
+ * <p>This class is used to load the information related to various courses in the table.</p>
  */
 public class BookingHelper {
 	private String day;
@@ -56,9 +57,4 @@ public class BookingHelper {
 				", requestedBy='" + requestedBy + '\'' +
 				'}';
 	}
-//	temp.put("Room Number", (String)class_number.getValue());
-//		temp.put("Start Time", startTime);
-//		temp.put("End Time", endTime);
-//		temp.put("Purpose", purpose.getText());
-//		temp.put("Requested by", entryPageController.userEmail);
 }

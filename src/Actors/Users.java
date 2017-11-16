@@ -3,6 +3,11 @@ package Actors;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+/**
+ * <h1>Users Class</h1>
+ * <p>This class is the basic structure for all the user groups in our app. It has basic fields which will be shared
+ * across all user groups.</p>
+ */
 public class Users implements Serializable{
 	protected String firstName;
 	protected String lastName;
@@ -28,25 +33,15 @@ public class Users implements Serializable{
 		return firstName;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
 
 	public String getLastName() {
 		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
 	}
 
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
 
 	public String getEmail() {
 		return email;
@@ -72,11 +67,4 @@ public class Users implements Serializable{
 		this.type = type;
 	}
 
-	public String getDob() {
-		return dob;
-	}
-
-	public void setDob(String dob) {
-		this.dob = dob;
-	}
 }

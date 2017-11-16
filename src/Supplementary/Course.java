@@ -3,6 +3,10 @@ package Supplementary;
 import java.io.Serializable;
 import java.util.*;
 
+/**
+ * <h1>Course Class</h1>
+ * <p>This class is used to store information related to a particular course. </p>
+ */
 public class Course implements Serializable {
     private String courseName;
     private String courseCode;
@@ -140,22 +144,6 @@ public class Course implements Serializable {
 
     public void addPostCondition(String condition) {
         postConditions.add(condition);
-    }
-
-    public void setCourseCode(String courseCode) {
-        this.courseCode = courseCode;
-    }
-
-    public void setPostConditions(String postCondition) {
-        this.postConditions.add(postCondition);
-    }
-
-    public void setAcronym(String acronym) {
-        this.acronym = acronym;
-    }
-
-    public void setCreditsOffered(int creditsOffered) {
-        this.creditsOffered = creditsOffered;
     }
 
 }

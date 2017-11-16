@@ -42,6 +42,11 @@ public class FacultyController {
 	public static Stage stage;
 	private ObservableList<Course> courses = FXCollections.observableArrayList(Utilities.courses);
 
+	/**
+	 * Loads the new course window.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	public void handleNewCourse(ActionEvent event) throws IOException{
 		Parent newscene = FXMLLoader.load(getClass().getResource("newcourse.fxml"));
@@ -52,6 +57,11 @@ public class FacultyController {
 		stage.show();
 	}
 
+	/**
+	 * Loads the room booking window.
+	 * @param event
+	 * @throws IOException
+	 */
     @FXML
     public void handleBookRoom(ActionEvent event) throws IOException {
         Parent newscene = FXMLLoader.load(getClass().getResource("requestbook.fxml"));
@@ -60,6 +70,10 @@ public class FacultyController {
         Main.primaryStage.show();
     }
 
+	/**
+	 * This function manages how the table is loaded and what all functions can the user perform on the table once he
+	 * clicks on current booking button.
+	 */
     @FXML
     public void handleCurrentBookings(ActionEvent event) {
 		tableanchor.getChildren().clear();
@@ -104,7 +118,11 @@ public class FacultyController {
 		tableanchor.getChildren().add(tb);
     }
 
-    private ObservableList<Map> generateDataInMap() {
+	/**
+	 * Helper function for table data.
+	 * @return
+	 */
+	private ObservableList<Map> generateDataInMap() {
         ObservableList<Map> allData = FXCollections.observableArrayList();
         for (int i = 0; i < Booking.bookings.size() ; ++i) {
             Map<String, String> dataRow = new HashMap<>();
@@ -119,14 +137,26 @@ public class FacultyController {
         return allData;
     }
 
-    @FXML
+	/**
+	 * Logs the user out of the app.
+	 * @param event
+	 * @throws IOException
+	 */
+	@FXML
     public void handleLogout(ActionEvent event) throws IOException {
         Parent newscene = FXMLLoader.load(getClass().getResource("entryPage.fxml"));
         Main.primaryStage.setScene(new Scene(newscene, 600, 400));
         Main.primaryStage.show();
     }
 
-    public void showCoursesTaught(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
+
+	/**
+	 * This function manages how the table is loaded and what all functions can the user perform on the table once he
+	 * clicks on courses taught button.
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	public void showCoursesTaught(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
 		tableanchor.getChildren().clear();
 		Faculty currentUser = null;
 		Database userDb = readDBFromFile();
@@ -169,11 +199,22 @@ public class FacultyController {
 		tableanchor.getChildren().add(tb);
     }
 
+	/**
+	 * Helper function to read database from file.
+	 * @return Returns an object of Database class.
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	private Database readDBFromFile() throws IOException, ClassNotFoundException {
 		ObjectInputStream oin = new ObjectInputStream(new FileInputStream("./src/db.txt"));
 		return ( (Database) oin.readObject() );
 	}
 
+	/**
+	 * Loads the about page.
+	 * @param actionEvent
+	 * @throws IOException
+	 */
 	public void showAboutPage(ActionEvent actionEvent) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("about.fxml"));
 		Parent root1 = (Parent) fxmlLoader.load();
@@ -182,6 +223,10 @@ public class FacultyController {
 		stage.show();
 	}
 
+	/**
+	 * This shows your own bookings which you can cancel if they are not accepted/approved by the admin yet.
+	 * @param actionEvent
+	 */
 	public void showMyBooking(ActionEvent actionEvent)  {
 		tableanchor.getChildren().clear();
 		ArrayList<HashMap> bookings = null;
@@ -255,6 +300,12 @@ public class FacultyController {
 
 	}
 
+	/**
+	 * Helper function to remove the booking from database.
+	 * @param bookingHelper
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	private void removeBooking(BookingHelper bookingHelper) throws IOException, ClassNotFoundException {
     	ArrayList<HashMap> booking = Booking.deserialize();
 

@@ -34,6 +34,12 @@ public class RegisterController implements Serializable {
 	private String tempFirstName = "", tempLastName = "", tempEmailID = "", tempPhNumber = "", tempPassword = "", tempRollNo = "", tempUserType = "", tempUserBranch = "";
 	private String tempDob;
 
+	/**
+	 * Generates an account request after checking if the user has typed in all the information correctly.
+	 * If not it will show a dialog box as per the error.
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	@FXML
 	public void handleFinalPage(ActionEvent even) throws IOException, ClassNotFoundException {
 		boolean passwordMatch = false;
@@ -164,6 +170,11 @@ public class RegisterController implements Serializable {
 		}
 	}
 
+	/**
+	 * Shows the login page.
+	 * @param actionEvent
+	 * @throws IOException
+	 */
 	@FXML
 	public void showLoginPage(ActionEvent actionEvent) throws IOException {
 		Parent newscene = FXMLLoader.load(getClass().getResource("entryPage.fxml"));
@@ -171,6 +182,9 @@ public class RegisterController implements Serializable {
 		Main.primaryStage.show();
 	}
 
+	/**
+	 * To show/hide the rollNumber and branch field for admin and faculty.
+	 */
 	@FXML
 	public void initialize() {
 		typeOfUser.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
@@ -191,7 +205,12 @@ public class RegisterController implements Serializable {
 		});
 	}
 
-
+	/**
+	 * Function to serialize the userdata to the database file.
+	 * @param user
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	public static void serializeData(Users user) throws IOException, ClassNotFoundException {
 		if (user.getType().equals("Student")) {
 			Student student = (Student) user;
@@ -266,6 +285,11 @@ public class RegisterController implements Serializable {
 		}
 	}
 
+	/**
+	 * Helper function to write Database to a file.
+	 * @param db
+	 * @throws IOException
+	 */
 	private static void writeDBToFile(Database db) throws IOException {
 		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("./src/db.txt"));
 		out.writeObject(db);
@@ -273,11 +297,22 @@ public class RegisterController implements Serializable {
 		out.close();
 	}
 
+	/**
+	 * Helper function to read database from a file.
+	 * @return
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	private static Database readDBFromFile() throws IOException, ClassNotFoundException {
 		ObjectInputStream oin = new ObjectInputStream(new FileInputStream("./src/db.txt"));
 		return ( (Database) oin.readObject() );
 	}
 
+	/**
+	 * Shows the about page.
+	 * @param actionEvent
+	 * @throws IOException
+	 */
 	public void showAboutPage(ActionEvent actionEvent) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("about.fxml"));
 		Parent root1 = (Parent) fxmlLoader.load();

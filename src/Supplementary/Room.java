@@ -3,6 +3,10 @@ package Supplementary;
 import java.io.Serializable;
 import java.util.*;
 
+/**
+ * <h1>Room Class</h1>
+ * <p>This class store information for a room.</p>
+ */
 public class Room implements Serializable{
     public Map<String, ArrayList<LinkedHashMap<String, String>>> roomAvailable;
     private String roomNumber;
