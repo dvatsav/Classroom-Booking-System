@@ -3,6 +3,8 @@ package UIControllers;
 import Actors.*;
 import Supplementary.AccountRequests;
 import Supplementary.BookingRequests;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +28,8 @@ public class RegisterController implements Serializable {
 	@FXML private TextField register_rollnum;
 	@FXML private ChoiceBox typeOfUser;
 	@FXML private ChoiceBox branchOfUser;
+	@FXML private Label rollNumberLabel;
+	@FXML private Label branchLabel;
 
 	private String tempFirstName = "", tempLastName = "", tempEmailID = "", tempPhNumber = "", tempPassword = "", tempRollNo = "", tempUserType = "", tempUserBranch = "";
 	private String tempDob;
@@ -137,6 +141,26 @@ public class RegisterController implements Serializable {
 		Parent newscene = FXMLLoader.load(getClass().getResource("entryPage.fxml"));
 		Main.primaryStage.setScene(new Scene(newscene, 600, 400));
 		Main.primaryStage.show();
+	}
+
+	@FXML
+	public void initialize() {
+		typeOfUser.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				if ((int) newValue != 0){
+					branchLabel.setVisible(false);
+					rollNumberLabel.setVisible(false);
+					register_rollnum.setVisible(false);
+					branchOfUser.setVisible(false);
+				} else {
+					branchLabel.setVisible(true);
+					rollNumberLabel.setVisible(true);
+					register_rollnum.setVisible(true);
+					branchOfUser.setVisible(true);
+				}
+			}
+		});
 	}
 
 
