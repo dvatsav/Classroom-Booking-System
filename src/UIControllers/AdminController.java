@@ -586,14 +586,15 @@ public class AdminController {
         ObservableList<Map> allData = FXCollections.observableArrayList();
         for (int i = 0; i < b.getBookingrequests().size() ; ++i) {
             Map<String, String> dataRow = new HashMap<>();
-
-            dataRow.put("Day", (String)b.getBookingrequests().get(i).get("Day"));
-            dataRow.put("Room Number", (String)b.getBookingrequests().get(i).get("Room Number"));
-            dataRow.put("Purpose", (String)b.getBookingrequests().get(i).get("Purpose"));
-            dataRow.put("Start Time", (String)b.getBookingrequests().get(i).get("Start Time"));
-            dataRow.put("End Time", (String)b.getBookingrequests().get(i).get("End Time"));
-            dataRow.put("Requested by", (String)b.getBookingrequests().get(i).get("Requested by"));
-            allData.add(dataRow);
+            if (System.currentTimeMillis() - Long.parseLong((String)b.getBookingrequests().get(i).get("Time of Booking")) < 432000000) {
+                dataRow.put("Day", (String) b.getBookingrequests().get(i).get("Day"));
+                dataRow.put("Room Number", (String) b.getBookingrequests().get(i).get("Room Number"));
+                dataRow.put("Purpose", (String) b.getBookingrequests().get(i).get("Purpose"));
+                dataRow.put("Start Time", (String) b.getBookingrequests().get(i).get("Start Time"));
+                dataRow.put("End Time", (String) b.getBookingrequests().get(i).get("End Time"));
+                dataRow.put("Requested by", (String) b.getBookingrequests().get(i).get("Requested by"));
+                allData.add(dataRow);
+            }
         }
         return allData;
     }
