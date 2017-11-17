@@ -406,6 +406,8 @@ public class AdminController {
     /**
      * This function adds all mandatory courses by default to a user
      * @param student Student Object
+     * @throws IOException thrown when input or output stream is not initialized
+     * @throws ClassNotFoundException thrown when the requested class is not found
      */
     public void addMandatoryCourses(Student student) throws IOException, ClassNotFoundException{
         Database userDb = readDBFromFile();
