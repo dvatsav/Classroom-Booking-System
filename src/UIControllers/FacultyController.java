@@ -44,8 +44,8 @@ public class FacultyController {
 
 	/**
 	 * Loads the new course window.
-	 * @param event
-	 * @throws IOException
+	 * @param event action event handler object
+	 * @throws IOException exception thrown when input or output stream not initialized
 	 */
 	@FXML
 	public void handleNewCourse(ActionEvent event) throws IOException{
@@ -59,8 +59,8 @@ public class FacultyController {
 
 	/**
 	 * Loads the room booking window.
-	 * @param event
-	 * @throws IOException
+	 * @param event action event handler object
+	 * @throws IOException exception thrown when input or output stream object not initialized
 	 */
     @FXML
     public void handleBookRoom(ActionEvent event) throws IOException {
@@ -73,6 +73,7 @@ public class FacultyController {
 	/**
 	 * This function manages how the table is loaded and what all functions can the user perform on the table once he
 	 * clicks on current booking button.
+	 * @param event action event object
 	 */
     @FXML
     public void handleCurrentBookings(ActionEvent event) {
@@ -120,7 +121,7 @@ public class FacultyController {
 
 	/**
 	 * Helper function for table data.
-	 * @return
+	 * @return return an observable list used to populate the table
 	 */
 	private ObservableList<Map> generateDataInMap() {
         ObservableList<Map> allData = FXCollections.observableArrayList();
@@ -139,8 +140,8 @@ public class FacultyController {
 
 	/**
 	 * Logs the user out of the app.
-	 * @param event
-	 * @throws IOException
+	 * @param event action event handler object
+	 * @throws IOException exception thrown when input or output stream object not initialized
 	 */
 	@FXML
     public void handleLogout(ActionEvent event) throws IOException {
@@ -153,8 +154,9 @@ public class FacultyController {
 	/**
 	 * This function manages how the table is loaded and what all functions can the user perform on the table once he
 	 * clicks on courses taught button.
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @throws IOException exception thrown when input or output stream object not initialized
+	 * @throws ClassNotFoundException when requested class is not found
+	 * @param actionEvent actionevent object
 	 */
 	public void showCoursesTaught(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
 		tableanchor.getChildren().clear();
@@ -202,8 +204,8 @@ public class FacultyController {
 	/**
 	 * Helper function to read database from file.
 	 * @return Returns an object of Database class.
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @throws IOException exception thrown when input or output stream object not initialized
+	 * @throws ClassNotFoundException when requested class is not found
 	 */
 	private Database readDBFromFile() throws IOException, ClassNotFoundException {
 		ObjectInputStream oin = new ObjectInputStream(new FileInputStream("./src/db.txt"));
@@ -212,8 +214,8 @@ public class FacultyController {
 
 	/**
 	 * Loads the about page.
-	 * @param actionEvent
-	 * @throws IOException
+	 * @param actionEvent Action event handler object
+	 * @throws IOException exception thrown when input or output stream object not initialized
 	 */
 	public void showAboutPage(ActionEvent actionEvent) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("about.fxml"));
@@ -225,7 +227,7 @@ public class FacultyController {
 
 	/**
 	 * This shows your own bookings which you can cancel if they are not accepted/approved by the admin yet.
-	 * @param actionEvent
+	 * @param actionEvent action event handler object
 	 */
 	public void showMyBooking(ActionEvent actionEvent)  {
 		tableanchor.getChildren().clear();
@@ -302,9 +304,9 @@ public class FacultyController {
 
 	/**
 	 * Helper function to remove the booking from database.
-	 * @param bookingHelper
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @param bookingHelper Booking Helper object containing information about records stored on the table
+	 * @throws IOException exception thrown when input or output stream object not initialized
+	 * @throws ClassNotFoundException when requested class is not found
 	 */
 	private void removeBooking(BookingHelper bookingHelper) throws IOException, ClassNotFoundException {
     	ArrayList<HashMap> booking = Booking.deserialize();

@@ -20,8 +20,8 @@ public class Main extends Application {
 
     /**
      * This function starts the application by loading the entryPage.xml
-     * @param stage
-     * @throws Exception
+     * @param stage Stage object
+     * @throws Exception Exception handler for all exceptions
      */
     @Override
     public void start(Stage stage) throws Exception{

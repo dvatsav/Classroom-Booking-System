@@ -37,8 +37,9 @@ public class RegisterController implements Serializable {
 	/**
 	 * Generates an account request after checking if the user has typed in all the information correctly.
 	 * If not it will show a dialog box as per the error.
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @throws IOException throws Exception when input or output stream not initialized
+	 * @throws ClassNotFoundException exception when requested class does not exist
+	 * @param even action event object
 	 */
 	@FXML
 	public void handleFinalPage(ActionEvent even) throws IOException, ClassNotFoundException {
@@ -129,10 +130,9 @@ public class RegisterController implements Serializable {
 				}
 				a.addElement(hm);
 				a.serialize(a.getAccountRequests());
-				//serializeData(faculty);
+
 			} else if (tempUserType.equals("Admin")) {
-				//Admin admin = new Admin(tempFirstName, tempLastName, tempPhNumber, tempEmailID, tempPassword, tempUserType, tempDob);
-				//.out.println("-----------" + admin);
+
 				HashMap<String, String> hm = new HashMap<>();
 				hm.put("User Type", "Admin");
 				hm.put("First Name", tempFirstName);
@@ -153,7 +153,7 @@ public class RegisterController implements Serializable {
 				}
 				a.addElement(hm);
 				a.serialize(a.getAccountRequests());
-				//serializeData(admin);
+
 			}
 
 
@@ -172,8 +172,8 @@ public class RegisterController implements Serializable {
 
 	/**
 	 * Shows the login page.
-	 * @param actionEvent
-	 * @throws IOException
+	 * @param actionEvent actionevent object handler
+	 * @throws IOException throws Exception when input or output stream not initialized
 	 */
 	@FXML
 	public void showLoginPage(ActionEvent actionEvent) throws IOException {
@@ -207,14 +207,14 @@ public class RegisterController implements Serializable {
 
 	/**
 	 * Function to serialize the userdata to the database file.
-	 * @param user
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @param user Object of Class user
+	 * @throws IOException throws Exception when input or output stream not initialized
+	 * @throws ClassNotFoundException exception when requested class is not found
 	 */
 	public static void serializeData(Users user) throws IOException, ClassNotFoundException {
 		if (user.getType().equals("Student")) {
 			Student student = (Student) user;
-			// Check if db.txt exists if not create it else write to that only.
+
 			File file = new File("./src/db.txt");
 			if (file.exists()) {
 				Database db = readDBFromFile();
@@ -287,8 +287,8 @@ public class RegisterController implements Serializable {
 
 	/**
 	 * Helper function to write Database to a file.
-	 * @param db
-	 * @throws IOException
+	 * @param db database object
+	 * @throws IOException throws Exception when input or output stream not initialized
 	 */
 	private static void writeDBToFile(Database db) throws IOException {
 		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("./src/db.txt"));
@@ -299,9 +299,9 @@ public class RegisterController implements Serializable {
 
 	/**
 	 * Helper function to read database from a file.
-	 * @return
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @return returns database object
+	 * @throws IOException throws Exception when input or output stream not initialized
+	 * @throws ClassNotFoundException throws exception if requested class is not found
 	 */
 	private static Database readDBFromFile() throws IOException, ClassNotFoundException {
 		ObjectInputStream oin = new ObjectInputStream(new FileInputStream("./src/db.txt"));
@@ -310,8 +310,8 @@ public class RegisterController implements Serializable {
 
 	/**
 	 * Shows the about page.
-	 * @param actionEvent
-	 * @throws IOException
+	 * @param actionEvent action event object
+	 * @throws IOException throws Exception when input or output stream not initialized
 	 */
 	public void showAboutPage(ActionEvent actionEvent) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("about.fxml"));

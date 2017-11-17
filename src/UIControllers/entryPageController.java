@@ -128,8 +128,8 @@ public class entryPageController {
 
 	/**
 	 * Loads the register page.
-	 * @param event
-	 * @throws IOException
+	 * @param event Action event handler object
+	 * @throws IOException when input or output stream not initialized
 	 */
     @FXML
     private void handleNewUser(ActionEvent event) throws IOException {
@@ -141,8 +141,8 @@ public class entryPageController {
 
 	/**
 	 * Shows the forgot password page.
-	 * @param actionEvent
-	 * @throws IOException
+	 * @param actionEvent Action event handler object
+	 * @throws IOException when input or output stream not initialized
 	 */
 	@FXML
     public void showForgotPasswordPage(ActionEvent actionEvent) throws IOException {
@@ -153,9 +153,9 @@ public class entryPageController {
 
 	/**
 	 * Helper function to read database.
-	 * @return
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @return return a Database object
+	 * @throws IOException when input or output stream is not initialized
+	 * @throws ClassNotFoundException when the requested class is not found
 	 */
 	private Database readDBFromFile() throws IOException, ClassNotFoundException {
 		ObjectInputStream oin = new ObjectInputStream(new FileInputStream("./src/db.txt"));

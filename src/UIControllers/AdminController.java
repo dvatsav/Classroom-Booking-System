@@ -43,7 +43,8 @@ public class AdminController {
 
     /**
      * This method opens the password window for the admin.
-     * @throws IOException
+     * @throws IOException throws Input/output exception
+     * @param event action event object
      */
     @FXML
     public void handleMailLogin(ActionEvent event) throws IOException {
@@ -57,7 +58,7 @@ public class AdminController {
 
 	/**
 	 * This function handles the mail logout event for the admin.
-	 * @param event
+	 * @param event Event handler object
 	 */
 	@FXML
     public void handleMailLogout(ActionEvent event) {
@@ -71,6 +72,10 @@ public class AdminController {
 
     @FXML private TextField password;
 
+    /**
+     * This function stores the email password
+     * @param event action event object
+     */
     @FXML
     public void handleStorePassword(ActionEvent event) {
         String password2 = password.getText();
@@ -81,8 +86,9 @@ public class AdminController {
 	/**
 	 * This function manages how the table is loaded and what all functions can the user perform on the table once he
 	 * clicks on course request button.
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @throws IOException throws Exception when stream cannot be initialized
+	 * @throws ClassNotFoundException throws Exception when the requested class does not exist
+     * @param event action event object
 	 */
 	@FXML
     public void handleCourseReq(ActionEvent event) throws IOException, ClassNotFoundException {
@@ -206,6 +212,8 @@ public class AdminController {
 
 	/**
 	 * Helper function to generate data for table.
+     * @param c course requests object
+     * @return returns observable list to populate table
 	 */
 	public ObservableList<Map> generateDataInMap4(CourseRequests c) {
         ObservableList<Map> allData = FXCollections.observableArrayList();
@@ -225,8 +233,9 @@ public class AdminController {
 	/**
 	 * This function manages how the table is loaded and what all functions can the user perform on the table once he
 	 * clicks on account request button.
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @throws IOException throws Exception if input or output stream not initialized
+	 * @throws ClassNotFoundException throws Exception if requested class not found
+     * @param event action event object
 	 */
     @FXML
     public void handleAccReq(ActionEvent event) throws IOException, ClassNotFoundException {
@@ -393,6 +402,8 @@ public class AdminController {
 
 	/**
 	 * Another helper function to load data in table.
+     * @param a account requests object
+     * @return returns observable list to populate table
 	 */
 	public ObservableList<Map> generateDataInMap3(AccountRequests a) {
         ObservableList<Map> allData = FXCollections.observableArrayList();
@@ -416,11 +427,10 @@ public class AdminController {
 	/**
 	 * This function manages how the table is loaded and what all functions can the user perform on the table once he
 	 * clicks on booking request button. It allows the admin to accept/reject the request.
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+     * @param event action event object
 	 */
     @FXML
-    public void handleBookReq(ActionEvent event) {
+    public void handleBookReq(ActionEvent event){
         BookingRequests b = new BookingRequests();
 		try {
 			b.setBookinRequests(b.deserialize());
@@ -569,8 +579,8 @@ public class AdminController {
 
     /**
      * Function used to generate a map object to populate the table
-     * @param b
-     * @return
+     * @param b contains an object of booking requests class
+     * @return returns an observable list used to populate table
      */
     public ObservableList<Map> generateDataInMap2(BookingRequests b) {
         ObservableList<Map> allData = FXCollections.observableArrayList();
@@ -590,7 +600,8 @@ public class AdminController {
 
 	/**
 	 * Loads the room booking UI.
-	 * @throws IOException
+	 * @throws IOException when input output stream is not initialized
+     * @param event action event object
 	 */
 	@FXML
     public void handleBookRoom(ActionEvent event) throws IOException {
@@ -603,6 +614,7 @@ public class AdminController {
 	/**
 	 * This function manages how the table is loaded and what all functions can the user perform on the table once he
 	 * clicks on current booking button. It basically shows all the bookings that has been previously made and accepted.
+     * @param event action event object
 	 */
     @FXML
     public void handleCurrentBookings(ActionEvent event){
@@ -701,7 +713,7 @@ public class AdminController {
 
 	/**
 	 * Logs the user out.
-	 * @throws IOException
+	 * @throws IOException when input or output stream not initialized
 	 */
 	@FXML
     private void handleLogout() throws IOException{
@@ -712,7 +724,8 @@ public class AdminController {
 
 	/**
 	 * Shows the about page.
-	 * @throws IOException
+	 * @throws IOException when input or output stream not initialized
+     * @param actionEvent action event object
 	 */
 	public void showAboutPage(ActionEvent actionEvent) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("about.fxml"));

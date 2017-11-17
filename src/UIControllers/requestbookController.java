@@ -55,7 +55,7 @@ public class requestbookController {
 
     /**
      * This function is used to display all the current bookings that are taken
-     * @param event
+     * @param event action event object
      */
     @FXML
     public void handleCurrentBookings(ActionEvent event) {
@@ -110,7 +110,7 @@ public class requestbookController {
     /**
      * This function is sued to generate a map object that will then be used
      * to populate the displayed table
-     * @return
+     * @return returns an observable list used to populate the table
      */
     private ObservableList<Map> generateDataInMap() {
         ObservableList<Map> allData = FXCollections.observableArrayList();
@@ -129,8 +129,8 @@ public class requestbookController {
 
     /**
      * Function that handles returning back to the GUI of the class that called this booking function
-     * @param event
-     * @throws IOException
+     * @param event action event object handler
+     * @throws IOException throws Exception when input or output stream not initialized
      */
     public void handleBackToHome(ActionEvent event) throws IOException {
         Parent newscene = FXMLLoader.load(getClass().getResource(callingClass));
@@ -142,10 +142,10 @@ public class requestbookController {
      * This function handles the onclick action of a user confiming the request to book a room
      * if the user is an admin or faculty, the room is automatically booked. If Student, a request is sent
      * to the admin.
-     * @param event
-     * @throws IOException
-     * @throws ParseException
-     * @throws ClassNotFoundException
+     * @param event actio event object handler
+     * @throws IOException throws Exception when input or output stream not initialized
+     * @throws ParseException exception when there is an error in string parsing
+     * @throws ClassNotFoundException exception thrown when requested class not found
      */
     public void handleConfirmBooking(ActionEvent event) throws IOException, ParseException, ClassNotFoundException{
 
@@ -215,9 +215,9 @@ public class requestbookController {
 
     /**
      * This function returns to the previous calling page
-     * @param actionEvent
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @param actionEvent actionevent object handler
+     * @throws IOException throws Exception when input or output stream not initialized
+     * @throws ClassNotFoundException exception thrown when requested class not found
      */
     public void showPreviousPage(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
 		Database userDb = readDBFromFile();
@@ -240,8 +240,8 @@ public class requestbookController {
     /**
      * This function reads data from the database of users
      * @return returns database object
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @throws IOException throws Exception when input or output stream not initialized
+     * @throws ClassNotFoundException exception thrown when requested class not found
      */
 	private Database readDBFromFile() throws IOException, ClassNotFoundException {
 		ObjectInputStream oin = new ObjectInputStream(new FileInputStream("./src/db.txt"));
@@ -250,8 +250,8 @@ public class requestbookController {
 
     /**
      * This function shows the about / help page
-     * @param actionEvent
-     * @throws IOException
+     * @param actionEvent action event object handler
+     * @throws IOException throws Exception when input or output stream not initialized
      */
 	public void showAboutPage(ActionEvent actionEvent) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("about.fxml"));
