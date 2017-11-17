@@ -53,6 +53,15 @@ public class RegisterController implements Serializable {
 			return;
 		}
 
+		if (!register_emailid.getText().contains("@iiitd.ac.in") || !register_phnumber.getText().matches("[0-9]{10}")) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setTitle("Error");
+			alert.setHeaderText(null);
+			alert.setContentText("Invalid Email ID or Phone Number");
+			alert.show();
+			return;
+		}
+
 		if (typeOfUser.getValue().toString().equals("Student") && (register_rollnum.getText().equals("") || branchOfUser.getValue() == null)) {
 
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);

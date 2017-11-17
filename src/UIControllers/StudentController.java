@@ -386,7 +386,15 @@ public class StudentController {
 			public void handle(ActionEvent event) {
 				Course course = currentTimeTable.getSelectionModel().getSelectedItem();
 				try {
-					removeCourseFromMyCourses(course);
+					if (!course.isMandatory())
+						removeCourseFromMyCourses(course);
+					else {
+						Alert alert = new Alert(Alert.AlertType.INFORMATION);
+						alert.setTitle("Error");
+						alert.setHeaderText(null);
+						alert.setContentText("Cannot remove mandatory course");
+						alert.show();
+					}
 				} catch (IOException | ClassNotFoundException e) {
 					e.printStackTrace();
 				}

@@ -1,10 +1,12 @@
 package UIControllers;
 
 import Actors.Admin;
+import Actors.Database;
 import Actors.Faculty;
 import Actors.Student;
 import Supplementary.*;
 import Utils.SendEmail;
+import Utils.Utilities;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,8 +32,7 @@ import sun.awt.image.ImageWatched;
 
 import javax.swing.*;
 import java.awt.print.Book;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -332,7 +333,9 @@ public class AdminController {
                         a.removeAccount(hm);
                         if (hm.get("User Type").equals("Student")) {
                             Student student = new Student(hm.get("First Name"), hm.get("Last Name"), hm.get("Phone Number"), hm.get("Email ID"), hm.get("Password"), hm.get("User Type"), hm.get("Date of Birth"), hm.get("Roll Number"), hm.get("Branch"));
+                            addMandatoryCourses(student);
                             RegisterController.serializeData(student);
+
                         } else if (hm.get("User Type").equals("Faculty")) {
                             Faculty faculty = new Faculty(hm.get("First Name"), hm.get("Last Name"), hm.get("Phone Number"), hm.get("Email ID"), hm.get("Password"), hm.get("User Type"), hm.get("Date of Birth"));
                             RegisterController.serializeData(faculty);
@@ -398,6 +401,22 @@ public class AdminController {
             }
         });
 
+    }
+
+    /**
+     * This function adds all mandatory courses by default to a user
+     * @param student Student Object
+     */
+    public void addMandatoryCourses(Student student) throws IOException, ClassNotFoundException{
+        Database userDb = readDBFromFile();
+        for (Course course : Utilities.courses) {
+            if (course.isMandatory()) {
+                if (!student.getMyCourses().contains(course)) {
+                    student.getMyCourses().add(course);
+                }
+            }
+        }
+        writeDBToFile(userDb);
     }
 
 	/**
@@ -721,6 +740,29 @@ public class AdminController {
         Parent newscene = FXMLLoader.load(getClass().getResource("entryPage.fxml"));
         Main.primaryStage.setScene(new Scene(newscene, 600, 400));
         Main.primaryStage.show();
+    }
+
+    /**
+     * This function reads the database
+     * @return returns the database object
+     * @throws IOException when input or output stream is not initialized
+     * @throws ClassNotFoundException exception thrown when requested class not found
+     */
+    private Database readDBFromFile() throws IOException, ClassNotFoundException {
+        ObjectInputStream oin = new ObjectInputStream(new FileInputStream("./src/db.txt"));
+        return ( (Database) oin.readObject() );
+    }
+
+    /**
+     * This function wrties to the database object and the serializes the file
+     * @param db database object
+     * @throws IOException when input or output stream is not initialized
+     */
+    private void writeDBToFile(Database db) throws IOException {
+        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("./src/db.txt", false));
+        out.writeObject(db);
+        out.flush();
+        out.close();
     }
 
 	/**

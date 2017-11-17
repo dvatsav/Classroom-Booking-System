@@ -36,6 +36,8 @@ public class Course implements Serializable {
 
     private String preReq;
 
+
+
     public Course(boolean Mandatory, String courseName, String courseCode, String instructor, int credits, String acronym, String preReq) {
         this.mandatory = Mandatory;
         this.courseCode = courseCode;
@@ -56,6 +58,8 @@ public class Course implements Serializable {
     public String getCourseCode() {return courseCode;}
     public String getPreReq() {return preReq;}
     public String getPostCondition() {return postCondition;}
+    public boolean isMandatory() {return mandatory;}
+
 
     @Override
     public boolean equals(Object obj) {
