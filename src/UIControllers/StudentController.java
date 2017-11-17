@@ -4,6 +4,7 @@ import Actors.Database;
 import Actors.Student;
 import Supplementary.*;
 import Utils.Utilities;
+import Utils.ViewPDF;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
@@ -208,7 +209,7 @@ public class StudentController {
 				table_student.setItems(FXCollections.observableArrayList(filteredCourses));
 			} else {
             	for (Course c : courses){
-            		if (!c.getPostCondition().toLowerCase().replace(".", "").replace(",", "").contains(searchedString.toLowerCase())) {
+            		if (!c.getCourseName().toLowerCase().contains(searchedString.toLowerCase()) && !c.getPostCondition().toLowerCase().replace(".", "").replace(",", "").contains(searchedString.toLowerCase())) {
 						filteredCourses.remove(c);
 					}
 				}
@@ -332,9 +333,14 @@ public class StudentController {
     @FXML
     public void handleLogout(ActionEvent event) throws IOException {
         Parent newscene = FXMLLoader.load(getClass().getResource("entryPage.fxml"));
-        Main.primaryStage.setScene(new Scene(newscene, 600, 400));
+        Main.primaryStage.setScene(new Scene(newscene, 800, 600));
         Main.primaryStage.show();
     }
+
+    @FXML
+	public void handleLectureNotes(ActionEvent event) throws Exception {
+		ViewPDF.openPDF();
+	}
 
 	/**
 	 * This function handles the showing of all the courses selected by the user. The selected courses

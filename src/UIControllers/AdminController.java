@@ -406,6 +406,8 @@ public class AdminController {
     /**
      * This function adds all mandatory courses by default to a user
      * @param student Student Object
+     * @throws IOException thrown when input or output stream is not initialized
+     * @throws ClassNotFoundException thrown when the requested class is not found
      */
     public void addMandatoryCourses(Student student) throws IOException, ClassNotFoundException{
         Database userDb = readDBFromFile();
@@ -738,7 +740,7 @@ public class AdminController {
 	@FXML
     private void handleLogout() throws IOException{
         Parent newscene = FXMLLoader.load(getClass().getResource("entryPage.fxml"));
-        Main.primaryStage.setScene(new Scene(newscene, 600, 400));
+        Main.primaryStage.setScene(new Scene(newscene, 800, 600));
         Main.primaryStage.show();
     }
 

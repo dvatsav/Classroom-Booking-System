@@ -10,15 +10,22 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIControllers.RegisterController">
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIControllers.RegisterController">
    <children>
-      <VBox layoutX="500.0" layoutY="96.0" prefHeight="412.0" prefWidth="226.0" spacing="10">
+       <ImageView fitHeight="700.0" fitWidth="1000.0">
+           <image>
+               <Image url="@download.jpg" />
+           </image>
+       </ImageView>
+      <VBox layoutX="544.0" layoutY="96.0" prefHeight="412.0" prefWidth="226.0" spacing="10">
          <children>
             <TextField fx:id="register_firstname" prefHeight="31.0" />
             <TextField fx:id="register_lastname" prefHeight="31.0" />
@@ -52,39 +59,64 @@
             </ChoiceBox>
          </children>
       </VBox>
-      <VBox layoutX="251.0" layoutY="96.0" prefHeight="412.0" prefWidth="156.0" spacing="10">
+      <VBox layoutX="219.0" layoutY="96.0" prefHeight="412.0" prefWidth="189.0" spacing="10">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="156.0" text="First Name" />
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="156.0" text="Last Name" textAlignment="CENTER" />
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="156.0" text="Email ID" textAlignment="CENTER" />
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="156.0" text="Date of Birth" textAlignment="CENTER" />
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="156.0" text="Phone Number" textAlignment="CENTER" />
-            <Label alignment="CENTER" prefHeight="30.0" prefWidth="156.0" text="Password" />
-            <Label alignment="CENTER" prefHeight="32.0" prefWidth="156.0" text="Enter Password Again" />
-            <Label alignment="CENTER" prefHeight="32.0" prefWidth="156.0" text="Account Type" />
-            <Label alignment="CENTER" prefHeight="30.0" prefWidth="156.0" text="Roll Number" fx:id="rollNumberLabel" />
-            <Label alignment="CENTER" prefHeight="31.0" prefWidth="156.0" text="Branch" fx:id="branchLabel"/>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="192.0" text="First Name" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font></Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="189.0" text="Last Name" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font></Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="191.0" text="Email ID" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font></Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="193.0" text="Date of Birth" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font></Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="190.0" text="Phone Number" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font></Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="192.0" text="Password" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font></Label>
+            <Label alignment="CENTER" prefHeight="32.0" prefWidth="190.0" text="Enter Password Again" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font></Label>
+            <Label alignment="CENTER" prefHeight="32.0" prefWidth="192.0" text="Account Type" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font></Label>
+            <Label fx:id="rollNumberLabel" alignment="CENTER" prefHeight="30.0" prefWidth="189.0" text="Roll Number" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font></Label>
+            <Label fx:id="branchLabel" alignment="CENTER" prefHeight="31.0" prefWidth="190.0" text="Branch" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font></Label>
          </children></VBox>
       <MenuBar layoutY="-1.0" prefHeight="32.0" prefWidth="1000.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" onAction="#showLoginPage"/>
+              <MenuItem mnemonicParsing="false" onAction="#showLoginPage" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" onAction="#showAboutPage"/>
+              <MenuItem mnemonicParsing="false" onAction="#showAboutPage" text="About" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
-      <VBox layoutY="94.0" prefHeight="606.0" prefWidth="156.0">
-         <children>
-            <Button mnemonicParsing="false" onAction="#showLoginPage" prefHeight="43.0" prefWidth="156.0" text="Return to Login" />
-         </children>
-      </VBox>
-      <Separator layoutX="153.0" layoutY="31.0" orientation="VERTICAL" prefHeight="668.0" prefWidth="0.0" />
-      <Button layoutX="457.0" layoutY="585.0" mnemonicParsing="false" onAction="#handleFinalPage" text="Submit" />
+      <Button layoutX="326.0" layoutY="570.0" mnemonicParsing="false" onAction="#handleFinalPage" prefHeight="43.0" prefWidth="125.0" style="-fx-background-radius: 50em; -fx-border-radius: 50em;" text="Submit" />
+      <Button layoutX="522.0" layoutY="570.0" mnemonicParsing="false" onAction="#showLoginPage" prefHeight="43.0" prefWidth="125.0" style="-fx-background-radius: 50em; -fx-border-radius: 50em;" text="Return to Login" />
    </children>
 </AnchorPane>

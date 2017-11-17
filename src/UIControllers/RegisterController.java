@@ -174,7 +174,7 @@ public class RegisterController implements Serializable {
 
 
 			Parent newscene = FXMLLoader.load(getClass().getResource("entryPage.fxml"));
-			Main.primaryStage.setScene(new Scene(newscene, 600, 400));
+			Main.primaryStage.setScene(new Scene(newscene, 800, 600));
 			Main.primaryStage.show();
 		}
 	}
@@ -187,7 +187,7 @@ public class RegisterController implements Serializable {
 	@FXML
 	public void showLoginPage(ActionEvent actionEvent) throws IOException {
 		Parent newscene = FXMLLoader.load(getClass().getResource("entryPage.fxml"));
-		Main.primaryStage.setScene(new Scene(newscene, 600, 400));
+		Main.primaryStage.setScene(new Scene(newscene, 800, 600));
 		Main.primaryStage.show();
 	}
 
