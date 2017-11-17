@@ -22,9 +22,9 @@ public class NewcourseController {
 
     /**
      * This generates and submits a request for a new course to be launched by a faculty member.
-     * @param event
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @param event Action event handler object
+     * @throws IOException exception thrown when input or output stream not initialized
+     * @throws ClassNotFoundException when requested class is not found
      */
     @FXML
     public void handleSubmit(ActionEvent event) throws IOException, ClassNotFoundException{

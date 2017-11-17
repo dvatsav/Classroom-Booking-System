@@ -12,8 +12,8 @@ import java.io.IOException;
 public class forgotPassword {
 	/**
 	 * Starts the login page.
-	 * @param actionEvent
-	 * @throws IOException
+	 * @param actionEvent Action event object
+	 * @throws IOException Exception thrown when input or output stream not initialized
 	 */
 	public void showLoginPage(ActionEvent actionEvent) throws IOException {
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);

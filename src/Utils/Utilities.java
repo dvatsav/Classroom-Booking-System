@@ -45,7 +45,7 @@ public class Utilities implements Serializable{
      * @param br This is the bufferedReader stream
      * @param csvSplit This is the delimitter for the CSV
      * @param courses This is an arrayList to contain all the Course objects
-     * @throws IOException
+     * @throws IOException throws exception when input or output stream is not initialized
      */
     private static void readFile(BufferedReader br, String csvSplit, ArrayList<Course> courses) throws IOException {
         String line;
@@ -242,7 +242,7 @@ public class Utilities implements Serializable{
      * @param classroom classroom attempting to be booked
      * @param Day Day on which booking is for
      * @return return boolean true or false
-     * @throws ParseException
+     * @throws ParseException throws error when there is an error in string parsing
      */
     public static boolean determineValidTime(String start, String end, String classroom, String Day) throws ParseException{
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
@@ -268,7 +268,7 @@ public class Utilities implements Serializable{
      * @param course1 course 1
      * @param course2 course 2
      * @return returns boolean true or false
-     * @throws ParseException
+     * @throws ParseException throws error when there is an error in string parsing
      */
     public static boolean checkValidCourseTime(Course course1, Course course2) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
@@ -294,7 +294,7 @@ public class Utilities implements Serializable{
 
     /**
      * This function serializes the course arraylist
-     * @throws IOException
+     * @throws IOException throws exception when input or output stream is not initialized
      */
     public static void serializeCourses() throws IOException{
         ObjectOutputStream out = null;
@@ -308,7 +308,7 @@ public class Utilities implements Serializable{
 
     /**
      * This function serializes the rooms arraylist
-     * @throws IOException
+     * @throws IOException throws exception when input or output stream is not initialized
      */
     public static void serializeRooms() throws IOException{
         ObjectOutputStream out = null;
@@ -322,8 +322,8 @@ public class Utilities implements Serializable{
 
     /**
      * This function deserializes the courses arraylist
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @throws IOException throws exception when input or output stream is not initialized
+     * @throws ClassNotFoundException throws Exception when requested class is not found
      */
     public static void deSerializeCourses() throws IOException, ClassNotFoundException{
         ObjectInputStream in = null;
@@ -337,8 +337,8 @@ public class Utilities implements Serializable{
 
     /**
      * This function deserializes the rooms arraylist
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @throws IOException throws exception when input or output stream is not initialized
+     * @throws ClassNotFoundException throws Exception when requested class is not found
      */
     public static void deSerializeRooms() throws IOException, ClassNotFoundException{
         ObjectInputStream in = null;

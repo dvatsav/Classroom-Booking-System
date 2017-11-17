@@ -48,7 +48,7 @@ public class StudentController {
 	/**
 	 * This function initializes a view of all the courses that are available in the institute
 	 * This is the first page that comes up when a student logs in
-	 * @throws ParseException
+	 * @throws ParseException throws exception when there is a parsing error
 	 */
 	@FXML
 	public void initialize() throws ParseException{
@@ -107,8 +107,8 @@ public class StudentController {
 	/**
 	 * This Function adds a specific course to the course list of a student
 	 * @param course object of course containing details about that course
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @throws IOException when input or output stream is not initialized
+	 * @throws ClassNotFoundException exception thrown when requested class not found
 	 */
 	private void addCourseToStudentList(Course course) throws IOException, ClassNotFoundException {
 		Database userDb = readDBFromFile();
@@ -127,8 +127,8 @@ public class StudentController {
 	/**
 	 * This function reads the database
 	 * @return returns the database object
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @throws IOException when input or output stream is not initialized
+	 * @throws ClassNotFoundException exception thrown when requested class not found
 	 */
 	private Database readDBFromFile() throws IOException, ClassNotFoundException {
 		ObjectInputStream oin = new ObjectInputStream(new FileInputStream("./src/db.txt"));
@@ -137,8 +137,8 @@ public class StudentController {
 
 	/**
 	 * This function wrties to the database object and the serializes the file
-	 * @param db
-	 * @throws IOException
+	 * @param db database object
+	 * @throws IOException when input or output stream is not initialized
 	 */
 	private void writeDBToFile(Database db) throws IOException {
 		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("./src/db.txt", false));
@@ -152,9 +152,9 @@ public class StudentController {
 	 * It filters out based on search parameter, non clashing courses and those that the student has
 	 * not yet selected
  	 * @param keyEvent key event, checks whether the enter key has been pressed
-	 * @throws IOException
-	 * @throws ClassNotFoundException
-	 * @throws ParseException
+	 * @throws IOException when input or output stream is not initialized
+	 * @throws ClassNotFoundException exception thrown when requested class not found
+	 * @throws ParseException Exception thrown when there is a string parsing error
 	 */
 	@FXML
     public void handleGenerateCourse(KeyEvent keyEvent) throws IOException, ClassNotFoundException, ParseException{
@@ -313,7 +313,7 @@ public class StudentController {
 	/**
 	 * This function handles the request for booking a room
 	 * @param event, On click event
-	 * @throws IOException
+	 * @throws IOException when input or output stream is not initialized
 	 */
 	@FXML
     public void handleBookRoom(ActionEvent event) throws IOException{
@@ -326,7 +326,7 @@ public class StudentController {
 	/**
 	 * This Function handles logging out of the user
 	 * @param event, on click event
-	 * @throws IOException
+	 * @throws IOException when input or output stream is not initialized
 	 */
     @FXML
     public void handleLogout(ActionEvent event) throws IOException {
@@ -338,9 +338,9 @@ public class StudentController {
 	/**
 	 * This function handles the showing of all the courses selected by the user. The selected courses
 	 * are retrieved from a database stored in the student class
-	 * @param actionEvent
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @param actionEvent action event handling object
+	 * @throws IOException when input or output stream is not initialized
+	 * @throws ClassNotFoundException exception thrown when requested class not found
 	 */
 	public void showMyCourses(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
 		anchor_for_table.getChildren().clear();
@@ -408,9 +408,9 @@ public class StudentController {
 	/**
 	 * This function handles the removal of a course from the current timetable of a student by removing the element from t
 	 * the respective database in its student object
-	 * @param course
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @param course Course object
+	 * @throws IOException when input or output stream is not initialized
+	 * @throws ClassNotFoundException exception thrown when requested class not found
 	 */
 	private void removeCourseFromMyCourses(Course course) throws IOException, ClassNotFoundException {
 		Database userDb = readDBFromFile();
@@ -437,7 +437,7 @@ public class StudentController {
 
 	/**
 	 * This function shows a table with a list of all the faculty members
-	 * @param actionEvent
+	 * @param actionEvent action event handling object
 	 */
 	public void showFaculty(ActionEvent actionEvent) {
 		anchor_for_table.getChildren().clear();
@@ -453,8 +453,8 @@ public class StudentController {
 
 	/**
 	 * This function handles displaying the about and help page
-	 * @param actionEvent
-	 * @throws IOException
+	 * @param actionEvent action event handling object
+	 * @throws IOException when input or output stream is not initialized
 	 */
 	public void showAboutPage(ActionEvent actionEvent) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("about.fxml"));
@@ -467,7 +467,7 @@ public class StudentController {
 	/**
 	 * This function handles the showing of all booking request made by a particular student
 	 * It its retrieved from the database stored in the respective student object
-	 * @param actionEvent
+	 * @param actionEvent action event handling object
 	 */
 	public void showMyRequests(ActionEvent actionEvent) {
 		anchor_for_table.getChildren().clear();
@@ -538,9 +538,9 @@ public class StudentController {
 
 	/**
 	 * This function removes a particular booking from the bookinglist of a student
-	 * @param bookingHelper
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @param bookingHelper contains an object containing data about current data row in table
+	 * @throws IOException when input or output stream is not initialized
+	 * @throws ClassNotFoundException exception thrown when requested class not found
 	 */
 	private void removeBooking(BookingHelper bookingHelper) throws IOException, ClassNotFoundException {
 		BookingRequests br = new BookingRequests();
