@@ -31,13 +31,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
  * <h1>RequestBookController Class</h1>
- * <p>This class is used to control the booking requests</p>
+ * <p>This class is used to control the booking requests.</p>
+ * Bookings must be made atleast one day in advance
  */
 public class requestbookController {
     @FXML AnchorPane anchor_with_table;
@@ -161,8 +163,15 @@ public class requestbookController {
         String startTime = start_time.getValue().toString();
         String endTime= end_time.getValue().toString();
         String dateforbook = date_to_book.getValue().toString();
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date1 = new Date();
+        Date date2 = sdf.parse(dateforbook);
+        if (date2.compareTo(date1) < 0) {
+            showAlert();
+            return;
+        }
         String dateOfBook = Utilities.convertDateToDay(dateforbook);
-
+        long timeOfBook = System.currentTimeMillis();
 
         if (Utilities.determineValidTime(startTime, endTime, (String)class_number.getValue(), dateOfBook)) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -184,6 +193,7 @@ public class requestbookController {
                 temp.put("End Time", endTime);
                 temp.put("Purpose", purpose.getText());
                 temp.put("Requested by", entryPageController.userEmail);
+                temp.put("Time of Booking", Long.toString(timeOfBook));
                 if (entryPageController.userType.equals("Student")) {
                     File file = new File("./src/DataFiles/bookingreqs.txt");
                     BookingRequests b = new BookingRequests();
@@ -205,12 +215,19 @@ public class requestbookController {
                 Main.primaryStage.show();
             }
         } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText("The Requested Time Slot is not Available");
-            alert.show();
+            showAlert();
         }
+    }
+
+    /**
+     * This function shows an alert with invalid input
+     */
+    public void showAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText("The Requested Time Slot is not Available");
+        alert.show();
     }
 
     /**

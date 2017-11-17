@@ -75,7 +75,8 @@ public class StudentController {
 		col5.setCellValueFactory(new PropertyValueFactory<Course, String>("preReq"));
 		col6.setCellValueFactory(new PropertyValueFactory<Course, String>("postCondition"));
 		col6.prefWidthProperty().bind(table_student.widthProperty().multiply(0.9));
-		table_student.setItems(courses);
+
+		table_student.setItems(FXCollections.observableArrayList(courses));
 		ContextMenu cm = new ContextMenu();
 		MenuItem mi1 = new MenuItem("Add to my List Of Courses");
 		mi1.setOnAction(new EventHandler<ActionEvent>() {

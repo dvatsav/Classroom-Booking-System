@@ -58,6 +58,7 @@ public class entryPageController {
 				if (student.getEmail().equals(tempEmailLogin) && student.getPassword().equals(tempPasswordLogin)) {
 					Parent newscene = FXMLLoader.load(getClass().getResource("student.fxml"));
 					flag = 1;
+					setUser(tempEmailLogin, tempTypeOfUserLogin);
 					Main.primaryStage.setScene(new Scene(newscene,  1200, 800));
 					Main.primaryStage.show();
 				}
@@ -76,6 +77,7 @@ public class entryPageController {
 				if (faculty.getEmail().equals(tempEmailLogin) && faculty.getPassword().equals(tempPasswordLogin)) {
 					Parent newscene = FXMLLoader.load(getClass().getResource("faculty.fxml"));
 					flag = 1;
+					setUser(tempEmailLogin, tempTypeOfUserLogin);
 					Main.primaryStage.setScene(new Scene(newscene,  1200, 800));
 					Main.primaryStage.show();
 				}
@@ -86,6 +88,7 @@ public class entryPageController {
 		} else if (tempTypeOfUserLogin.equals("Admin")) {
 			if (tempEmailLogin.equals("admin@iiitd.ac.in") && tempPasswordLogin.equals("hello")) {
 				Parent newscene = FXMLLoader.load(getClass().getResource("admin.fxml"));
+				setUser(tempEmailLogin, tempTypeOfUserLogin);
 				Main.primaryStage.setScene(new Scene(newscene, 1200, 800));
 				Main.primaryStage.show();
 			} else {
@@ -99,6 +102,7 @@ public class entryPageController {
 					if (admin.getEmail().equals(tempEmailLogin) && admin.getPassword().equals(tempPasswordLogin)) {
 						Parent newscene = FXMLLoader.load(getClass().getResource("admin.fxml"));
 						flag = 1;
+						setUser(tempEmailLogin, tempTypeOfUserLogin);
 						Main.primaryStage.setScene(new Scene(newscene, 1200, 800));
 						Main.primaryStage.show();
 					}
@@ -107,11 +111,18 @@ public class entryPageController {
 					nouser();
 				}
 			}
-
 		}
+    }
+
+	/**
+	 * This function sets values of email and user type for the current user
+	 * @param tempEmailLogin email of user
+	 * @param tempTypeOfUserLogin user type
+	 */
+	public void setUser(String tempEmailLogin, String tempTypeOfUserLogin) {
 		CurrentLoggenInUser.setCurrentUserEmail(tempEmailLogin);
 		CurrentLoggenInUser.setCurrentUserType(tempTypeOfUserLogin);
-    }
+	}
 
 	/**
 	 * Launchs the noUser dialog box.
