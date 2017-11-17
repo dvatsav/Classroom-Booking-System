@@ -41,7 +41,7 @@ public class Main extends Application {
             Utilities.serializeCourses();
             Utilities.serializeRooms();
         }
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 800, 600);
 
         primaryStage.setScene(scene);
 

@@ -738,7 +738,7 @@ public class AdminController {
 	@FXML
     private void handleLogout() throws IOException{
         Parent newscene = FXMLLoader.load(getClass().getResource("entryPage.fxml"));
-        Main.primaryStage.setScene(new Scene(newscene, 600, 400));
+        Main.primaryStage.setScene(new Scene(newscene, 800, 600));
         Main.primaryStage.show();
     }
 
