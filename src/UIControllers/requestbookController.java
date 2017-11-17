@@ -151,7 +151,7 @@ public class requestbookController {
      */
     public void handleConfirmBooking(ActionEvent event) throws IOException, ParseException, ClassNotFoundException{
 
-        if (start_time.getValue() == null || end_time.getValue() == null || date_to_book.getValue() == null || purpose.getText().equals("")) {
+        if (start_time.getValue() == null || end_time.getValue() == null || date_to_book.getValue() == null) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error");
             alert.setHeaderText(null);
